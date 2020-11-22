@@ -36,10 +36,16 @@ public class AIStateWalk : AIStateBaseNode
     {
         Progress = 0;
         isActive = true;
+        IsEnd = false;
     }
     public override void End()
     {
         Progress = 0;
         isActive = false;
+        IsEnd = true;
+    }
+    public override bool CouldBeOverride()
+    {
+        return true;
     }
 }

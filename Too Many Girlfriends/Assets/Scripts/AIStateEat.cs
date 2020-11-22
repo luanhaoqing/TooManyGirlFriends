@@ -27,16 +27,18 @@ public class AIStateEat : AIStateBaseNode
     public override bool IsValid()
     {
         //Need some detection here for entering this node
-        return true;
+        return false;
     }
     public override void StartBehaviour()
     {
         Progress = 0;
+        IsEnd = false;
         isActive = true;
     }
     public override void End()
     {
         Progress = 0;
+        IsEnd = true;
         isActive = false;
     }
 }

@@ -11,9 +11,16 @@ public class AIStateBaseNode:MonoBehaviour
 
     private float progress;
     public bool isActive;
+    private bool isEnd;
+    public virtual bool CouldBeOverride() { return false; }
     public float Progress
     {
         get { return progress; }
         set { progress = value; }
+    }
+    public bool IsEnd
+    {
+        get { return isEnd; }
+        set { isEnd = value; }
     }
 }
