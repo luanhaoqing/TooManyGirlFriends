@@ -33,6 +33,7 @@ public class AIStateFollowPlayer : AIStateBaseNode
             this.GetComponent<AIBehaviour>().UpdateAngryLevel((Time.deltaTime / AngryLevelReduceToMinTime) * -100);
         }
     }
+
     private float getDistance(GameObject AIPlayer, GameObject MyPlayer)
     {
         Vector3 AIPlayerPos = AIPlayer.transform.position;

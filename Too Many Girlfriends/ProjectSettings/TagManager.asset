@@ -7,6 +7,7 @@ TagManager:
   - Wall
   - Ground
   - AIPlayer
+  - Restaurant
   layers:
   - Default
   - TransparentFX

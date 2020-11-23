@@ -38,14 +38,19 @@ public class PlayerMovement : MonoBehaviour
         //Mouse Movement
         if (Input.GetMouseButtonDown(0))
         {
-            RaycastHit hit;
-
-            if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit, 100))
+            RaycastHit[] hits;
+            hits = Physics.RaycastAll(Camera.main.ScreenPointToRay(Input.mousePosition), 100);
+            for(int i = 0;i<hits.Length;i++)
             {
-                if(hit.collider.gameObject.tag == "Ground")
+                if(hits[i].collider.gameObject.tag == "Wall")
+                {
+                    break;
+                }
+                else if(hits[i].collider.gameObject.tag == "Ground")
                 {
                     isKeyBoardControl = false;
-                    destinationPosition = new Vector3(hit.point.x,yValue,hit.point.z);
+                    destinationPosition = new Vector3(hits[i].point.x, yValue, hits[i].point.z);
+                    break;
                 }
             }
         }
