@@ -29,8 +29,11 @@ public class AIStateWalk : AIStateBaseNode
   
     public override bool IsValid()
     {
-        //This will always be valid.
-        return true;
+        if(this.GetComponent<AIBehaviour>().GetAngryLevel() == 100)
+        {
+            return true;
+        }
+        return false;
     }
     public override void StartBehaviour()
     {

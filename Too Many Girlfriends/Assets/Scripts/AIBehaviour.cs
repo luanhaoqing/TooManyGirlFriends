@@ -1,19 +1,21 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
 
 public enum AIBehaviourType
 {
-    WALK = 0,
-    EAT = 1,
-    FOLLOWPLAYER = 2,
+    IDLE = 0,
+    WALK = 1,
+    EAT = 2,
+    FOLLOWPLAYER = 3,
 }
 
 public class AIBehaviour : MonoBehaviour
 {
     public AIBehaviourType[] BehaviourTypeIncluded;
-
+    public Slider AngryLevelBar;
+    private float AngryLevel;
     private int numberOfBehaviour;
     private AIStateBaseNode[] Behaviours;
     private int currentState;
@@ -21,6 +23,7 @@ public class AIBehaviour : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        AngryLevel = 0;
         yValue = this.transform.position.y;
         numberOfBehaviour = BehaviourTypeIncluded.Length;
         Behaviours = new AIStateBaseNode[numberOfBehaviour];
@@ -82,9 +85,24 @@ public class AIBehaviour : MonoBehaviour
         {
             return this.GetComponent<AIStateWalk>();
         }
+       else if(type == AIBehaviourType.IDLE)
+        {
+            return this.GetComponent<AIStateIdle>();
+        }
        else
         {
             return this.GetComponent<AIStateFollowPlayer>();
         }
+    }
+    public void UpdateAngryLevel(float delta)
+    {
+        AngryLevel += delta;
+        AngryLevel = Mathf.Clamp(AngryLevel, 0, 100);
+        AngryLevelBar.value = AngryLevel / 100;
+    }
+
+    public float GetAngryLevel()
+    {
+        return AngryLevel;
     }
 }

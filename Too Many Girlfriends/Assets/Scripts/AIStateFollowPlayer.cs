@@ -6,6 +6,7 @@ public class AIStateFollowPlayer : AIStateBaseNode
 {
     public float Speed;
     public GameObject MyPlayer;
+    public float AngryLevelReduceToMinTime;
 
     private Transform currentPosition;
     private GameObject aiPlayer;
@@ -29,6 +30,7 @@ public class AIStateFollowPlayer : AIStateBaseNode
             {
                 aiPlayer.GetComponent<Rigidbody>().velocity = Vector3.zero;
             }
+            this.GetComponent<AIBehaviour>().UpdateAngryLevel((Time.deltaTime / AngryLevelReduceToMinTime) * -100);
         }
     }
     private float getDistance(GameObject AIPlayer, GameObject MyPlayer)
