@@ -69,11 +69,6 @@ public class AIBehaviour : MonoBehaviour
                 }
             }
         }
-        //Fixed the Y position
-        this.transform.position = new Vector3(this.transform.position.x, yValue, this.transform.position.z);
-        //Lets fix the rotation
-        Quaternion rotation = Quaternion.Euler(Vector3.zero);
-        this.transform.rotation = rotation;
     }
     public AIStateBaseNode GetBehaviourByEnum(AIBehaviourType type)
     {

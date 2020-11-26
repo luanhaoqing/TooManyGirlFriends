@@ -31,6 +31,7 @@ public class AIStateFollowPlayer : AIStateBaseNode
                 aiPlayer.GetComponent<Rigidbody>().velocity = Vector3.zero;
             }
             this.GetComponent<AIBehaviour>().UpdateAngryLevel((Time.deltaTime / AngryLevelReduceToMinTime) * -100);
+            this.transform.LookAt(MyPlayer.transform.position);
         }
     }
 
