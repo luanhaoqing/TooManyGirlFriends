@@ -7,10 +7,11 @@ public class AIStateWalk : AIStateBaseNode
 {
     public float Speed;
     public GameObject Player;
-    //well, this should never be completed ever
-    private int CompletionTime = 9999999;
     private Transform currentPosition;
     private GameObject aiPlayer;
+    private bool shouldChangeDirection;
+    private float timer;
+    private bool hitTheWall;
     // Start is called before the first frame update
     void Start()
     {
@@ -22,8 +23,22 @@ public class AIStateWalk : AIStateBaseNode
     {
         if(this.IsActive())
         {
-            //walk state will only exit if other state is available 
-            Progress += Time.deltaTime / CompletionTime;
+            timer -= Time.deltaTime;
+            if(timer <= 0)
+            {
+                shouldChangeDirection = true;
+            }
+            if(shouldChangeDirection)
+            {
+                int min = hitTheWall ? 90 : -45;
+                int max = hitTheWall ? 180 : 45;
+                Vector3 randomRotation = new Vector3(0, Random.Range(min, max), 0);
+                this.transform.Rotate(randomRotation, Space.Self);
+                this.GetComponent<Rigidbody>().velocity = transform.forward * Speed;
+                timer = Random.Range(1, 5);
+                shouldChangeDirection = false;
+                hitTheWall = false;
+            }
            
         }
     }
@@ -41,7 +56,9 @@ public class AIStateWalk : AIStateBaseNode
         Progress = 0;
         isActive = true;
         IsEnd = false;
-
+        shouldChangeDirection = false;
+        hitTheWall = false;
+        timer = Random.Range(1, 5);
         this.transform.LookAt(Player.transform.position);
         this.GetComponent<Rigidbody>().velocity = transform.forward * Speed;
     }
@@ -60,7 +77,8 @@ public class AIStateWalk : AIStateBaseNode
     {
         if (collision.collider.tag == "Wall")
         {
-            this.GetComponent<Rigidbody>().velocity = Vector3.zero;
+            shouldChangeDirection = true;
+            hitTheWall = true;
         }
     }
 
