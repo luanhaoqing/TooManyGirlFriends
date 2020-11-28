@@ -20,6 +20,13 @@ public class AIBehaviour : MonoBehaviour
     private AIStateBaseNode[] Behaviours;
     private int currentState;
     private float yValue;
+
+
+    public AIBehaviourType GetCurrentBehaviourType()
+    {
+        return BehaviourTypeIncluded[currentState];
+    }
+
     // Start is called before the first frame update
     void Start()
     {

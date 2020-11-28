@@ -7,6 +7,7 @@ public class AIStateEat : AIStateBaseNode
 {
     public int CompletionTime = 10;
     public GameObject ActionBar;
+    public GameObject ActionButton;
     private bool isValid;
     private bool hasEverFinished;
     // Start is called before the first frame update
@@ -32,10 +33,18 @@ public class AIStateEat : AIStateBaseNode
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Restaurant" && !hasEverFinished)
+        if (other.tag == "Restaurant" && !hasEverFinished && this.GetComponent<AIBehaviour>().GetCurrentBehaviourType()== AIBehaviourType.FOLLOWPLAYER)
         {
-            isValid = true;
+            ActionButton.SetActive(true);
+            Button btn = ActionButton.GetComponent<Button>();
+            btn.GetComponentInChildren<Text>().text = "START EAT";
+            btn.onClick.AddListener(TaskOnClick);
         }
+    }
+
+    void TaskOnClick()
+    {
+        isValid = true;
     }
 
     private void OnTriggerExit(Collider other)
@@ -43,6 +52,7 @@ public class AIStateEat : AIStateBaseNode
         if (other.tag == "Restaurant" && !hasEverFinished)
         {
             isValid = false;
+            ActionButton.SetActive(false);
         }
     }
 
@@ -67,6 +77,7 @@ public class AIStateEat : AIStateBaseNode
         IsEnd = true;
         isActive = false;
         hasEverFinished = true;
+        ActionButton.SetActive(false);
     }
 }
 

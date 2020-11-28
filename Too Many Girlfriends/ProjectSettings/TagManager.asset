@@ -8,6 +8,8 @@ TagManager:
   - Ground
   - AIPlayer
   - Restaurant
+  - ControlOverlay
+  - ActionButton
   layers:
   - Default
   - TransparentFX
