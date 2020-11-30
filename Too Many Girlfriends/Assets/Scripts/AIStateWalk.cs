@@ -32,14 +32,12 @@ public class AIStateWalk : AIStateBaseNode
             {
                 int min = hitTheWall ? 90 : -45;
                 int max = hitTheWall ? 180 : 45;
-                Vector3 randomRotation = new Vector3(0, Random.Range(min, max), 0);
-                this.transform.Rotate(randomRotation, Space.Self);
+                this.transform.localEulerAngles = new Vector3(this.transform.localEulerAngles.x, this.transform.localEulerAngles.y + Random.Range(min, max), this.transform.localEulerAngles.z);
                 this.GetComponent<Rigidbody>().velocity = transform.forward * Speed;
                 timer = Random.Range(1, 5);
                 shouldChangeDirection = false;
                 hitTheWall = false;
             }
-           
         }
     }
   
@@ -61,6 +59,7 @@ public class AIStateWalk : AIStateBaseNode
         timer = Random.Range(1, 5);
         this.transform.LookAt(Player.transform.position);
         this.GetComponent<Rigidbody>().velocity = transform.forward * Speed;
+        this.StartWalking();
     }
     public override void End()
     {
@@ -68,6 +67,7 @@ public class AIStateWalk : AIStateBaseNode
         isActive = false;
         IsEnd = true;
         this.GetComponent<Rigidbody>().velocity = Vector3.zero;
+        this.StopWalking();
     }
     public override bool CouldBeOverride()
     {

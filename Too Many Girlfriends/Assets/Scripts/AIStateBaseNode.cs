@@ -24,4 +24,6 @@ public class AIStateBaseNode:MonoBehaviour
         get { return isEnd; }
         set { isEnd = value; }
     }
+    public virtual void StartWalking() { this.GetComponentInChildren<Animator>().SetBool("IsWalk", true); }
+    public virtual void StopWalking() { this.GetComponentInChildren<Animator>().SetBool("IsWalk", false); }
 }

@@ -1,15 +1,16 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor;
 
 public class PlayerMovement : MonoBehaviour
 {
     public float Speed;
-
     private float yValue;
     private Vector3 destinationPosition;
     private float destinationDistance;
     private bool isKeyBoardControl;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -21,11 +22,6 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //Fixed the Y position
-        this.transform.position = new Vector3(this.transform.position.x, yValue, this.transform.position.z);
-        //Lets fix the rotation
-        Quaternion rotation = Quaternion.Euler(Vector3.zero);
-        this.transform.rotation = rotation;
 
         //keep track of distance
         destinationDistance = Vector3.Distance(destinationPosition, this.transform.position);
@@ -59,6 +55,12 @@ public class PlayerMovement : MonoBehaviour
         if (destinationDistance > .5f && !isKeyBoardControl)
         {
             this.transform.position = Vector3.MoveTowards(this.transform.position, destinationPosition, Speed * Time.deltaTime);
+            this.transform.LookAt(destinationPosition);
+            this.GetComponentInChildren<Animator>().SetBool("IsWalk", true);
+        }
+        else if(destinationDistance <= .5f && !isKeyBoardControl)
+        {
+            this.GetComponentInChildren<Animator>().SetBool("IsWalk", false);
         }
     }
 
@@ -69,9 +71,16 @@ public class PlayerMovement : MonoBehaviour
 
         this.GetComponent<Rigidbody>().velocity = new Vector3((h * Speed),
            0, (v * Speed));
+        this.transform.LookAt(new Vector3((this.transform.position.x + h * Speed),
+           yValue, (this.transform.position.z + v * Speed)));
         if(h != 0 || v != 0)
         {
             isKeyBoardControl = true;
+            this.GetComponentInChildren<Animator>().SetBool("IsWalk", true);
+        }
+        else if(isKeyBoardControl)
+        {
+            this.GetComponentInChildren<Animator>().SetBool("IsWalk", false);
         }
     }
 

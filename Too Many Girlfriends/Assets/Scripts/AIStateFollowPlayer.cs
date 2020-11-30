@@ -25,10 +25,12 @@ public class AIStateFollowPlayer : AIStateBaseNode
             if(getDistance(MyPlayer,aiPlayer)>3f)
             {
                 aiPlayer.transform.position = Vector3.MoveTowards(aiPlayer.transform.position, MyPlayer.transform.position, Speed * Time.deltaTime);
+                this.StartWalking();
             }
             else
             {
                 aiPlayer.GetComponent<Rigidbody>().velocity = Vector3.zero;
+                this.StopWalking();
             }
             this.GetComponent<AIBehaviour>().UpdateAngryLevel((Time.deltaTime / AngryLevelReduceToMinTime) * -100);
             this.transform.LookAt(MyPlayer.transform.position);
@@ -58,6 +60,7 @@ public class AIStateFollowPlayer : AIStateBaseNode
     {
         isActive = false;
         IsEnd = true;
+        this.StopWalking();
     }
     public override bool CouldBeOverride()
     {
