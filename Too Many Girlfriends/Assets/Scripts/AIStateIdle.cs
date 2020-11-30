@@ -22,7 +22,6 @@ public class AIStateIdle : AIStateBaseNode
 
     public override bool IsValid()
     {
-        //Need some detection here for entering this node
         return true;
     }
     public override void StartBehaviour()
@@ -30,12 +29,14 @@ public class AIStateIdle : AIStateBaseNode
         Progress = 0;
         IsEnd = false;
         isActive = true;
+        this.PrintToScreen("IDLE STATE START");
     }
     public override void End()
     {
         Progress = 0;
         IsEnd = true;
         isActive = false;
+        this.PrintToScreen("IDLE STATE END");
     }
     public override bool CouldBeOverride()
     {

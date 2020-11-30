@@ -69,6 +69,7 @@ public class AIStateEat : AIStateBaseNode
         ActionBar.SetActive(true);
         IsEnd = false;
         isActive = true;
+        this.PrintToScreen("EAT STATE START");
     }
     public override void End()
     {
@@ -78,6 +79,7 @@ public class AIStateEat : AIStateBaseNode
         isActive = false;
         hasEverFinished = true;
         ActionButton.SetActive(false);
+        this.PrintToScreen("EAT STATE END");
     }
 }
 

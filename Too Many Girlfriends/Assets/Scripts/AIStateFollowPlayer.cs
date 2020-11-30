@@ -55,12 +55,14 @@ public class AIStateFollowPlayer : AIStateBaseNode
         isActive = true;
         //This Follow Player Stats could be End anytime
         IsEnd = false;
+        this.PrintToScreen("FOLLOW PLAYER STATE START");
     }
     public override void End()
     {
         isActive = false;
         IsEnd = true;
         this.StopWalking();
+        this.PrintToScreen("FOLLOW PLAYER STATE END");
     }
     public override bool CouldBeOverride()
     {

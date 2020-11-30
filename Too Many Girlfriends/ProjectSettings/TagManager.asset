@@ -10,6 +10,7 @@ TagManager:
   - Restaurant
   - ControlOverlay
   - ActionButton
+  - LogSystem
   layers:
   - Default
   - TransparentFX
