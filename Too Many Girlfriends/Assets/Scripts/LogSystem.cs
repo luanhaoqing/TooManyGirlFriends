@@ -10,10 +10,14 @@ public class LogSystem : MonoBehaviour
     private string[] logs;
     private int logNumber;
     // Start is called before the first frame update
-    void Start()
+
+    private void Awake()
     {
         logs = new string[MaxLines];
         logNumber = 0;
+    }
+    void Start()
+    {
         updateLogLines();
     }
 

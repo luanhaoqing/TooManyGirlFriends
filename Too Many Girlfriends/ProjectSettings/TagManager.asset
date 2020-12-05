@@ -11,6 +11,7 @@ TagManager:
   - ControlOverlay
   - ActionButton
   - LogSystem
+  - TaskBar
   layers:
   - Default
   - TransparentFX
