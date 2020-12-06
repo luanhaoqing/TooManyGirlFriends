@@ -7,6 +7,7 @@ public class AIStateFollowPlayer : AIStateBaseNode
     public float Speed;
     public GameObject MyPlayer;
     public float AngryLevelReduceToMinTime;
+    public bool ForceFollowPlayerState;
 
     private Transform currentPosition;
     private GameObject aiPlayer;
@@ -14,6 +15,7 @@ public class AIStateFollowPlayer : AIStateBaseNode
     void Start()
     {
         aiPlayer = this.gameObject;
+        ForceFollowPlayerState = false;
     }
 
     // Update is called once per frame
@@ -47,7 +49,7 @@ public class AIStateFollowPlayer : AIStateBaseNode
     {
         aiPlayer = this.gameObject;
         //If player is close to AI Player
-        if (getDistance(MyPlayer, aiPlayer) < 5) return true;
+        if (getDistance(MyPlayer, aiPlayer) < 5 || ForceFollowPlayerState) return true;
         else return false;
     }
     public override void StartBehaviour()
@@ -60,6 +62,7 @@ public class AIStateFollowPlayer : AIStateBaseNode
     public override void End()
     {
         isActive = false;
+        ForceFollowPlayerState = false;
         IsEnd = true;
         this.StopWalking();
         this.PrintToScreen("FOLLOW PLAYER STATE END");

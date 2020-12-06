@@ -1347,6 +1347,14 @@ PrefabInstance:
       propertyPath: ActionButton
       value: 
       objectReference: {fileID: 698013359}
+    - target: {fileID: 2553515110304967233, guid: cbba14012f1579848a0fef1350217dd8, type: 3}
+      propertyPath: PrepareStateTime
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2553515110304967234, guid: cbba14012f1579848a0fef1350217dd8, type: 3}
+      propertyPath: Speed
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 2553515110304967234, guid: cbba14012f1579848a0fef1350217dd8, type: 3}
       propertyPath: Player
       value: 
@@ -1469,6 +1477,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1096971238}
     m_Modifications:
+    - target: {fileID: 295606836, guid: 063fd2aba4f3c404186c33afe9af45c3, type: 3}
+      propertyPath: m_Radius
+      value: 6.5
+      objectReference: {fileID: 0}
     - target: {fileID: 6873128708087517790, guid: 063fd2aba4f3c404186c33afe9af45c3, type: 3}
       propertyPath: m_RootOrder
       value: 1

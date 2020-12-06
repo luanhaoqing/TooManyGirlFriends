@@ -6,15 +6,16 @@ using UnityEngine.UI;
 public class AIStateEat : AIStateBaseNode
 {
     public int CompletionTime = 10;
+    public float PrepareStateTime = 5;
     public GameObject ActionBar;
     public GameObject ActionButton;
     private bool isValid;
-    private bool hasEverFinished;
+  //  private bool hasEverFinished;
     // Start is called before the first frame update
     void Start()
     {
         isValid = false;
-        hasEverFinished = false;
+    //    hasEverFinished = false;
     }
 
     // Update is called once per frame
@@ -22,34 +23,43 @@ public class AIStateEat : AIStateBaseNode
     {
         if (this.IsActive())
         {
-            Progress += Time.deltaTime / CompletionTime;
-            ActionBar.GetComponent<Slider>().value = Progress;
-            if (Progress >= 1)
+            if(CurrentState == BehaviourState.SELF_ACTION_STATE)
             {
-                this.End();
+                Progress += Time.deltaTime / CompletionTime;
+                ActionBar.GetComponent<Slider>().value = Progress;
+                if (Progress >= 1)
+                {
+                    this.End();
+                }
             }
+           else if(CurrentState == BehaviourState.PREPARE_STATE)
+           {
+                PrepareStateTime -= Time.deltaTime;
+                if(PrepareStateTime<=0)
+                {
+                    UpdateCurrentState(BehaviourState.SELF_ACTION_STATE);
+                }
+           }
         }
     }
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Restaurant" && !hasEverFinished && this.GetComponent<AIBehaviour>().GetCurrentBehaviourType()== AIBehaviourType.FOLLOWPLAYER)
+        if (other.tag == "Restaurant" && this.GetComponent<AIBehaviour>().GetCurrentBehaviourType()== AIBehaviourType.FOLLOWPLAYER)
         {
-            ActionButton.SetActive(true);
-            Button btn = ActionButton.GetComponent<Button>();
-            btn.GetComponentInChildren<Text>().text = "START EAT";
-            btn.onClick.AddListener(TaskOnClick);
+            isValid = true;
         }
     }
 
     void TaskOnClick()
     {
-        isValid = true;
+        this.GetComponent<AIStateFollowPlayer>().ForceFollowPlayerState = true;
+        this.End();
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.tag == "Restaurant" && !hasEverFinished)
+        if (other.tag == "Restaurant")
         {
             isValid = false;
             ActionButton.SetActive(false);
@@ -59,7 +69,7 @@ public class AIStateEat : AIStateBaseNode
     public override bool IsValid()
     {
         //Need some detection here for entering this node
-        if (hasEverFinished) return false;
+       // if (hasEverFinished) return false;
 
         return isValid;
     }
@@ -69,6 +79,7 @@ public class AIStateEat : AIStateBaseNode
         ActionBar.SetActive(true);
         IsEnd = false;
         isActive = true;
+        UpdateCurrentState(BehaviourState.PREPARE_STATE);
         this.PrintToScreen("EAT STATE START");
     }
     public override void End()
@@ -77,9 +88,28 @@ public class AIStateEat : AIStateBaseNode
         ActionBar.SetActive(false);
         IsEnd = true;
         isActive = false;
-        hasEverFinished = true;
+        isValid = false;
+   //     hasEverFinished = true;
         ActionButton.SetActive(false);
+        this.GetComponent<GoalSystem>().HandleGoalFinished(GoalType.RESTAURANT);
+        UpdateCurrentState(BehaviourState.END_STATE);
         this.PrintToScreen("EAT STATE END");
+    }
+
+    public override void UpdateCurrentState(BehaviourState state)
+    {
+        if(state == BehaviourState.PREPARE_STATE)
+        {
+            ActionButton.SetActive(true);
+            Button btn = ActionButton.GetComponent<Button>();
+            btn.GetComponentInChildren<Text>().text = "Take Girlfriend Leave";
+            btn.onClick.AddListener(TaskOnClick);
+        }
+        else
+        {
+            ActionButton.SetActive(false);
+        }
+        base.UpdateCurrentState(state);
     }
 }
 
