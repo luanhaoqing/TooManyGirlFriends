@@ -9,7 +9,7 @@ public enum GoalType
     NONE = 0,
     RESTAURANT = 1,
     SHOPPING = 2,
-    FLOWER = 3,
+    ICECREAM = 3,
     RESTROOM = 4,
 }
 
@@ -28,7 +28,7 @@ public class GoalSystem : MonoBehaviour
            "None",
            "Restaurant",
            "Shopping",
-           "Buy Flower",
+           "Buy Icecream",
            "Restroom",
        };
         return texts[index];

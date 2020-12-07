@@ -59,7 +59,7 @@ public class AIStateFollowPlayer : AIStateBaseNode
         IsEnd = false;
         this.PrintToScreen("FOLLOW PLAYER STATE START");
     }
-    public override void End()
+    public override void End(bool sucess = true)
     {
         isActive = false;
         ForceFollowPlayerState = false;

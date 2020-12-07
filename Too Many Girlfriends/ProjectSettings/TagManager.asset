@@ -12,6 +12,7 @@ TagManager:
   - ActionButton
   - LogSystem
   - TaskBar
+  - Icecream
   layers:
   - Default
   - TransparentFX

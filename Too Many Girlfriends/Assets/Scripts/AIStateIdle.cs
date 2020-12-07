@@ -31,7 +31,7 @@ public class AIStateIdle : AIStateBaseNode
         isActive = true;
         this.PrintToScreen("IDLE STATE START");
     }
-    public override void End()
+    public override void End(bool sucess = true)
     {
         Progress = 0;
         IsEnd = true;

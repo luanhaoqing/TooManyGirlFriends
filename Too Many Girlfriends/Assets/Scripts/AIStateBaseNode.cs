@@ -13,7 +13,7 @@ public class AIStateBaseNode:MonoBehaviour
     public virtual bool IsActive() { return isActive; }
     public virtual bool IsValid() { return false; }
     public virtual void StartBehaviour() { }
-    public virtual void End() { }
+    public virtual void End(bool sucess = true) { }
 
     private float progress;
     public bool isActive;

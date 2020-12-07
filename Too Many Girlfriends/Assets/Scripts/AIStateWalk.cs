@@ -62,7 +62,7 @@ public class AIStateWalk : AIStateBaseNode
         this.StartWalking();
         this.PrintToScreen("WALK AROUND STATE START");
     }
-    public override void End()
+    public override void End(bool sucess = true)
     {
         Progress = 0;
         isActive = false;

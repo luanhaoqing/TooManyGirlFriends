@@ -1,21 +1,36 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class AIStateEat : AIStateBaseNode
 {
+    public enum EatType
+    {
+        NONE,
+        RESTAURANT,
+        ICECREAM,
+    }
+
     public int CompletionTime = 10;
     public float PrepareStateTime = 5;
     public GameObject ActionBar;
     public GameObject ActionButton;
     private bool isValid;
-  //  private bool hasEverFinished;
+    private EatType eatType;
+    private bool[] hasEverFinished;
     // Start is called before the first frame update
     void Start()
     {
         isValid = false;
-    //    hasEverFinished = false;
+
+        int length = Enum.GetValues(typeof(EatType)).Length;
+        hasEverFinished = new bool[length];
+        for(int i = 0; i < length; i++)
+        {
+            hasEverFinished[i] = false;
+        }
     }
 
     // Update is called once per frame
@@ -45,7 +60,19 @@ public class AIStateEat : AIStateBaseNode
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Restaurant" && this.GetComponent<AIBehaviour>().GetCurrentBehaviourType()== AIBehaviourType.FOLLOWPLAYER)
+        if (other.tag == "Restaurant")
+        {
+            eatType = EatType.RESTAURANT;
+        }
+        else if(other.tag == "Icecream")
+        {
+            eatType = EatType.ICECREAM;
+        }
+        else
+        {
+            eatType = EatType.NONE;
+        }
+        if (((eatType == EatType.ICECREAM && !hasEverFinished[(int)EatType.ICECREAM] ) || (eatType == EatType.RESTAURANT && !hasEverFinished[(int)EatType.RESTAURANT])) && this.GetComponent<AIBehaviour>().GetCurrentBehaviourType()== AIBehaviourType.FOLLOWPLAYER)
         {
             isValid = true;
         }
@@ -54,14 +81,15 @@ public class AIStateEat : AIStateBaseNode
     void TaskOnClick()
     {
         this.GetComponent<AIStateFollowPlayer>().ForceFollowPlayerState = true;
-        this.End();
+        this.End(false);
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.tag == "Restaurant")
+        if (other.tag == "Restaurant" || other.tag == "Icecream")
         {
             isValid = false;
+            eatType = EatType.NONE;
             ActionButton.SetActive(false);
         }
     }
@@ -82,7 +110,7 @@ public class AIStateEat : AIStateBaseNode
         UpdateCurrentState(BehaviourState.PREPARE_STATE);
         this.PrintToScreen("EAT STATE START");
     }
-    public override void End()
+    public override void End(bool sucess = true)
     {
         Progress = 0;
         ActionBar.SetActive(false);
@@ -91,7 +119,19 @@ public class AIStateEat : AIStateBaseNode
         isValid = false;
    //     hasEverFinished = true;
         ActionButton.SetActive(false);
-        this.GetComponent<GoalSystem>().HandleGoalFinished(GoalType.RESTAURANT);
+        if(sucess)
+        {
+            if(eatType == EatType.RESTAURANT)
+            {
+                this.GetComponent<GoalSystem>().HandleGoalFinished(GoalType.RESTAURANT);
+            }
+           else
+            {
+                this.GetComponent<GoalSystem>().HandleGoalFinished(GoalType.ICECREAM);
+            }
+            hasEverFinished[(int)eatType] = true;
+        }
+        eatType = EatType.NONE;
         UpdateCurrentState(BehaviourState.END_STATE);
         this.PrintToScreen("EAT STATE END");
     }
