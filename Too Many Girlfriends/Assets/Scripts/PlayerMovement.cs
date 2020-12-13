@@ -6,10 +6,12 @@ using UnityEditor;
 public class PlayerMovement : MonoBehaviour
 {
     public float Speed;
+    public GameObject Cursor;
     private float yValue;
     private Vector3 destinationPosition;
     private float destinationDistance;
     private bool isKeyBoardControl;
+    private bool isStop;
 
     // Start is called before the first frame update
     void Start()
@@ -17,6 +19,8 @@ public class PlayerMovement : MonoBehaviour
         yValue = this.transform.position.y;
         destinationPosition = this.transform.position;
         isKeyBoardControl = false;
+        Cursor.SetActive(false);
+        isStop = true;
     }
 
     // Update is called once per frame
@@ -46,6 +50,8 @@ public class PlayerMovement : MonoBehaviour
                 {
                     isKeyBoardControl = false;
                     destinationPosition = new Vector3(hits[i].point.x, yValue, hits[i].point.z);
+                    Cursor.SetActive(true);
+                    Cursor.transform.position = new Vector3(destinationPosition.x,0, destinationPosition.z);
                     break;
                 }
             }
@@ -57,10 +63,13 @@ public class PlayerMovement : MonoBehaviour
             this.transform.position = Vector3.MoveTowards(this.transform.position, destinationPosition, Speed * Time.deltaTime);
             this.transform.LookAt(destinationPosition);
             this.GetComponentInChildren<Animator>().SetBool("IsWalk", true);
+            isStop = false;
         }
-        else if(destinationDistance <= .5f && !isKeyBoardControl)
+        else if(destinationDistance <= .5f && !isKeyBoardControl && !isStop)
         {
             this.GetComponentInChildren<Animator>().SetBool("IsWalk", false);
+            Cursor.SetActive(false);
+            isStop = true;
         }
     }
 
@@ -77,6 +86,8 @@ public class PlayerMovement : MonoBehaviour
         {
             isKeyBoardControl = true;
             this.GetComponentInChildren<Animator>().SetBool("IsWalk", true);
+            Cursor.SetActive(false);
+            isStop = false;
         }
         else if(isKeyBoardControl)
         {
