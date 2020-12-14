@@ -36,7 +36,7 @@ public class PlayerMovement : MonoBehaviour
         }
 
         //Mouse Movement
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButton(0))
         {
             RaycastHit[] hits;
             hits = Physics.RaycastAll(Camera.main.ScreenPointToRay(Input.mousePosition), 100);
