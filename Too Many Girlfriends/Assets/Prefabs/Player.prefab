@@ -198,6 +198,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -2843909369972686622, guid: 6ff03429e15a5d74c890eba072bd49ee, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 69b0fac081ede684097b0741614a2105, type: 2}
+    - target: {fileID: -2843909369972686622, guid: 6ff03429e15a5d74c890eba072bd49ee, type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: 91192fd11c5fcea4a8d588e8ed917985, type: 2}
+    - target: {fileID: -2843909369972686622, guid: 6ff03429e15a5d74c890eba072bd49ee, type: 3}
+      propertyPath: m_Materials.Array.data[2]
+      value: 
+      objectReference: {fileID: 2100000, guid: b140de40addfe7a499848647e49bf5a0, type: 2}
+    - target: {fileID: -1274560856079170786, guid: 6ff03429e15a5d74c890eba072bd49ee, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 533ff7f3800df1d42910d95e5e296080, type: 2}
     - target: {fileID: 919132149155446097, guid: 6ff03429e15a5d74c890eba072bd49ee, type: 3}
       propertyPath: m_Name
       value: Boy
