@@ -17,6 +17,7 @@ public class AIStateEat : AIStateBaseNode
     public float PrepareStateTime = 5;
     public GameObject ActionBar;
     public GameObject ActionButton;
+    private float timerForPrepareState;
     private bool isValid;
     private EatType eatType;
     private bool[] hasEverFinished;
@@ -24,7 +25,7 @@ public class AIStateEat : AIStateBaseNode
     void Start()
     {
         isValid = false;
-
+        timerForPrepareState = PrepareStateTime;
         int length = Enum.GetValues(typeof(EatType)).Length;
         hasEverFinished = new bool[length];
         for(int i = 0; i < length; i++)
@@ -49,8 +50,8 @@ public class AIStateEat : AIStateBaseNode
             }
            else if(CurrentState == BehaviourState.PREPARE_STATE)
            {
-                PrepareStateTime -= Time.deltaTime;
-                if(PrepareStateTime<=0)
+                timerForPrepareState -= Time.deltaTime;
+                if(timerForPrepareState <= 0)
                 {
                     UpdateCurrentState(BehaviourState.SELF_ACTION_STATE);
                 }
@@ -108,11 +109,22 @@ public class AIStateEat : AIStateBaseNode
         IsEnd = false;
         isActive = true;
         UpdateCurrentState(BehaviourState.PREPARE_STATE);
+
+        if(eatType == EatType.RESTAURANT)
+        {
+            ShowBubble(ThoughtBubble.BubbleType.DINNER);
+        }
+        else if (eatType == EatType.ICECREAM)
+        {
+            ShowBubble(ThoughtBubble.BubbleType.ICECREAM);
+        }
         this.PrintToScreen("EAT STATE START");
     }
     public override void End(bool sucess = true)
     {
+        //reset all kinda timer/progression
         Progress = 0;
+        timerForPrepareState = PrepareStateTime;
         ActionBar.SetActive(false);
         IsEnd = true;
         isActive = false;
@@ -132,6 +144,7 @@ public class AIStateEat : AIStateBaseNode
             hasEverFinished[(int)eatType] = true;
         }
         eatType = EatType.NONE;
+        HideBubble();
         UpdateCurrentState(BehaviourState.END_STATE);
         this.PrintToScreen("EAT STATE END");
     }

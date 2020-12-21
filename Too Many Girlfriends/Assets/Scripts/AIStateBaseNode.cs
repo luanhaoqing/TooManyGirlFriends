@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static ThoughtBubble;
 
 public class AIStateBaseNode:MonoBehaviour
 {
@@ -47,4 +48,6 @@ public class AIStateBaseNode:MonoBehaviour
     public virtual void StartWalking() { this.GetComponentInChildren<Animator>().SetBool("IsWalk", true); }
     public virtual void StopWalking() { this.GetComponentInChildren<Animator>().SetBool("IsWalk", false); }
     public void PrintToScreen(string log) { GameObject.FindGameObjectWithTag("LogSystem").GetComponent<LogSystem>().AddLog(log); }
+    public void ShowBubble(BubbleType type) { this.transform.parent.gameObject.GetComponentInChildren<ThoughtBubble>().ShowBubble(type); }
+    public void HideBubble() { this.transform.parent.gameObject.GetComponentInChildren<ThoughtBubble>().HideBubble(); }
 }
