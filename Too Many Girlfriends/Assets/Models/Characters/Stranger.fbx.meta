@@ -27,7 +27,12 @@ ModelImporter:
   - first:
       74: -9118994691258977139
     second: Walk.001 (1)
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: No Name
+    second: {fileID: 2100000, guid: 2ec3dde526a24d14fbb3c0e98bbf3843, type: 2}
   materials:
     materialImportMode: 1
     materialName: 0
