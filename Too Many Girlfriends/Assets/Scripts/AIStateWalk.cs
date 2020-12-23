@@ -56,6 +56,7 @@ public class AIStateWalk : AIStateBaseNode
         IsEnd = false;
         shouldChangeDirection = false;
         hitTheWall = false;
+        this.GetComponentInChildren<Animator>().SetFloat("Speed", 1);
         timer = Random.Range(1, 5);
         this.transform.LookAt(Player.transform.position);
         this.GetComponent<Rigidbody>().velocity = transform.forward * Speed;
@@ -83,6 +84,13 @@ public class AIStateWalk : AIStateBaseNode
             hitTheWall = true;
         }
     }
-
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "Wall")
+        {
+            shouldChangeDirection = true;
+            hitTheWall = true;
+        }
+    }
 
 }

@@ -68,6 +68,7 @@ public class AIStateFollowPlayer : AIStateBaseNode
         ForceFollowPlayerState = false;
         IsEnd = true;
         this.StopWalking();
+        this.GetComponentInChildren<Animator>().SetFloat("Speed", 1);
         this.PrintToScreen("FOLLOW PLAYER STATE END");
     }
     public override bool CouldBeOverride()

@@ -13,6 +13,10 @@ TagManager:
   - LogSystem
   - TaskBar
   - Icecream
+  - Clothing
+  - Flower
+  - Kabab
+  - Grill
   layers:
   - Default
   - TransparentFX
