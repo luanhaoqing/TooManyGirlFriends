@@ -23,10 +23,13 @@ public class AIStateFollowPlayer : AIStateBaseNode
     {
         if (this.IsActive())
         {
+            float distance = Mathf.Clamp(getDistance(MyPlayer, aiPlayer), 3, 5);
+            float currentSpeed = Mathf.Lerp(0, Speed, (distance - 3) / 2);
             //walk state will only exit if other state is available 
-            if(getDistance(MyPlayer,aiPlayer)>3f)
+            if(currentSpeed>0.25f)
             {
-                aiPlayer.transform.position = Vector3.MoveTowards(aiPlayer.transform.position, MyPlayer.transform.position, Speed * Time.deltaTime);
+                aiPlayer.transform.position = Vector3.MoveTowards(aiPlayer.transform.position, MyPlayer.transform.position, currentSpeed * Time.deltaTime);
+                this.GetComponentInChildren<Animator>().SetFloat("Speed", currentSpeed / Speed);
                 this.StartWalking();
             }
             else
