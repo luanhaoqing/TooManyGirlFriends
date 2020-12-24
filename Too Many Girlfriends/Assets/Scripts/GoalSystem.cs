@@ -11,6 +11,9 @@ public enum GoalType
     SHOPPING = 2,
     ICECREAM = 3,
     RESTROOM = 4,
+    FLOWER = 5,
+    KABAB = 6,
+    GRILL = 7,
 }
 
 public class GoalSystem : MonoBehaviour
@@ -30,6 +33,9 @@ public class GoalSystem : MonoBehaviour
            "Shopping",
            "Buy Icecream",
            "Restroom",
+           "Buy Flower",
+           "Kebab",
+           "Grill",
        };
         return texts[index];
     }

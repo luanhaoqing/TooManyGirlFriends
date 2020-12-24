@@ -11,6 +11,8 @@ public class AIStateEat : AIStateBaseNode
         NONE,
         RESTAURANT,
         ICECREAM,
+        KEBAB,
+        GRILL,
     }
 
     public int CompletionTime = 10;
@@ -69,13 +71,27 @@ public class AIStateEat : AIStateBaseNode
         {
             eatType = EatType.ICECREAM;
         }
+        else if(other.tag == "Kabab")
+        {
+            eatType = EatType.KEBAB;
+        }
+        else if(other.tag == "Grill")
+        {
+            eatType = EatType.GRILL;
+        }
         else
         {
             eatType = EatType.NONE;
         }
-        if (((eatType == EatType.ICECREAM && !hasEverFinished[(int)EatType.ICECREAM] ) || (eatType == EatType.RESTAURANT && !hasEverFinished[(int)EatType.RESTAURANT])) && this.GetComponent<AIBehaviour>().GetCurrentBehaviourType()== AIBehaviourType.FOLLOWPLAYER)
+        int length = Enum.GetValues(typeof(EatType)).Length;
+        for (int i = 0; i < length; i++)
         {
-            isValid = true;
+            if ((EatType)i == EatType.NONE) continue;
+            if(eatType == (EatType)i && !hasEverFinished[i] && this.GetComponent<AIBehaviour>().GetCurrentBehaviourType() == AIBehaviourType.FOLLOWPLAYER)
+            {
+                isValid = true;
+                break;
+            }
         }
     }
 
@@ -87,7 +103,7 @@ public class AIStateEat : AIStateBaseNode
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.tag == "Restaurant" || other.tag == "Icecream")
+        if (other.tag == "Restaurant" || other.tag == "Icecream" || other.tag == "Kabab" || other.tag == "Grill")
         {
             isValid = false;
             eatType = EatType.NONE;
@@ -110,13 +126,20 @@ public class AIStateEat : AIStateBaseNode
         isActive = true;
         UpdateCurrentState(BehaviourState.PREPARE_STATE);
 
-        if(eatType == EatType.RESTAURANT)
+        switch(eatType)
         {
-            ShowBubble(ThoughtBubble.BubbleType.DINNER);
-        }
-        else if (eatType == EatType.ICECREAM)
-        {
-            ShowBubble(ThoughtBubble.BubbleType.ICECREAM);
+            case EatType.RESTAURANT:
+                ShowBubble(ThoughtBubble.BubbleType.DINNER);
+                break;
+            case EatType.ICECREAM:
+                ShowBubble(ThoughtBubble.BubbleType.ICECREAM);
+                break;
+            case EatType.KEBAB:
+                ShowBubble(ThoughtBubble.BubbleType.KEBAB);
+                break;
+            case EatType.GRILL:
+                ShowBubble(ThoughtBubble.BubbleType.GRILL);
+                break;
         }
         this.PrintToScreen("EAT STATE START");
     }
@@ -133,13 +156,20 @@ public class AIStateEat : AIStateBaseNode
         ActionButton.SetActive(false);
         if(sucess)
         {
-            if(eatType == EatType.RESTAURANT)
+            switch (eatType)
             {
-                this.GetComponent<GoalSystem>().HandleGoalFinished(GoalType.RESTAURANT);
-            }
-           else
-            {
-                this.GetComponent<GoalSystem>().HandleGoalFinished(GoalType.ICECREAM);
+                case EatType.RESTAURANT:
+                    this.GetComponent<GoalSystem>().HandleGoalFinished(GoalType.RESTAURANT);
+                    break;
+                case EatType.ICECREAM:
+                    this.GetComponent<GoalSystem>().HandleGoalFinished(GoalType.ICECREAM);
+                    break;
+                case EatType.KEBAB:
+                    this.GetComponent<GoalSystem>().HandleGoalFinished(GoalType.KABAB);
+                    break;
+                case EatType.GRILL:
+                    this.GetComponent<GoalSystem>().HandleGoalFinished(GoalType.GRILL);
+                    break;
             }
             hasEverFinished[(int)eatType] = true;
         }
@@ -157,6 +187,7 @@ public class AIStateEat : AIStateBaseNode
             Button btn = ActionButton.GetComponent<Button>();
             btn.GetComponentInChildren<Text>().text = "Take Girlfriend Leave";
             btn.onClick.AddListener(TaskOnClick);
+            Progress = 0;
         }
         else
         {
