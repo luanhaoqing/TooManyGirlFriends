@@ -5,10 +5,14 @@ using UnityEngine;
 public class AIStateIdle : AIStateBaseNode
 {
     public float AngryLevelMaxTime;
+    public float MaxRotationTime;
+    private float rotationTimer = 0;
+    private float currentRotationWaitTimer;
     // Start is called before the first frame update
     void Start()
     {
-
+        rotationTimer = 0;
+        currentRotationWaitTimer = Random.Range(0, MaxRotationTime);
     }
 
     // Update is called once per frame
@@ -17,6 +21,13 @@ public class AIStateIdle : AIStateBaseNode
         if (this.IsActive())
         {
             this.GetComponent<AIBehaviour>().UpdateAngryLevel((Time.deltaTime / AngryLevelMaxTime) * 100);
+            rotationTimer += Time.deltaTime;
+            if(rotationTimer >= currentRotationWaitTimer)
+            {
+                this.transform.localEulerAngles = new Vector3(this.transform.localEulerAngles.x, this.transform.localEulerAngles.y + Random.Range(-180, 180), this.transform.localEulerAngles.z);
+                rotationTimer = 0;
+                currentRotationWaitTimer = Random.Range(0, MaxRotationTime);
+            }
         }
     }
 

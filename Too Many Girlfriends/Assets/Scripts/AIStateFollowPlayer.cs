@@ -8,6 +8,8 @@ public class AIStateFollowPlayer : AIStateBaseNode
     public GameObject MyPlayer;
     public float AngryLevelReduceToMinTime;
     public bool ForceFollowPlayerState;
+    public float DistanceToNoticePlayer;
+    public float DistanceToSeePlayer;
 
     private Transform currentPosition;
     private GameObject aiPlayer;
@@ -52,7 +54,7 @@ public class AIStateFollowPlayer : AIStateBaseNode
     {
         aiPlayer = this.gameObject;
         //If player is close to AI Player
-        if (getDistance(MyPlayer, aiPlayer) < 5 || ForceFollowPlayerState) return true;
+        if (getDistance(MyPlayer, aiPlayer) < DistanceToNoticePlayer || couldSeePlayer() || ForceFollowPlayerState) return true;
         else return false;
     }
     public override void StartBehaviour()
@@ -74,5 +76,20 @@ public class AIStateFollowPlayer : AIStateBaseNode
     public override bool CouldBeOverride()
     {
         return true;
+    }
+    private bool couldSeePlayer()
+    {
+        Vector3 tempVec = MyPlayer.transform.position - this.gameObject.transform.position;
+        tempVec = Vector3.Normalize(tempVec);
+        Vector3 facing = Vector3.Normalize(this.gameObject.transform.forward);
+        float cosVlaue = (tempVec.x * facing.x + tempVec.y * facing.y + tempVec.z * facing.z);
+        if((cosVlaue)>=0.86f && getDistance(MyPlayer, this.gameObject) <= DistanceToSeePlayer)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 }

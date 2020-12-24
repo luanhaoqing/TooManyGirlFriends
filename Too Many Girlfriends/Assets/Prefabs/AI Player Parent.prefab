@@ -634,6 +634,8 @@ MonoBehaviour:
   MyPlayer: {fileID: 0}
   AngryLevelReduceToMinTime: 20
   ForceFollowPlayerState: 0
+  DistanceToNoticePlayer: 6
+  DistanceToSeePlayer: 12
 --- !u!114 &2553515110304967247
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -648,6 +650,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isActive: 0
   AngryLevelMaxTime: 10
+  MaxRotationTime: 3
 --- !u!114 &2759315943618801591
 MonoBehaviour:
   m_ObjectHideFlags: 0
