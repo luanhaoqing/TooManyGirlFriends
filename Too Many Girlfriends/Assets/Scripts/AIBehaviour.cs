@@ -9,6 +9,7 @@ public enum AIBehaviourType
     WALK = 1,
     EAT = 2,
     FOLLOWPLAYER = 3,
+    SHOPPING = 4,
 }
 
 public class AIBehaviour : MonoBehaviour
@@ -90,6 +91,10 @@ public class AIBehaviour : MonoBehaviour
        else if(type == AIBehaviourType.IDLE)
         {
             return this.GetComponent<AIStateIdle>();
+        }
+       else if(type == AIBehaviourType.SHOPPING)
+        {
+            return this.GetComponent<AIStateShopping>();
         }
        else
         {
