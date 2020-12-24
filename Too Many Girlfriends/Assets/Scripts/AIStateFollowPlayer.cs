@@ -52,10 +52,18 @@ public class AIStateFollowPlayer : AIStateBaseNode
     }
     public override bool IsValid()
     {
-        aiPlayer = this.gameObject;
-        //If player is close to AI Player
-        if (getDistance(MyPlayer, aiPlayer) < DistanceToNoticePlayer || couldSeePlayer() || ForceFollowPlayerState) return true;
-        else return false;
+        if(this.GetComponent<AIBehaviour>().GetCurrentBehaviourType() == AIBehaviourType.IDLE)
+        {
+            aiPlayer = this.gameObject;
+            //If player is close to AI Player
+            if (getDistance(MyPlayer, aiPlayer) < DistanceToNoticePlayer || couldSeePlayer() || ForceFollowPlayerState) return true;
+            else return false;
+        }
+        else if(this.GetComponent<AIBehaviour>().GetCurrentBehaviourType() == AIBehaviourType.FOLLOWPLAYER)
+        {
+            return true;
+        }
+        return false;
     }
     public override void StartBehaviour()
     {
