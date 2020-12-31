@@ -22,6 +22,8 @@ public class AIStateShopping : AIStateBaseNode
     private bool isValid;
     private ShoppingType shopType;
     private bool[] hasEverFinished;
+    private Vector3 destPos;
+    private Vector3 shopPos;
     // Start is called before the first frame update
     void Start()
     {
@@ -81,6 +83,10 @@ public class AIStateShopping : AIStateBaseNode
             if (shopType == (ShoppingType)i && !hasEverFinished[i] && this.GetComponent<AIBehaviour>().GetCurrentBehaviourType() == AIBehaviourType.FOLLOWPLAYER)
             {
                 isValid = true;
+                shopPos = other.gameObject.transform.position;
+                shopPos.y = this.transform.position.y;
+                destPos = other.gameObject.transform.Find("TaskPoint").position;
+                destPos.y = this.transform.position.y;
                 break;
             }
         }
@@ -89,6 +95,7 @@ public class AIStateShopping : AIStateBaseNode
     void TaskOnClick()
     {
         this.GetComponent<AIStateFollowPlayer>().ForceFollowPlayerState = true;
+        StopCoroutine(walkToTaskPoint);
         this.End(false);
     }
 
@@ -168,9 +175,12 @@ public class AIStateShopping : AIStateBaseNode
             btn.GetComponentInChildren<Text>().text = "Take Girlfriend Leave";
             btn.onClick.AddListener(TaskOnClick);
             Progress = 0;
+            walkToTaskPoint = MoveToTaskPoint(this.transform, destPos, PrepareStateTime);
+            StartCoroutine(walkToTaskPoint);
         }
         else
         {
+            this.transform.LookAt(shopPos);
             ActionButton.SetActive(false);
         }
         base.UpdateCurrentState(state);

@@ -23,6 +23,8 @@ public class AIStateEat : AIStateBaseNode
     private bool isValid;
     private EatType eatType;
     private bool[] hasEverFinished;
+    private Vector3 destPos;
+    private Vector3 shopPos;
     // Start is called before the first frame update
     void Start()
     {
@@ -90,6 +92,10 @@ public class AIStateEat : AIStateBaseNode
             if(eatType == (EatType)i && !hasEverFinished[i] && this.GetComponent<AIBehaviour>().GetCurrentBehaviourType() == AIBehaviourType.FOLLOWPLAYER)
             {
                 isValid = true;
+                shopPos = other.gameObject.transform.position;
+                shopPos.y = this.transform.position.y;
+                destPos = other.gameObject.transform.Find("TaskPoint").position;
+                destPos.y = this.transform.position.y;
                 break;
             }
         }
@@ -98,6 +104,7 @@ public class AIStateEat : AIStateBaseNode
     void TaskOnClick()
     {
         this.GetComponent<AIStateFollowPlayer>().ForceFollowPlayerState = true;
+        StopCoroutine(walkToTaskPoint);
         this.End(false);
     }
 
@@ -105,9 +112,9 @@ public class AIStateEat : AIStateBaseNode
     {
         if (other.tag == "Restaurant" || other.tag == "Icecream" || other.tag == "Kabab" || other.tag == "Grill")
         {
-            isValid = false;
-            eatType = EatType.NONE;
-            ActionButton.SetActive(false);
+            //isValid = false;
+            //eatType = EatType.NONE;
+            //ActionButton.SetActive(false);
         }
     }
 
@@ -183,14 +190,18 @@ public class AIStateEat : AIStateBaseNode
     {
         if(state == BehaviourState.PREPARE_STATE)
         {
+            timerForPrepareState = PrepareStateTime;
             ActionButton.SetActive(true);
             Button btn = ActionButton.GetComponent<Button>();
             btn.GetComponentInChildren<Text>().text = "Take Girlfriend Leave";
             btn.onClick.AddListener(TaskOnClick);
             Progress = 0;
+            walkToTaskPoint = MoveToTaskPoint(this.transform, destPos, PrepareStateTime);
+            StartCoroutine(walkToTaskPoint);
         }
         else
         {
+            this.transform.LookAt(shopPos);
             ActionButton.SetActive(false);
         }
         base.UpdateCurrentState(state);

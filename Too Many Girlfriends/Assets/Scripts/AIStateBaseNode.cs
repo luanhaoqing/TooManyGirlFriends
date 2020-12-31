@@ -20,6 +20,7 @@ public class AIStateBaseNode:MonoBehaviour
     public bool isActive;
     private BehaviourState currentState;
     private bool isEnd;
+    protected IEnumerator walkToTaskPoint;
     public virtual bool CouldBeOverride() { return false; }
 
     public float Progress
@@ -55,4 +56,20 @@ public class AIStateBaseNode:MonoBehaviour
         ShowCurious();
     }
     public void HideBubble() { this.transform.parent.gameObject.GetComponentInChildren<ThoughtBubble>().HideBubble(); }
+    public IEnumerator MoveToTaskPoint(Transform transform, Vector3 position, float time)
+    {
+        this.GetComponentInChildren<Animator>().SetFloat("Speed", 0.4f);
+        this.StartWalking();
+        this.transform.LookAt(position);
+        Vector3 currentPos = transform.position;
+        float timer = 0f;
+        while (timer < 1)
+        {
+            timer += Time.deltaTime / time;
+            transform.position = Vector3.Lerp(currentPos, position, timer);
+            yield return null;
+        }
+        this.StopWalking();
+        this.GetComponentInChildren<Animator>().SetFloat("Speed", 1f);
+    }
 }
