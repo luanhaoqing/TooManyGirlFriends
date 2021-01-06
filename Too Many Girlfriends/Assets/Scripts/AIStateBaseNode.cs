@@ -72,4 +72,10 @@ public class AIStateBaseNode:MonoBehaviour
         this.StopWalking();
         this.GetComponentInChildren<Animator>().SetFloat("Speed", 1f);
     }
+    public float GetDistance(GameObject AIPlayer, GameObject MyPlayer)
+    {
+        Vector3 AIPlayerPos = AIPlayer.transform.position;
+        Vector3 MyPlayerPos = MyPlayer.transform.position;
+        return Vector3.Distance(AIPlayerPos, MyPlayerPos);
+    }
 }

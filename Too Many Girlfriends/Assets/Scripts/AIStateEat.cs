@@ -18,7 +18,6 @@ public class AIStateEat : AIStateBaseNode
     public int CompletionTime = 10;
     public float PrepareStateTime = 5;
     public GameObject ActionBar;
-    public GameObject ActionButton;
     private float timerForPrepareState;
     private bool isValid;
     private EatType eatType;
@@ -54,6 +53,13 @@ public class AIStateEat : AIStateBaseNode
             }
            else if(CurrentState == BehaviourState.PREPARE_STATE)
            {
+                GameObject mp = GameObject.FindGameObjectWithTag("Player");
+                if(GetDistance(mp,this.gameObject) >= 10)
+                {
+                    this.GetComponent<AIStateFollowPlayer>().ForceFollowPlayerState = true;
+                    StopCoroutine(walkToTaskPoint);
+                    this.End(false);
+                }
                 timerForPrepareState -= Time.deltaTime;
                 if(timerForPrepareState <= 0)
                 {
@@ -102,20 +108,10 @@ public class AIStateEat : AIStateBaseNode
         }
     }
 
-    void TaskOnClick()
-    {
-        this.GetComponent<AIStateFollowPlayer>().ForceFollowPlayerState = true;
-        StopCoroutine(walkToTaskPoint);
-        this.End(false);
-    }
-
     private void OnTriggerExit(Collider other)
     {
         if (other.tag == "Restaurant" || other.tag == "Icecream" || other.tag == "Kabab" || other.tag == "Grill")
         {
-            //isValid = false;
-            //eatType = EatType.NONE;
-            //ActionButton.SetActive(false);
         }
     }
 
@@ -176,7 +172,6 @@ public class AIStateEat : AIStateBaseNode
         isActive = false;
         isValid = false;
    //     hasEverFinished = true;
-        ActionButton.SetActive(false);
         if(sucess)
         {
             this.GetComponent<GoalSystem>().HandleGoalFinished(getGoalTypeFromEatType(eatType));
@@ -193,10 +188,6 @@ public class AIStateEat : AIStateBaseNode
         if(state == BehaviourState.PREPARE_STATE)
         {
             timerForPrepareState = PrepareStateTime;
-            ActionButton.SetActive(true);
-            Button btn = ActionButton.GetComponent<Button>();
-            btn.GetComponentInChildren<Text>().text = "Take Girlfriend Leave";
-            btn.onClick.AddListener(TaskOnClick);
             Progress = 0;
             walkToTaskPoint = MoveToTaskPoint(this.transform, destPos, PrepareStateTime);
             StartCoroutine(walkToTaskPoint);
@@ -204,7 +195,6 @@ public class AIStateEat : AIStateBaseNode
         else
         {
             this.transform.LookAt(shopPos);
-            ActionButton.SetActive(false);
         }
         base.UpdateCurrentState(state);
     }

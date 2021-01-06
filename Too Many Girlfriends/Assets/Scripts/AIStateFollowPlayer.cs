@@ -25,7 +25,7 @@ public class AIStateFollowPlayer : AIStateBaseNode
     {
         if (this.IsActive())
         {
-            float distance = Mathf.Clamp(getDistance(MyPlayer, aiPlayer), 3, 5);
+            float distance = Mathf.Clamp(GetDistance(MyPlayer, aiPlayer), 3, 5);
             float currentSpeed = Mathf.Lerp(0, Speed, (distance - 3) / 2);
             //walk state will only exit if other state is available 
             if(currentSpeed>0.25f)
@@ -43,20 +43,13 @@ public class AIStateFollowPlayer : AIStateBaseNode
             this.transform.LookAt(MyPlayer.transform.position);
         }
     }
-
-    private float getDistance(GameObject AIPlayer, GameObject MyPlayer)
-    {
-        Vector3 AIPlayerPos = AIPlayer.transform.position;
-        Vector3 MyPlayerPos = MyPlayer.transform.position;
-        return Vector3.Distance(AIPlayerPos, MyPlayerPos);
-    }
     public override bool IsValid()
     {
         if(this.GetComponent<AIBehaviour>().GetCurrentBehaviourType() == AIBehaviourType.IDLE || this.GetComponent<AIBehaviour>().GetCurrentBehaviourType() == AIBehaviourType.WALK)
         {
             aiPlayer = this.gameObject;
             //If player is close to AI Player
-            if (getDistance(MyPlayer, aiPlayer) < DistanceToNoticePlayer || couldSeePlayer() || ForceFollowPlayerState) return true;
+            if (GetDistance(MyPlayer, aiPlayer) < DistanceToNoticePlayer || couldSeePlayer() || ForceFollowPlayerState) return true;
         }
         else if(this.GetComponent<AIBehaviour>().GetCurrentBehaviourType() == AIBehaviourType.FOLLOWPLAYER)
         {
@@ -90,7 +83,7 @@ public class AIStateFollowPlayer : AIStateBaseNode
         tempVec = Vector3.Normalize(tempVec);
         Vector3 facing = Vector3.Normalize(this.gameObject.transform.forward);
         float cosVlaue = (tempVec.x * facing.x + tempVec.y * facing.y + tempVec.z * facing.z);
-        if((cosVlaue)>=0.86f && getDistance(MyPlayer, this.gameObject) <= DistanceToSeePlayer)
+        if((cosVlaue)>=0.86f && GetDistance(MyPlayer, this.gameObject) <= DistanceToSeePlayer)
         {
             return true;
         }
