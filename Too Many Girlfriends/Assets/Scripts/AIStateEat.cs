@@ -86,10 +86,11 @@ public class AIStateEat : AIStateBaseNode
             eatType = EatType.NONE;
         }
         int length = Enum.GetValues(typeof(EatType)).Length;
+        GoalType currentGoalType = this.GetComponent<GoalSystem>().GetCurrentGoal();
         for (int i = 0; i < length; i++)
         {
             if ((EatType)i == EatType.NONE) continue;
-            if(eatType == (EatType)i && !hasEverFinished[i] && this.GetComponent<AIBehaviour>().GetCurrentBehaviourType() == AIBehaviourType.FOLLOWPLAYER)
+            if(getGoalTypeFromEatType((EatType)i)== currentGoalType && eatType == (EatType)i && !hasEverFinished[i] && this.GetComponent<AIBehaviour>().GetCurrentBehaviourType() == AIBehaviourType.FOLLOWPLAYER)
             {
                 isValid = true;
                 shopPos = other.gameObject.transform.position;
@@ -150,6 +151,21 @@ public class AIStateEat : AIStateBaseNode
         }
         this.PrintToScreen("EAT STATE START");
     }
+    private GoalType getGoalTypeFromEatType(EatType type)
+    {
+        switch (eatType)
+        {
+            case EatType.RESTAURANT:
+                return (GoalType.RESTAURANT);
+            case EatType.ICECREAM:
+                return (GoalType.ICECREAM);
+            case EatType.KEBAB:
+                return (GoalType.KABAB);
+            case EatType.GRILL:
+                return (GoalType.GRILL);
+        }
+        return GoalType.NONE;
+    }
     public override void End(bool sucess = true)
     {
         //reset all kinda timer/progression
@@ -163,21 +179,7 @@ public class AIStateEat : AIStateBaseNode
         ActionButton.SetActive(false);
         if(sucess)
         {
-            switch (eatType)
-            {
-                case EatType.RESTAURANT:
-                    this.GetComponent<GoalSystem>().HandleGoalFinished(GoalType.RESTAURANT);
-                    break;
-                case EatType.ICECREAM:
-                    this.GetComponent<GoalSystem>().HandleGoalFinished(GoalType.ICECREAM);
-                    break;
-                case EatType.KEBAB:
-                    this.GetComponent<GoalSystem>().HandleGoalFinished(GoalType.KABAB);
-                    break;
-                case EatType.GRILL:
-                    this.GetComponent<GoalSystem>().HandleGoalFinished(GoalType.GRILL);
-                    break;
-            }
+            this.GetComponent<GoalSystem>().HandleGoalFinished(getGoalTypeFromEatType(eatType));
             hasEverFinished[(int)eatType] = true;
         }
         eatType = EatType.NONE;

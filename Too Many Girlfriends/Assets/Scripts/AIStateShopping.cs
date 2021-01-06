@@ -77,10 +77,11 @@ public class AIStateShopping : AIStateBaseNode
             shopType = ShoppingType.NONE;
         }
         int length = Enum.GetValues(typeof(ShoppingType)).Length;
+        GoalType currentGoalType = this.GetComponent<GoalSystem>().GetCurrentGoal();
         for (int i = 0; i < length; i++)
         {
             if ((ShoppingType)i == ShoppingType.NONE) continue;
-            if (shopType == (ShoppingType)i && !hasEverFinished[i] && this.GetComponent<AIBehaviour>().GetCurrentBehaviourType() == AIBehaviourType.FOLLOWPLAYER)
+            if (getGoalTypeFromShopType((ShoppingType)i) == currentGoalType && shopType == (ShoppingType)i && !hasEverFinished[i] && this.GetComponent<AIBehaviour>().GetCurrentBehaviourType() == AIBehaviourType.FOLLOWPLAYER)
             {
                 isValid = true;
                 shopPos = other.gameObject.transform.position;
@@ -136,6 +137,17 @@ public class AIStateShopping : AIStateBaseNode
         }
         this.PrintToScreen("SHOPPING STATE START");
     }
+    private GoalType getGoalTypeFromShopType(ShoppingType type)
+    {
+        switch (shopType)
+        {
+            case ShoppingType.FLOWER:
+                return (GoalType.FLOWER);
+            case ShoppingType.CLOTHING:
+                return (GoalType.SHOPPING);
+        }
+        return GoalType.NONE;
+    }
     public override void End(bool sucess = true)
     {
         //reset all kinda timer/progression
@@ -149,15 +161,7 @@ public class AIStateShopping : AIStateBaseNode
         ActionButton.SetActive(false);
         if (sucess)
         {
-            switch (shopType)
-            {
-                case ShoppingType.FLOWER:
-                    this.GetComponent<GoalSystem>().HandleGoalFinished(GoalType.FLOWER);
-                    break;
-                case ShoppingType.CLOTHING:
-                    this.GetComponent<GoalSystem>().HandleGoalFinished(GoalType.SHOPPING);
-                    break;
-            }
+            this.GetComponent<GoalSystem>().HandleGoalFinished(getGoalTypeFromShopType(shopType));
             hasEverFinished[(int)shopType] = true;
         }
         shopType = ShoppingType.NONE;
