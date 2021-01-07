@@ -28,6 +28,7 @@ public class AIStateIdle : AIStateBaseNode
                 rotationTimer = 0;
                 currentRotationWaitTimer = Random.Range(0, MaxRotationTime);
             }
+            this.GetComponent<Rigidbody>().velocity = Vector3.zero;
         }
     }
 

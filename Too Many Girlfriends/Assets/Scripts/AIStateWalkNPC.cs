@@ -2,39 +2,39 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-//This is random walk
-public class AIStateWalk : AIStateBaseNode
+public class AIStateWalkNPC : AIStateBaseNode
 {
     public float Speed;
-    private GameObject Player;
     private Transform currentPosition;
     private GameObject aiPlayer;
     private bool shouldChangeDirection;
     private float timer;
     private bool hitTheWall;
+    private bool closeToAIPlayer;
     ContactPoint hitPoint;
     // Start is called before the first frame update
     void Start()
     {
-        Player = GameObject.FindGameObjectWithTag("Player");
         aiPlayer = this.gameObject;
+        this.StartBehaviour();
+        hitTheWall = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(this.IsActive())
+        if (this.IsActive())
         {
             timer -= Time.deltaTime;
-            if(timer <= 0)
+            if (timer <= 0)
             {
                 shouldChangeDirection = true;
             }
-            if(shouldChangeDirection)
+            if (shouldChangeDirection)
             {
                 int min = -30;
                 int max = 30;
-                if (hitTheWall)
+                if(hitTheWall)
                 {
                     Vector3 curDir = this.transform.forward;
                     Vector3 newDir = Vector3.Reflect(curDir, hitPoint.normal);
@@ -42,7 +42,11 @@ public class AIStateWalk : AIStateBaseNode
                     float angle = Mathf.DeltaAngle(Mathf.Atan2(curDir.z, curDir.x) * Mathf.Rad2Deg,
                         Mathf.Atan2(newDir.z, newDir.x) * Mathf.Rad2Deg);
                     angle += Random.Range(-45, 45);
-                    this.transform.Rotate(new Vector3(0, -angle, 0));
+                    this.transform.Rotate(new Vector3(0,-angle,0));
+                }
+                else if(closeToAIPlayer)
+                {
+                    this.transform.localEulerAngles = new Vector3(this.transform.localEulerAngles.x, this.transform.localEulerAngles.y + Random.Range(90, 270), this.transform.localEulerAngles.z);
                 }
                 else
                 {
@@ -55,14 +59,10 @@ public class AIStateWalk : AIStateBaseNode
             }
         }
     }
-  
+
     public override bool IsValid()
     {
-        if(this.GetComponent<AIBehaviour>().GetAngryLevel() == 100 )
-        {
-            return true;
-        }
-        return false;
+        return true;
     }
     public override void StartBehaviour()
     {
@@ -73,7 +73,6 @@ public class AIStateWalk : AIStateBaseNode
         hitTheWall = false;
         this.GetComponentInChildren<Animator>().SetFloat("Speed", 1);
         timer = Random.Range(1, 5);
-        this.transform.LookAt(Player.transform.position);
         this.GetComponent<Rigidbody>().velocity = transform.forward * Speed;
         this.StartWalking();
         this.PrintToScreen("WALK AROUND STATE START");
@@ -102,11 +101,10 @@ public class AIStateWalk : AIStateBaseNode
     }
     void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Wall")
+        if (other.tag == "AIPlayer")
         {
             shouldChangeDirection = true;
-            hitTheWall = true;
+            closeToAIPlayer = true;
         }
     }
-
 }

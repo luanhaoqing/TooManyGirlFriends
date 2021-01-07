@@ -50,6 +50,7 @@ public class AIStateEat : AIStateBaseNode
                 {
                     this.End();
                 }
+                this.GetComponent<Rigidbody>().velocity = Vector3.zero;
             }
            else if(CurrentState == BehaviourState.PREPARE_STATE)
            {
