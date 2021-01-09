@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
+using UnityEngine.AI;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -12,7 +13,7 @@ public class PlayerMovement : MonoBehaviour
     private float destinationDistance;
     private bool isKeyBoardControl;
     private bool isStop;
-
+    private NavMeshAgent man;
     // Start is called before the first frame update
     void Start()
     {
@@ -21,20 +22,12 @@ public class PlayerMovement : MonoBehaviour
         isKeyBoardControl = false;
         Cursor.SetActive(false);
         isStop = true;
+        man = this.GetComponent<NavMeshAgent>();
     }
 
     // Update is called once per frame
     void Update()
     {
-
-        //keep track of distance
-        destinationDistance = Vector3.Distance(destinationPosition, this.transform.position);
-
-        if (destinationDistance < .5f)
-        {
-            destinationPosition = this.transform.position;
-        }
-
         //Mouse Movement
         if (Input.GetMouseButton(0))
         {
@@ -56,12 +49,19 @@ public class PlayerMovement : MonoBehaviour
                 }
             }
         }
+        //keep track of distance
 
-       
+        destinationDistance = Vector3.Distance(destinationPosition, this.transform.position);
+
+        if (destinationDistance < .5f)
+        {
+            destinationPosition = this.transform.position;
+        }
+
         if (destinationDistance > .5f && !isKeyBoardControl)
         {
-            this.transform.position = Vector3.MoveTowards(this.transform.position, destinationPosition, Speed * Time.deltaTime);
-            this.transform.LookAt(destinationPosition);
+            man.SetDestination(destinationPosition);
+            man.speed = Speed;
             this.GetComponentInChildren<Animator>().SetBool("IsWalk", true);
             isStop = false;
         }
@@ -71,6 +71,7 @@ public class PlayerMovement : MonoBehaviour
             Cursor.SetActive(false);
             isStop = true;
         }
+
     }
 
     void FixedUpdate()
@@ -80,14 +81,15 @@ public class PlayerMovement : MonoBehaviour
 
         this.GetComponent<Rigidbody>().velocity = new Vector3((h * Speed),
            0, (v * Speed));
-        this.transform.LookAt(new Vector3((this.transform.position.x + h * Speed),
-           yValue, (this.transform.position.z + v * Speed)));
+  
         if(h != 0 || v != 0)
         {
             isKeyBoardControl = true;
             this.GetComponentInChildren<Animator>().SetBool("IsWalk", true);
             Cursor.SetActive(false);
             isStop = false;
+                 this.transform.LookAt(new Vector3((this.transform.position.x + h * Speed),
+                    yValue, (this.transform.position.z + v * Speed)));
         }
         else if(isKeyBoardControl)
         {
