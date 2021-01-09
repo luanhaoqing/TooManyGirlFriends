@@ -11,7 +11,7 @@ public class AIStateWalkNPC : AIStateBaseNode
     private float timer;
     private bool hitTheWall;
     private bool closeToAIPlayer;
-    ContactPoint hitPoint;
+    RaycastHit hitPoint;
     // Start is called before the first frame update
     void Start()
     {
@@ -25,6 +25,21 @@ public class AIStateWalkNPC : AIStateBaseNode
     {
         if (this.IsActive())
         {
+            //raycast
+            RaycastHit hit;
+            if(Physics.Raycast(this.transform.position,this.transform.forward,out hit))
+            {
+                if(hit.transform.tag == "Wall" && hit.distance <= 2)
+                {
+                    shouldChangeDirection = true;
+                    hitTheWall = true;
+                    hitPoint = hit;
+
+                    //debug line draw
+                   // Debug.DrawLine(this.transform.position, hit.point, Color.red);
+                   // Debug.DrawRay(hit.point, Vector3.Reflect(this.transform.forward, hitPoint.normal), Color.green);
+                }
+            }
             timer -= Time.deltaTime;
             if (timer <= 0)
             {
@@ -41,12 +56,8 @@ public class AIStateWalkNPC : AIStateBaseNode
                     newDir.y = curDir.y;
                     float angle = Mathf.DeltaAngle(Mathf.Atan2(curDir.z, curDir.x) * Mathf.Rad2Deg,
                         Mathf.Atan2(newDir.z, newDir.x) * Mathf.Rad2Deg);
-                    angle += Random.Range(-45, 45);
+                    angle += Random.Range(-15, 15);
                     this.transform.Rotate(new Vector3(0,-angle,0));
-                }
-                else if(closeToAIPlayer)
-                {
-                    this.transform.localEulerAngles = new Vector3(this.transform.localEulerAngles.x, this.transform.localEulerAngles.y + Random.Range(90, 270), this.transform.localEulerAngles.z);
                 }
                 else
                 {
@@ -96,15 +107,9 @@ public class AIStateWalkNPC : AIStateBaseNode
         {
             shouldChangeDirection = true;
             hitTheWall = true;
-            hitPoint = collision.contacts[0];
         }
     }
     void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "AIPlayer")
-        {
-            shouldChangeDirection = true;
-            closeToAIPlayer = true;
-        }
     }
 }

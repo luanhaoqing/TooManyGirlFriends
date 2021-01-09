@@ -24,8 +24,8 @@ public class NPCGenerator : MonoBehaviour
         {
             currentNPCNum++;
             timer = 0;
-            int randomPos = Random.Range(0, InitPositions.Length - 1);
-            Instantiate(NPCPrefab, InitPositions[randomPos].transform.position,Quaternion.identity);
+            int randomPos = Random.Range(0, InitPositions.Length);
+            InitPositions[randomPos].GetComponent<RespawnPoint>().GenerateNPC(NPCPrefab);
         }
     }
 }
