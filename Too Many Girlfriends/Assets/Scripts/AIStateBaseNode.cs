@@ -60,11 +60,11 @@ public class AIStateBaseNode:MonoBehaviour
     {
         this.GetComponentInChildren<Animator>().SetFloat("Speed", 0.4f);
         this.StartWalking();
-        this.transform.LookAt(position);
         Vector3 currentPos = transform.position;
         float timer = 0f;
         while (timer < 1)
         {
+            this.transform.LookAt(position);
             timer += Time.deltaTime / time;
             transform.position = Vector3.Lerp(currentPos, position, timer);
             yield return null;
