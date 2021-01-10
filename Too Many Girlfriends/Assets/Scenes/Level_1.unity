@@ -3690,10 +3690,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 6133473, guid: cbba14012f1579848a0fef1350217dd8, type: 3}
-      propertyPath: m_TagString
-      value: AIPlayer
-      objectReference: {fileID: 0}
     - target: {fileID: 824191845983306445, guid: cbba14012f1579848a0fef1350217dd8, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -3702,30 +3698,6 @@ PrefabInstance:
       propertyPath: MyPlayer
       value: 
       objectReference: {fileID: 7636920942534180572}
-    - target: {fileID: 2553515110304967233, guid: cbba14012f1579848a0fef1350217dd8, type: 3}
-      propertyPath: ActionButton
-      value: 
-      objectReference: {fileID: 698013359}
-    - target: {fileID: 2553515110304967234, guid: cbba14012f1579848a0fef1350217dd8, type: 3}
-      propertyPath: Player
-      value: 
-      objectReference: {fileID: 7636920942534180572}
-    - target: {fileID: 2553515110304967237, guid: cbba14012f1579848a0fef1350217dd8, type: 3}
-      propertyPath: m_Drag
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2553515110304967237, guid: cbba14012f1579848a0fef1350217dd8, type: 3}
-      propertyPath: m_Mass
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 2553515110304967237, guid: cbba14012f1579848a0fef1350217dd8, type: 3}
-      propertyPath: m_Constraints
-      value: 116
-      objectReference: {fileID: 0}
-    - target: {fileID: 2553515110304967247, guid: cbba14012f1579848a0fef1350217dd8, type: 3}
-      propertyPath: AngryLevelMaxTime
-      value: 10
-      objectReference: {fileID: 0}
     - target: {fileID: 2553515110568366494, guid: cbba14012f1579848a0fef1350217dd8, type: 3}
       propertyPath: m_Camera
       value: 
@@ -3778,10 +3750,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2759315943618801591, guid: cbba14012f1579848a0fef1350217dd8, type: 3}
-      propertyPath: ActionButton
-      value: 
-      objectReference: {fileID: 698013359}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cbba14012f1579848a0fef1350217dd8, type: 3}
 --- !u!1001 &4657589231476510775

@@ -79,10 +79,6 @@ public class AIStateShopping : AIStateBaseNode
         {
             shopType = ShoppingType.FLOWER;
         }
-        else
-        {
-            shopType = ShoppingType.NONE;
-        }
         int length = Enum.GetValues(typeof(ShoppingType)).Length;
         GoalType currentGoalType = this.GetComponent<GoalSystem>().GetCurrentGoal();
         for (int i = 0; i < length; i++)

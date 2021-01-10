@@ -88,10 +88,6 @@ public class AIStateEat : AIStateBaseNode
         {
             eatType = EatType.GRILL;
         }
-        else
-        {
-            eatType = EatType.NONE;
-        }
         int length = Enum.GetValues(typeof(EatType)).Length;
         GoalType currentGoalType = this.GetComponent<GoalSystem>().GetCurrentGoal();
         for (int i = 0; i < length; i++)

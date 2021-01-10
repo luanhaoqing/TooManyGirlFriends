@@ -86,7 +86,6 @@ public class AIStateWalkNPC : AIStateBaseNode
         timer = Random.Range(1, 5);
         this.GetComponent<Rigidbody>().velocity = transform.forward * Speed;
         this.StartWalking();
-        this.PrintToScreen("WALK AROUND STATE START");
     }
     public override void End(bool sucess = true)
     {
@@ -95,7 +94,6 @@ public class AIStateWalkNPC : AIStateBaseNode
         IsEnd = true;
         this.GetComponent<Rigidbody>().velocity = Vector3.zero;
         this.StopWalking();
-        this.PrintToScreen("WALK AROUND STATE END");
     }
     public override bool CouldBeOverride()
     {

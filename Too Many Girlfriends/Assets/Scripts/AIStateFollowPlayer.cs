@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class AIStateFollowPlayer : AIStateBaseNode
 {
@@ -13,11 +14,13 @@ public class AIStateFollowPlayer : AIStateBaseNode
 
     private Transform currentPosition;
     private GameObject aiPlayer;
+    private NavMeshAgent man;
     // Start is called before the first frame update
     void Start()
     {
         aiPlayer = this.gameObject;
         ForceFollowPlayerState = false;
+        man = this.GetComponent<NavMeshAgent>();
     }
 
     // Update is called once per frame
@@ -30,7 +33,9 @@ public class AIStateFollowPlayer : AIStateBaseNode
             //walk state will only exit if other state is available 
             if(currentSpeed>0.25f)
             {
-                aiPlayer.transform.position = Vector3.MoveTowards(aiPlayer.transform.position, MyPlayer.transform.position, currentSpeed * Time.deltaTime);
+                // aiPlayer.transform.position = Vector3.MoveTowards(aiPlayer.transform.position, MyPlayer.transform.position, currentSpeed * Time.deltaTime);
+                man.SetDestination(MyPlayer.transform.position);
+                man.speed = currentSpeed;
                 this.GetComponentInChildren<Animator>().SetFloat("Speed", currentSpeed / Speed);
                 this.StartWalking();
             }
