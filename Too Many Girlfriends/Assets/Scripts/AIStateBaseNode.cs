@@ -50,9 +50,9 @@ public class AIStateBaseNode:MonoBehaviour
     public virtual void StopWalking() { this.GetComponentInChildren<Animator>().SetBool("IsWalk", false); }
     public virtual void ShowCurious() { this.GetComponentInChildren<Animator>().SetTrigger("Curious"); }
     public void PrintToScreen(string log) { GameObject.FindGameObjectWithTag("LogSystem").GetComponent<LogSystem>().AddLog(log); }
-    public void ShowBubble(BubbleType type) 
+    public void ShowBubble() 
     { 
-        this.transform.parent.gameObject.GetComponentInChildren<ThoughtBubble>().ShowBubble(type);
+        this.transform.parent.gameObject.GetComponentInChildren<ThoughtBubble>().ShowBubble();
         ShowCurious();
     }
     public void HideBubble() { this.transform.parent.gameObject.GetComponentInChildren<ThoughtBubble>().HideBubble(); }

@@ -68,6 +68,7 @@ public class AIStateFollowPlayer : AIStateBaseNode
         //This Follow Player Stats could be End anytime
         IsEnd = false;
         this.PrintToScreen("FOLLOW PLAYER STATE START");
+        ShowBubble();
     }
     public override void End(bool sucess = true)
     {

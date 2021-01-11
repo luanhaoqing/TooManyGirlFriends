@@ -160,7 +160,8 @@ GameObject:
   m_Component:
   - component: {fileID: 93564116249159852}
   - component: {fileID: 9148771555795163439}
-  - component: {fileID: 8843445770553616484}
+  - component: {fileID: 154206821}
+  - component: {fileID: 154206820}
   m_Layer: 0
   m_Name: Thought Bubble
   m_TagString: Untagged
@@ -210,19 +211,35 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
---- !u!111 &8843445770553616484
-Animation:
+--- !u!95 &154206821
+Animator:
+  serializedVersion: 3
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6357326782483752253}
   m_Enabled: 1
-  serializedVersion: 3
-  m_Animation: {fileID: 7400000, guid: 63c76568f32adef4d941e74ee6c15a62, type: 2}
-  m_Animations:
-  - {fileID: 7400000, guid: 63c76568f32adef4d941e74ee6c15a62, type: 2}
-  m_WrapMode: 0
-  m_PlayAutomatically: 0
-  m_AnimatePhysics: 0
-  m_CullingType: 0
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: f6957736d8244474ebda0be2c98165b2, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &154206820
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6357326782483752253}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f52fd4329f110724a9b953fa17d5117b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AIPlayer: {fileID: 0}

@@ -118,16 +118,17 @@ public class AIStateShopping : AIStateBaseNode
         isActive = true;
         UpdateCurrentState(BehaviourState.PREPARE_STATE);
 
-        switch (shopType)
-        {
-            case ShoppingType.FLOWER:
-                ShowBubble(ThoughtBubble.BubbleType.CLOTHING);
-                break;
-            case ShoppingType.CLOTHING:
-                ShowBubble(ThoughtBubble.BubbleType.CLOTHING);
-                break;
-          
-        }
+        HideBubble();
+        //switch (shopType)
+        //{
+        //    case ShoppingType.FLOWER:
+        //        ShowBubble(ThoughtBubble.BubbleType.CLOTHING);
+        //        break;
+        //    case ShoppingType.CLOTHING:
+        //        ShowBubble(ThoughtBubble.BubbleType.CLOTHING);
+        //        break;
+        //  
+        //}
         this.PrintToScreen("SHOPPING STATE START");
     }
     private GoalType getGoalTypeFromShopType(ShoppingType type)
@@ -156,7 +157,7 @@ public class AIStateShopping : AIStateBaseNode
             hasEverFinished[(int)shopType] = true;
         }
         shopType = ShoppingType.NONE;
-        HideBubble();
+
         UpdateCurrentState(BehaviourState.END_STATE);
         this.PrintToScreen("SHOPPING STATE END");
     }

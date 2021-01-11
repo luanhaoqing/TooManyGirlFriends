@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ThoughtBubble : MonoBehaviour
 {
@@ -26,10 +27,38 @@ public class ThoughtBubble : MonoBehaviour
     {
         
     }
-    public void ShowBubble(BubbleType type)
+    public void ShowBubble()
+    {
+        GoalType type = this.GetComponent<GoalSystem>().GetCurrentGoal();
+        BubbleType bubbleType = BubbleType.CLOTHING;
+        switch(type)
+        {
+            case GoalType.FLOWER:
+                bubbleType = BubbleType.CLOTHING;
+                break;
+            case GoalType.GRILL:
+                bubbleType = BubbleType.GRILL;
+                break;
+            case GoalType.ICECREAM:
+                bubbleType = BubbleType.ICECREAM;
+                break;
+            case GoalType.KABAB:
+                bubbleType = BubbleType.KEBAB;
+                break;
+            case GoalType.RESTAURANT:
+                bubbleType = BubbleType.DINNER;
+                break;
+            case GoalType.SHOPPING:
+                bubbleType = BubbleType.CLOTHING;
+                break;
+        }
+        ShowBubble(bubbleType);
+    }
+    private void ShowBubble(BubbleType type)
     {
         Bubble.SetActive(true);
-        Bubble.GetComponent<SpriteRenderer>().sprite = Sprites[(int)type];
+        Bubble.gameObject.transform.Find("Content").GetComponent<Image>().sprite = Sprites[(int)type];
+        Bubble.GetComponent<Animator>().SetTrigger("ShowBubble");
     }
     public void HideBubble()
     {

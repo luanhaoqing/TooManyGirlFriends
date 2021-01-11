@@ -10,10 +10,9 @@ public enum GoalType
     RESTAURANT = 1,
     SHOPPING = 2,
     ICECREAM = 3,
-    RESTROOM = 4,
-    FLOWER = 5,
-    KABAB = 6,
-    GRILL = 7,
+    FLOWER = 4,
+    KABAB = 5,
+    GRILL = 6,
 }
 
 public class GoalSystem : MonoBehaviour
@@ -32,7 +31,6 @@ public class GoalSystem : MonoBehaviour
            "Restaurant",
            "Shopping",
            "Buy Icecream",
-           "Restroom",
            "Buy Flower",
            "Kebab",
            "Grill",

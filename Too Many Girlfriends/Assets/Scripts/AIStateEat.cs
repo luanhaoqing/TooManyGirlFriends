@@ -126,22 +126,22 @@ public class AIStateEat : AIStateBaseNode
         IsEnd = false;
         isActive = true;
         UpdateCurrentState(BehaviourState.PREPARE_STATE);
-
-        switch(eatType)
-        {
-            case EatType.RESTAURANT:
-                ShowBubble(ThoughtBubble.BubbleType.DINNER);
-                break;
-            case EatType.ICECREAM:
-                ShowBubble(ThoughtBubble.BubbleType.ICECREAM);
-                break;
-            case EatType.KEBAB:
-                ShowBubble(ThoughtBubble.BubbleType.KEBAB);
-                break;
-            case EatType.GRILL:
-                ShowBubble(ThoughtBubble.BubbleType.GRILL);
-                break;
-        }
+        HideBubble();
+        // switch(eatType)
+        // {
+        //     case EatType.RESTAURANT:
+        //         ShowBubble(ThoughtBubble.BubbleType.DINNER);
+        //         break;
+        //     case EatType.ICECREAM:
+        //         ShowBubble(ThoughtBubble.BubbleType.ICECREAM);
+        //         break;
+        //     case EatType.KEBAB:
+        //         ShowBubble(ThoughtBubble.BubbleType.KEBAB);
+        //         break;
+        //     case EatType.GRILL:
+        //         ShowBubble(ThoughtBubble.BubbleType.GRILL);
+        //         break;
+        // }
         this.PrintToScreen("EAT STATE START");
     }
     private GoalType getGoalTypeFromEatType(EatType type)
@@ -175,7 +175,6 @@ public class AIStateEat : AIStateBaseNode
             hasEverFinished[(int)eatType] = true;
         }
         eatType = EatType.NONE;
-        HideBubble();
         UpdateCurrentState(BehaviourState.END_STATE);
         this.PrintToScreen("EAT STATE END");
     }
