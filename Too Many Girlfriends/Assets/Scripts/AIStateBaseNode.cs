@@ -53,11 +53,12 @@ public class AIStateBaseNode:MonoBehaviour
     public void ShowBubble() 
     { 
         this.transform.parent.gameObject.GetComponentInChildren<ThoughtBubble>().ShowBubble();
-        ShowCurious();
     }
     public void HideBubble() { this.transform.parent.gameObject.GetComponentInChildren<ThoughtBubble>().HideBubble(); }
     public IEnumerator MoveToTaskPoint(Transform transform, Vector3 position, float time)
     {
+        ShowCurious();
+        yield return new WaitForSeconds(1.5f);
         this.GetComponentInChildren<Animator>().SetFloat("Speed", 0.4f);
         this.StartWalking();
         Vector3 currentPos = transform.position;

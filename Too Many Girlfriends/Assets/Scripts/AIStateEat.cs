@@ -127,21 +127,7 @@ public class AIStateEat : AIStateBaseNode
         isActive = true;
         UpdateCurrentState(BehaviourState.PREPARE_STATE);
         HideBubble();
-        // switch(eatType)
-        // {
-        //     case EatType.RESTAURANT:
-        //         ShowBubble(ThoughtBubble.BubbleType.DINNER);
-        //         break;
-        //     case EatType.ICECREAM:
-        //         ShowBubble(ThoughtBubble.BubbleType.ICECREAM);
-        //         break;
-        //     case EatType.KEBAB:
-        //         ShowBubble(ThoughtBubble.BubbleType.KEBAB);
-        //         break;
-        //     case EatType.GRILL:
-        //         ShowBubble(ThoughtBubble.BubbleType.GRILL);
-        //         break;
-        // }
+
         this.PrintToScreen("EAT STATE START");
     }
     private GoalType getGoalTypeFromEatType(EatType type)
