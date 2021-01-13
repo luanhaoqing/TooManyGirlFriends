@@ -63,6 +63,7 @@ public class AIStateBaseNode:MonoBehaviour
         this.StartWalking();
         Vector3 currentPos = transform.position;
         float timer = 0f;
+        time -= 1.5f;
         while (timer < 1)
         {
             this.transform.LookAt(position);
@@ -72,6 +73,7 @@ public class AIStateBaseNode:MonoBehaviour
         }
         this.StopWalking();
         this.GetComponentInChildren<Animator>().SetFloat("Speed", 1f);
+       // this.GetComponent<Rigidbody>().isKinematic = true;
     }
     public float GetDistance(GameObject AIPlayer, GameObject MyPlayer)
     {

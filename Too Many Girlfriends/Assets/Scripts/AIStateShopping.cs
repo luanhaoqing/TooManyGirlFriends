@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
+using UnityEngine.AI;
 
 public class AIStateShopping : AIStateBaseNode
 {
@@ -43,6 +43,7 @@ public class AIStateShopping : AIStateBaseNode
         {
             if (CurrentState == BehaviourState.SELF_ACTION_STATE)
             {
+                this.transform.LookAt(shopPos);
                 Progress += Time.deltaTime / CompletionTime;
                 ActionBar.GetComponent<Slider>().value = Progress;
                 if (Progress >= 1)
@@ -71,27 +72,34 @@ public class AIStateShopping : AIStateBaseNode
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Clothing")
+        if(!isValid)
         {
-            shopType = ShoppingType.CLOTHING;
-        }
-        else if (other.tag == "Flower")
-        {
-            shopType = ShoppingType.FLOWER;
-        }
-        int length = Enum.GetValues(typeof(ShoppingType)).Length;
-        GoalType currentGoalType = this.GetComponent<GoalSystem>().GetCurrentGoal();
-        for (int i = 0; i < length; i++)
-        {
-            if ((ShoppingType)i == ShoppingType.NONE) continue;
-            if (getGoalTypeFromShopType((ShoppingType)i) == currentGoalType && shopType == (ShoppingType)i && !hasEverFinished[i] && this.GetComponent<AIBehaviour>().GetCurrentBehaviourType() == AIBehaviourType.FOLLOWPLAYER)
+            if (other.tag == "Clothing")
             {
-                isValid = true;
-                shopPos = other.gameObject.transform.position;
-                shopPos.y = this.transform.position.y;
-                destPos = other.gameObject.transform.Find("TaskPoint").position;
-                destPos.y = this.transform.position.y;
-                break;
+                shopType = ShoppingType.CLOTHING;
+            }
+            else if (other.tag == "Flower")
+            {
+                shopType = ShoppingType.FLOWER;
+            }
+            else
+            {
+                shopType = ShoppingType.NONE;
+            }
+            int length = Enum.GetValues(typeof(ShoppingType)).Length;
+            GoalType currentGoalType = this.GetComponent<GoalSystem>().GetCurrentGoal();
+            for (int i = 0; i < length; i++)
+            {
+                if ((ShoppingType)i == ShoppingType.NONE) continue;
+                if (getGoalTypeFromShopType((ShoppingType)i) == currentGoalType && shopType == (ShoppingType)i && !hasEverFinished[i] && this.GetComponent<AIBehaviour>().GetCurrentBehaviourType() == AIBehaviourType.FOLLOWPLAYER)
+                {
+                    isValid = true;
+                    shopPos = other.gameObject.transform.position;
+                    shopPos.y = this.transform.position.y;
+                    destPos = other.gameObject.transform.Find("TaskPoint").position;
+                    destPos.y = this.transform.position.y;
+                    break;
+                }
             }
         }
     }
@@ -119,16 +127,8 @@ public class AIStateShopping : AIStateBaseNode
         UpdateCurrentState(BehaviourState.PREPARE_STATE);
 
         HideBubble();
-        //switch (shopType)
-        //{
-        //    case ShoppingType.FLOWER:
-        //        ShowBubble(ThoughtBubble.BubbleType.CLOTHING);
-        //        break;
-        //    case ShoppingType.CLOTHING:
-        //        ShowBubble(ThoughtBubble.BubbleType.CLOTHING);
-        //        break;
-        //  
-        //}
+        this.GetComponent<UnityEngine.AI.NavMeshAgent>().enabled = false;
+        this.GetComponent<Collider>().enabled = false;
         this.PrintToScreen("SHOPPING STATE START");
     }
     private GoalType getGoalTypeFromShopType(ShoppingType type)
@@ -159,6 +159,10 @@ public class AIStateShopping : AIStateBaseNode
         shopType = ShoppingType.NONE;
 
         UpdateCurrentState(BehaviourState.END_STATE);
+        this.GetComponent<Collider>().enabled = true;
+        this.GetComponent<NavMeshAgent>().enabled = true;
+        this.GetComponent<Rigidbody>().isKinematic = false;
+
         this.PrintToScreen("SHOPPING STATE END");
     }
 

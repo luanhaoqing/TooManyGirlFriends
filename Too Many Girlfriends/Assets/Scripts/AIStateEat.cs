@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
+using UnityEngine.AI;
 public class AIStateEat : AIStateBaseNode
 {
     public enum EatType
@@ -44,6 +44,7 @@ public class AIStateEat : AIStateBaseNode
         {
             if(CurrentState == BehaviourState.SELF_ACTION_STATE)
             {
+                this.transform.LookAt(shopPos);
                 Progress += Time.deltaTime / CompletionTime;
                 ActionBar.GetComponent<Slider>().value = Progress;
                 if (Progress >= 1)
@@ -72,35 +73,42 @@ public class AIStateEat : AIStateBaseNode
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Restaurant")
+        if(!isValid)
         {
-            eatType = EatType.RESTAURANT;
-        }
-        else if(other.tag == "Icecream")
-        {
-            eatType = EatType.ICECREAM;
-        }
-        else if(other.tag == "Kabab")
-        {
-            eatType = EatType.KEBAB;
-        }
-        else if(other.tag == "Grill")
-        {
-            eatType = EatType.GRILL;
-        }
-        int length = Enum.GetValues(typeof(EatType)).Length;
-        GoalType currentGoalType = this.GetComponent<GoalSystem>().GetCurrentGoal();
-        for (int i = 0; i < length; i++)
-        {
-            if ((EatType)i == EatType.NONE) continue;
-            if(getGoalTypeFromEatType((EatType)i)== currentGoalType && eatType == (EatType)i && !hasEverFinished[i] && this.GetComponent<AIBehaviour>().GetCurrentBehaviourType() == AIBehaviourType.FOLLOWPLAYER)
+            if (other.tag == "Restaurant")
             {
-                isValid = true;
-                shopPos = other.gameObject.transform.position;
-                shopPos.y = this.transform.position.y;
-                destPos = other.gameObject.transform.Find("TaskPoint").position;
-                destPos.y = this.transform.position.y;
-                break;
+                eatType = EatType.RESTAURANT;
+            }
+            else if (other.tag == "Icecream")
+            {
+                eatType = EatType.ICECREAM;
+            }
+            else if (other.tag == "Kabab")
+            {
+                eatType = EatType.KEBAB;
+            }
+            else if (other.tag == "Grill")
+            {
+                eatType = EatType.GRILL;
+            }
+            else
+            {
+                eatType = EatType.NONE;
+            }
+            int length = Enum.GetValues(typeof(EatType)).Length;
+            GoalType currentGoalType = this.GetComponent<GoalSystem>().GetCurrentGoal();
+            for (int i = 0; i < length; i++)
+            {
+                if ((EatType)i == EatType.NONE) continue;
+                if (getGoalTypeFromEatType((EatType)i) == currentGoalType && eatType == (EatType)i && !hasEverFinished[i] && this.GetComponent<AIBehaviour>().GetCurrentBehaviourType() == AIBehaviourType.FOLLOWPLAYER)
+                {
+                    isValid = true;
+                    shopPos = other.gameObject.transform.parent.position;
+                    shopPos.y = this.transform.position.y;
+                    destPos = other.gameObject.transform.Find("TaskPoint").position;
+                    destPos.y = this.transform.position.y;
+                    break;
+                }
             }
         }
     }
@@ -127,7 +135,8 @@ public class AIStateEat : AIStateBaseNode
         isActive = true;
         UpdateCurrentState(BehaviourState.PREPARE_STATE);
         HideBubble();
-
+        this.GetComponent<NavMeshAgent>().enabled = false;
+        this.GetComponent<Collider>().enabled = false;
         this.PrintToScreen("EAT STATE START");
     }
     private GoalType getGoalTypeFromEatType(EatType type)
@@ -162,6 +171,9 @@ public class AIStateEat : AIStateBaseNode
         }
         eatType = EatType.NONE;
         UpdateCurrentState(BehaviourState.END_STATE);
+        this.GetComponent<Collider>().enabled = true;
+        this.GetComponent<NavMeshAgent>().enabled = true;
+        this.GetComponent<Rigidbody>().isKinematic = false;
         this.PrintToScreen("EAT STATE END");
     }
 
