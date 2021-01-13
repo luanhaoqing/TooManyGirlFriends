@@ -21,7 +21,6 @@ public class GoalSystem : MonoBehaviour
     public int TasksNumberBeforeGoal;
     public GoalType[] goalList;
     private int currentIndex;
-    public GameObject taskBar;
 
     public string GetGoalTypeString(int index)
     {

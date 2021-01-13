@@ -9,10 +9,10 @@ public class AIStateWalk : AIStateBaseNode
     private GameObject Player;
     private Transform currentPosition;
     private GameObject aiPlayer;
-    private bool shouldChangeDirection;
+    public bool shouldChangeDirection;
     private float timer;
-    private bool hitTheWall;
-    ContactPoint hitPoint;
+    public bool hitTheWall;
+    RaycastHit hitPoint;
     // Start is called before the first frame update
     void Start()
     {
@@ -25,6 +25,17 @@ public class AIStateWalk : AIStateBaseNode
     {
         if(this.IsActive())
         {
+            //raycast
+            RaycastHit hit;
+            if (Physics.Raycast(this.transform.position, this.transform.forward, out hit))
+            {
+                if ((hit.transform.tag == "Wall" || hit.transform.tag == "AIPlayer") && hit.distance <= 3)
+                {
+                    shouldChangeDirection = true;
+                    hitTheWall = true;
+                    hitPoint = hit;
+                }
+            }
             timer -= Time.deltaTime;
             if(timer <= 0)
             {
@@ -48,11 +59,11 @@ public class AIStateWalk : AIStateBaseNode
                 {
                     this.transform.localEulerAngles = new Vector3(this.transform.localEulerAngles.x, this.transform.localEulerAngles.y + Random.Range(min, max), this.transform.localEulerAngles.z);
                 }
-                this.GetComponent<Rigidbody>().velocity = transform.forward * Speed;
                 timer = Random.Range(5, 10);
                 shouldChangeDirection = false;
                 hitTheWall = false;
             }
+            this.GetComponent<Rigidbody>().velocity = transform.forward * Speed;
         }
     }
   
@@ -93,16 +104,15 @@ public class AIStateWalk : AIStateBaseNode
     }
     void OnCollisionEnter(Collision collision)
     {
-        if (collision.collider.tag == "Wall")
+        if (collision.collider.tag == "Wall" || collision.collider.tag == "AIPlayer")
         {
             shouldChangeDirection = true;
             hitTheWall = true;
-            hitPoint = collision.contacts[0];
         }
     }
     void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Wall")
+        if (other.tag == "Wall"|| other.tag == "AIPlayer")
         {
             shouldChangeDirection = true;
             hitTheWall = true;
