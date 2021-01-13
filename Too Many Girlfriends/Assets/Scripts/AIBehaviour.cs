@@ -112,4 +112,14 @@ public class AIBehaviour : MonoBehaviour
     {
         return AngryLevel;
     }
+
+    public float GetCurrentProgressLevel()
+    {
+        AIBehaviourType type = GetCurrentBehaviourType();
+        if(type == AIBehaviourType.EAT || type == AIBehaviourType.SHOPPING)
+        {
+            return Behaviours[currentState].Progress;
+        }
+        return 0;
+    }
 }

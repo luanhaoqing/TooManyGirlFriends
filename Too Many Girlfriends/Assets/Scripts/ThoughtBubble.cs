@@ -29,9 +29,19 @@ public class ThoughtBubble : MonoBehaviour
     }
     public void ShowBubble()
     {
+        ShowBubble(getCurrentBubbleType());
+    }
+    private void ShowBubble(BubbleType type)
+    {
+        Bubble.SetActive(true);
+        Bubble.gameObject.transform.Find("Content").GetComponent<Image>().sprite = Sprites[(int)type];
+        Bubble.GetComponent<Animator>().SetTrigger("ShowBubble");
+    }
+    private BubbleType getCurrentBubbleType()
+    {
         GoalType type = this.GetComponent<GoalSystem>().GetCurrentGoal();
         BubbleType bubbleType = BubbleType.CLOTHING;
-        switch(type)
+        switch (type)
         {
             case GoalType.FLOWER:
                 bubbleType = BubbleType.CLOTHING;
@@ -52,16 +62,14 @@ public class ThoughtBubble : MonoBehaviour
                 bubbleType = BubbleType.CLOTHING;
                 break;
         }
-        ShowBubble(bubbleType);
-    }
-    private void ShowBubble(BubbleType type)
-    {
-        Bubble.SetActive(true);
-        Bubble.gameObject.transform.Find("Content").GetComponent<Image>().sprite = Sprites[(int)type];
-        Bubble.GetComponent<Animator>().SetTrigger("ShowBubble");
+        return bubbleType;
     }
     public void HideBubble()
     {
         Bubble.SetActive(false);
+    }
+    public Sprite GetCurrentGoalSprite()
+    {
+        return Sprites[(int)getCurrentBubbleType()];
     }
 }

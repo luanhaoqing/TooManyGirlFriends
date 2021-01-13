@@ -21,7 +21,7 @@ public class GoalSystem : MonoBehaviour
     public int TasksNumberBeforeGoal;
     public GoalType[] goalList;
     private int currentIndex;
-    private GameObject taskBar;
+    public GameObject taskBar;
 
     public string GetGoalTypeString(int index)
     {
@@ -43,8 +43,6 @@ public class GoalSystem : MonoBehaviour
     void Start()
     {
         generateRandomTaskList();
-        taskBar = GameObject.FindGameObjectWithTag("TaskBar");
-        updateTaskBarText();
     }
     private void generateRandomTaskList()
     {
@@ -93,16 +91,15 @@ public class GoalSystem : MonoBehaviour
         if(type == GetCurrentGoal())
         {
             currentIndex++;
-            updateTaskBarText();
             return true;
         }
         return false;
     }
-
-    private void updateTaskBarText()
+    public string GetFinalGoalText()
     {
-        taskBar.GetComponent<Text>().text = GetGoalTypeString((int)GetCurrentGoal());
+        return GetGoalTypeString((int)FinalGoal);
     }
+
     // Update is called once per frame
     void Update()
     {
