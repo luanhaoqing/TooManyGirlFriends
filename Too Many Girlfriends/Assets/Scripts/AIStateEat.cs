@@ -135,6 +135,7 @@ public class AIStateEat : AIStateBaseNode
         isActive = true;
         UpdateCurrentState(BehaviourState.PREPARE_STATE);
         HideBubble();
+        this.GetComponent<Rigidbody>().isKinematic = true;
         this.GetComponent<NavMeshAgent>().enabled = false;
         this.GetComponent<Collider>().enabled = false;
         this.PrintToScreen("EAT STATE START");
@@ -143,8 +144,8 @@ public class AIStateEat : AIStateBaseNode
     {
         switch (eatType)
         {
-            case EatType.RESTAURANT:
-                return (GoalType.RESTAURANT);
+          //  case EatType.RESTAURANT:
+          //      return (GoalType.RESTAURANT);
             case EatType.ICECREAM:
                 return (GoalType.ICECREAM);
             case EatType.KEBAB:

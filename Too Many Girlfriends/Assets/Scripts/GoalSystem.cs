@@ -7,12 +7,11 @@ using UnityEngine.UI;
 public enum GoalType
 {
     NONE = 0,
-    RESTAURANT = 1,
-    SHOPPING = 2,
-    ICECREAM = 3,
-    FLOWER = 4,
-    KABAB = 5,
-    GRILL = 6,
+    SHOPPING = 1,
+    ICECREAM = 2,
+    FLOWER = 3,
+    KABAB = 4,
+    GRILL = 5,
 }
 
 public class GoalSystem : MonoBehaviour
@@ -27,8 +26,8 @@ public class GoalSystem : MonoBehaviour
        string[] texts = new string[]
        {
            "None",
-           "Restaurant",
-           "Shopping",
+       //    "Restaurant",
+           "Buy Clothes",
            "Buy Icecream",
            "Buy Flower",
            "Kebab",
@@ -89,7 +88,14 @@ public class GoalSystem : MonoBehaviour
     {
         if(type == GetCurrentGoal())
         {
-            currentIndex++;
+            if(currentIndex < TasksNumberBeforeGoal)
+            {
+                currentIndex++;
+            }
+            else
+            {
+                this.GetComponent<AIBehaviour>().IsTaskSuccess = true;
+            }
             return true;
         }
         return false;

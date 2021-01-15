@@ -21,7 +21,7 @@ public class AIBehaviour : MonoBehaviour
     private AIStateBaseNode[] Behaviours;
     private int currentState;
     private float yValue;
-
+    public bool IsTaskSuccess;
 
     public AIBehaviourType GetCurrentBehaviourType()
     {
@@ -31,6 +31,7 @@ public class AIBehaviour : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        IsTaskSuccess = false;
         AngryLevel = 0;
         yValue = this.transform.position.y;
         numberOfBehaviour = BehaviourTypeIncluded.Length;
@@ -54,6 +55,11 @@ public class AIBehaviour : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(IsTaskSuccess)
+        {
+            GameObject.FindGameObjectWithTag("GameMaster").GetComponent<GameMaster>().HandleAIPlayerSuccess();
+            this.gameObject.transform.parent.gameObject.SetActive(false);
+        }
         if(Behaviours[currentState].IsEnd || Behaviours[currentState].CouldBeOverride())
         {
             for (int i = 0; i < numberOfBehaviour; i++)

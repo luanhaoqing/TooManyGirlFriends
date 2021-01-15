@@ -55,9 +55,9 @@ public class ThoughtBubble : MonoBehaviour
             case GoalType.KABAB:
                 bubbleType = BubbleType.KEBAB;
                 break;
-            case GoalType.RESTAURANT:
-                bubbleType = BubbleType.DINNER;
-                break;
+          //  case GoalType.RESTAURANT:
+          //      bubbleType = BubbleType.DINNER;
+           //     break;
             case GoalType.SHOPPING:
                 bubbleType = BubbleType.CLOTHING;
                 break;

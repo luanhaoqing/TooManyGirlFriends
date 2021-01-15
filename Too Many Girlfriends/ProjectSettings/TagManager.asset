@@ -17,6 +17,7 @@ TagManager:
   - Flower
   - Kabab
   - Grill
+  - GameMaster
   layers:
   - Default
   - TransparentFX

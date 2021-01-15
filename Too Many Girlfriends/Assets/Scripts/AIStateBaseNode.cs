@@ -59,6 +59,7 @@ public class AIStateBaseNode:MonoBehaviour
     {
         ShowCurious();
         yield return new WaitForSeconds(1.5f);
+        this.GetComponent<Rigidbody>().isKinematic = false;
         this.GetComponentInChildren<Animator>().SetFloat("Speed", 0.4f);
         this.StartWalking();
         Vector3 currentPos = transform.position;
