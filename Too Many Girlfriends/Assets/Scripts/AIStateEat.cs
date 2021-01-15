@@ -24,9 +24,11 @@ public class AIStateEat : AIStateBaseNode
     private bool[] hasEverFinished;
     private Vector3 destPos;
     private Vector3 shopPos;
+    private float coolDownTimer;
     // Start is called before the first frame update
     void Start()
     {
+        coolDownTimer = 0;
         isValid = false;
         timerForPrepareState = PrepareStateTime;
         int length = Enum.GetValues(typeof(EatType)).Length;
@@ -68,6 +70,10 @@ public class AIStateEat : AIStateBaseNode
                     UpdateCurrentState(BehaviourState.SELF_ACTION_STATE);
                 }
            }
+        }
+        else
+        {
+            coolDownTimer -= Time.deltaTime;
         }
     }
 
@@ -123,9 +129,9 @@ public class AIStateEat : AIStateBaseNode
     public override bool IsValid()
     {
         //Need some detection here for entering this node
-       // if (hasEverFinished) return false;
+        // if (hasEverFinished) return false;
 
-        return isValid;
+        return (isValid && coolDownTimer < 0);
     }
     public override void StartBehaviour()
     {
@@ -176,6 +182,7 @@ public class AIStateEat : AIStateBaseNode
         this.GetComponent<NavMeshAgent>().enabled = true;
         this.GetComponent<Rigidbody>().isKinematic = false;
         this.PrintToScreen("EAT STATE END");
+        coolDownTimer = 1;
     }
 
     public override void UpdateCurrentState(BehaviourState state)

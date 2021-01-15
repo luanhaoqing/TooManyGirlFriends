@@ -23,9 +23,11 @@ public class AIStateShopping : AIStateBaseNode
     private bool[] hasEverFinished;
     private Vector3 destPos;
     private Vector3 shopPos;
+    private float coolDownTimer;
     // Start is called before the first frame update
     void Start()
     {
+        coolDownTimer = 0;
         isValid = false;
         timerForPrepareState = PrepareStateTime;
         int length = Enum.GetValues(typeof(ShoppingType)).Length;
@@ -67,6 +69,10 @@ public class AIStateShopping : AIStateBaseNode
                     UpdateCurrentState(BehaviourState.SELF_ACTION_STATE);
                 }
             }
+        }
+        else
+        {
+            coolDownTimer -= Time.deltaTime;
         }
     }
 
@@ -116,7 +122,7 @@ public class AIStateShopping : AIStateBaseNode
         //Need some detection here for entering this node
         // if (hasEverFinished) return false;
 
-        return isValid;
+        return (isValid && coolDownTimer<0);
     }
     public override void StartBehaviour()
     {
@@ -164,6 +170,7 @@ public class AIStateShopping : AIStateBaseNode
         this.GetComponent<NavMeshAgent>().enabled = true;
         this.GetComponent<Rigidbody>().isKinematic = false;
         this.PrintToScreen("SHOPPING STATE END");
+        coolDownTimer = 1;
     }
 
     public override void UpdateCurrentState(BehaviourState state)
