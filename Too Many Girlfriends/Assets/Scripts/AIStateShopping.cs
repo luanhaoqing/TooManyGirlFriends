@@ -103,6 +103,7 @@ public class AIStateShopping : AIStateBaseNode
                     shopPos.y = this.transform.position.y;
                     destPos = other.gameObject.transform.Find("TaskPoint").position;
                     destPos.y = this.transform.position.y;
+                    CompletionTime = GetShopProgressTime(other.gameObject.transform.parent.gameObject);
                     break;
                 }
             }

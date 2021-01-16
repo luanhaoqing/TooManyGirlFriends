@@ -15,7 +15,7 @@ public class AIStateEat : AIStateBaseNode
         GRILL,
     }
 
-    public int CompletionTime = 10;
+    private int CompletionTime;
     public float PrepareStateTime = 5;
     private float timerForPrepareState;
     private bool isValid;
@@ -112,6 +112,7 @@ public class AIStateEat : AIStateBaseNode
                     shopPos.y = this.transform.position.y;
                     destPos = other.gameObject.transform.Find("TaskPoint").position;
                     destPos.y = this.transform.position.y;
+                    CompletionTime = GetShopProgressTime(other.gameObject.transform.parent.gameObject);
                     break;
                 }
             }

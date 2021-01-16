@@ -82,4 +82,8 @@ public class AIStateBaseNode:MonoBehaviour
         Vector3 MyPlayerPos = MyPlayer.transform.position;
         return Vector3.Distance(AIPlayerPos, MyPlayerPos);
     }
+    public int GetShopProgressTime(GameObject shop)
+    {
+        return shop.GetComponent<ShopBase>().GetProgressTime();
+    }
 }
