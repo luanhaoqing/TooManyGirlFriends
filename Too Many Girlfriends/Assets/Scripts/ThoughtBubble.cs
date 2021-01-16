@@ -6,6 +6,8 @@ using UnityEngine.UI;
 public class ThoughtBubble : MonoBehaviour
 {
     public GameObject Bubble;
+    public GameObject ActivedObj;
+    private GameObject ProgressBar;
     public enum BubbleType
     {
         CLOTHING = 0,
@@ -20,6 +22,7 @@ public class ThoughtBubble : MonoBehaviour
     void Start()
     {
         Bubble.SetActive(false);
+        ProgressBar = Bubble.gameObject.transform.Find("Progress").gameObject;
     }
 
     // Update is called once per frame
@@ -71,5 +74,19 @@ public class ThoughtBubble : MonoBehaviour
     public Sprite GetCurrentGoalSprite()
     {
         return Sprites[(int)getCurrentBubbleType()];
+    }
+    public void UpdateProgressBar(float progress)
+    {
+        ProgressBar.GetComponent<Image>().fillAmount = progress;
+    }
+    public void HandleTaskStart()
+    {
+        ActivedObj.SetActive(true);
+        UpdateProgressBar(0);
+    }
+    public void HandleTaskEnd()
+    {
+        ActivedObj.SetActive(false);
+        UpdateProgressBar(0);
     }
 }

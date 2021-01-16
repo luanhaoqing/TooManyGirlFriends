@@ -16,7 +16,6 @@ public class AIStateShopping : AIStateBaseNode
 
     public int CompletionTime = 10;
     public float PrepareStateTime = 5;
-    public GameObject ActionBar;
     private float timerForPrepareState;
     private bool isValid;
     private ShoppingType shopType;
@@ -47,7 +46,7 @@ public class AIStateShopping : AIStateBaseNode
             {
                 this.transform.LookAt(shopPos);
                 Progress += Time.deltaTime / CompletionTime;
-                ActionBar.GetComponent<Slider>().value = Progress;
+                this.GetComponent<ThoughtBubble>().UpdateProgressBar(Progress);
                 if (Progress >= 1)
                 {
                     this.End();
@@ -127,12 +126,11 @@ public class AIStateShopping : AIStateBaseNode
     public override void StartBehaviour()
     {
         Progress = 0;
-        ActionBar.SetActive(true);
         IsEnd = false;
         isActive = true;
         UpdateCurrentState(BehaviourState.PREPARE_STATE);
-
-        HideBubble();
+        this.GetComponent<ThoughtBubble>().HandleTaskStart();
+        
         this.GetComponent<UnityEngine.AI.NavMeshAgent>().enabled = false;
         this.GetComponent<Collider>().enabled = false;
         this.GetComponent<Rigidbody>().isKinematic = true;
@@ -154,7 +152,6 @@ public class AIStateShopping : AIStateBaseNode
         //reset all kinda timer/progression
         Progress = 0;
         timerForPrepareState = PrepareStateTime;
-        ActionBar.SetActive(false);
         IsEnd = true;
         isActive = false;
         isValid = false;
@@ -171,6 +168,8 @@ public class AIStateShopping : AIStateBaseNode
         this.GetComponent<Rigidbody>().isKinematic = false;
         this.PrintToScreen("SHOPPING STATE END");
         coolDownTimer = 1;
+        this.GetComponent<ThoughtBubble>().HandleTaskEnd();
+        HideBubble();
     }
 
     public override void UpdateCurrentState(BehaviourState state)

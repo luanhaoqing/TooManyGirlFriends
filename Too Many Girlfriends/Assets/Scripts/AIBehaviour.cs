@@ -112,6 +112,14 @@ public class AIBehaviour : MonoBehaviour
         AngryLevel += delta;
         AngryLevel = Mathf.Clamp(AngryLevel, 0, 100);
         AngryLevelBar.value = AngryLevel / 100;
+        if(AngryLevel <= 0)
+        {
+            AngryLevelBar.gameObject.SetActive(false);
+        }
+        else
+        {
+            AngryLevelBar.gameObject.SetActive(true);
+        }
     }
 
     public float GetAngryLevel()
