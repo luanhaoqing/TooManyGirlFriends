@@ -105,7 +105,7 @@ public class AIStateEat : AIStateBaseNode
             for (int i = 0; i < length; i++)
             {
                 if ((EatType)i == EatType.NONE) continue;
-                if (getGoalTypeFromEatType((EatType)i) == currentGoalType && eatType == (EatType)i && !hasEverFinished[i] && this.GetComponent<AIBehaviour>().GetCurrentBehaviourType() == AIBehaviourType.FOLLOWPLAYER)
+                if (getGoalTypeFromEatType((EatType)i) == currentGoalType && eatType == (EatType)i && /*!hasEverFinished[i] && */this.GetComponent<AIBehaviour>().GetCurrentBehaviourType() == AIBehaviourType.FOLLOWPLAYER)
                 {
                     isValid = true;
                     shopPos = other.gameObject.transform.parent.position;
@@ -128,9 +128,6 @@ public class AIStateEat : AIStateBaseNode
 
     public override bool IsValid()
     {
-        //Need some detection here for entering this node
-        // if (hasEverFinished) return false;
-
         return (isValid && coolDownTimer < 0);
     }
     public override void StartBehaviour()
@@ -168,11 +165,10 @@ public class AIStateEat : AIStateBaseNode
         IsEnd = true;
         isActive = false;
         isValid = false;
-   //     hasEverFinished = true;
         if(sucess)
         {
             this.GetComponent<GoalSystem>().HandleGoalFinished(getGoalTypeFromEatType(eatType));
-            hasEverFinished[(int)eatType] = true;
+          //  hasEverFinished[(int)eatType] = true;
         }
         eatType = EatType.NONE;
         UpdateCurrentState(BehaviourState.END_STATE);

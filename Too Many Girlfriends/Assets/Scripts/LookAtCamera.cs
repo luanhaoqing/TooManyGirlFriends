@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class LookAtCamera : MonoBehaviour
 {
-    private GameObject camera;
+    private GameObject mainCamera;
     private Vector3 cameraFacing;
     // Start is called before the first frame update
     void Start()
     {
-        camera = GameObject.FindGameObjectWithTag("MainCamera");
-        cameraFacing = camera.transform.forward;
+        mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
+        cameraFacing = mainCamera.transform.forward;
         this.transform.forward = -cameraFacing;
     }
 

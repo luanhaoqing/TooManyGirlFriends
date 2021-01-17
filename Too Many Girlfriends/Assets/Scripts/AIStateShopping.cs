@@ -23,6 +23,7 @@ public class AIStateShopping : AIStateBaseNode
     private Vector3 destPos;
     private Vector3 shopPos;
     private float coolDownTimer;
+    private GameObject shopObj;
     // Start is called before the first frame update
     void Start()
     {
@@ -96,7 +97,7 @@ public class AIStateShopping : AIStateBaseNode
             for (int i = 0; i < length; i++)
             {
                 if ((ShoppingType)i == ShoppingType.NONE) continue;
-                if (getGoalTypeFromShopType((ShoppingType)i) == currentGoalType && shopType == (ShoppingType)i && !hasEverFinished[i] && this.GetComponent<AIBehaviour>().GetCurrentBehaviourType() == AIBehaviourType.FOLLOWPLAYER)
+                if (getGoalTypeFromShopType((ShoppingType)i) == currentGoalType && shopType == (ShoppingType)i && /*!hasEverFinished[i] && */this.GetComponent<AIBehaviour>().GetCurrentBehaviourType() == AIBehaviourType.FOLLOWPLAYER)
                 {
                     isValid = true;
                     shopPos = other.gameObject.transform.position;
@@ -104,6 +105,7 @@ public class AIStateShopping : AIStateBaseNode
                     destPos = other.gameObject.transform.Find("TaskPoint").position;
                     destPos.y = this.transform.position.y;
                     CompletionTime = GetShopProgressTime(other.gameObject.transform.parent.gameObject);
+                    shopObj = other.gameObject;
                     break;
                 }
             }
@@ -119,9 +121,6 @@ public class AIStateShopping : AIStateBaseNode
 
     public override bool IsValid()
     {
-        //Need some detection here for entering this node
-        // if (hasEverFinished) return false;
-
         return (isValid && coolDownTimer<0);
     }
     public override void StartBehaviour()
@@ -158,8 +157,8 @@ public class AIStateShopping : AIStateBaseNode
         isValid = false;
         if (sucess)
         {
-            this.GetComponent<GoalSystem>().HandleGoalFinished(getGoalTypeFromShopType(shopType));
-            hasEverFinished[(int)shopType] = true;
+            this.GetComponent<GoalSystem>().HandleGoalFinished(getGoalTypeFromShopType(shopType), shopObj);
+        //    hasEverFinished[(int)shopType] = true;
         }
         shopType = ShoppingType.NONE;
 

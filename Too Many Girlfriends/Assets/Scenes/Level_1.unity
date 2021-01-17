@@ -4168,8 +4168,8 @@ MonoBehaviour:
   GirlFriends:
   - {fileID: 3201134150560097309}
   - {fileID: 4582501070019180100}
-  RefreshTimeUpperLevel: 5
-  RefreshTimeLowerLevel: 10
+  RefreshTimeUpperLevel: 10
+  RefreshTimeLowerLevel: 20
 --- !u!1 &1403979837 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5180879505954537033, guid: 063fd2aba4f3c404186c33afe9af45c3, type: 3}
@@ -5598,6 +5598,22 @@ PrefabInstance:
       propertyPath: taskBar
       value: 
       objectReference: {fileID: 971042695574779732}
+    - target: {fileID: 824191844234918906, guid: cbba14012f1579848a0fef1350217dd8, type: 3}
+      propertyPath: FinalGoalType
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 824191844234918906, guid: cbba14012f1579848a0fef1350217dd8, type: 3}
+      propertyPath: MinimumShopNumFinalGoal
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 824191844234918906, guid: cbba14012f1579848a0fef1350217dd8, type: 3}
+      propertyPath: TasksNumberBeforeGoalLowerLevel
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 824191844234918906, guid: cbba14012f1579848a0fef1350217dd8, type: 3}
+      propertyPath: TasksNumberBeforeGoalUpperLevel
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 824191845983306445, guid: cbba14012f1579848a0fef1350217dd8, type: 3}
       propertyPath: m_AnchorMax.y
       value: 1
@@ -5780,6 +5796,22 @@ PrefabInstance:
     - target: {fileID: 3032794622823833614, guid: 5282d82091a732b44a04aec89f703752, type: 3}
       propertyPath: FinalGoal
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3032794622823833614, guid: 5282d82091a732b44a04aec89f703752, type: 3}
+      propertyPath: FinalGoalType
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3032794622823833614, guid: 5282d82091a732b44a04aec89f703752, type: 3}
+      propertyPath: MinimumShopNumFinalGoal
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3032794622823833614, guid: 5282d82091a732b44a04aec89f703752, type: 3}
+      propertyPath: TasksNumberBeforeGoalLowerLevel
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3032794622823833614, guid: 5282d82091a732b44a04aec89f703752, type: 3}
+      propertyPath: TasksNumberBeforeGoalUpperLevel
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3032794624312711481, guid: 5282d82091a732b44a04aec89f703752, type: 3}
       propertyPath: m_AnchorMax.y
