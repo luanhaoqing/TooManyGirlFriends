@@ -9,15 +9,21 @@ public class GameMaster : MonoBehaviour
     private bool isSuccess = false;
     private bool isFailed = false;
     private int totalAIPlayerNum;
-    private GameObject[] AIPlayers;
-    public int SuccessedAIPlayerCount;
+    private int SuccessedAIPlayerCount;
+    private float refreshTimer;
+    private int currentGirlFriendNum;
+
     public GameObject GameResultOverlay;
+    public GameObject InitalPoint;
+    public GameObject[] GirlFriends;
+    public float RefreshTimeUpperLevel;
+    public float RefreshTimeLowerLevel;
     void Start()
     {
         SuccessedAIPlayerCount = 0;
-        totalAIPlayerNum = GameObject.FindGameObjectsWithTag("AIPlayer").Length;
-        AIPlayers = new GameObject[totalAIPlayerNum];
-        AIPlayers = GameObject.FindGameObjectsWithTag("AIPlayer");
+        totalAIPlayerNum = GirlFriends.Length;
+        currentGirlFriendNum = 0;
+        refreshTimer = Random.Range(RefreshTimeLowerLevel, RefreshTimeUpperLevel);
     }
 
     // Update is called once per frame
@@ -37,6 +43,23 @@ public class GameMaster : MonoBehaviour
         {
             GameResultOverlay.SetActive(true);
         }
+
+        //Refresh Girl Friends
+        if(currentGirlFriendNum<totalAIPlayerNum)
+        {
+            refreshTimer -= Time.deltaTime;
+            if(refreshTimer<=0)
+            {
+                showNewGirlFriend();
+            }
+        }
+    }
+    private void showNewGirlFriend()
+    {
+        GirlFriends[currentGirlFriendNum].transform.position = InitalPoint.transform.position;
+        GirlFriends[currentGirlFriendNum].SetActive(true);
+        currentGirlFriendNum++;
+        refreshTimer = Random.Range(RefreshTimeLowerLevel, RefreshTimeUpperLevel);
     }
     public void HandleAIPlayerSuccess()
     {
@@ -44,14 +67,14 @@ public class GameMaster : MonoBehaviour
     }
     private bool isAIPlayerMeetEachother()
     {
-        bool isInFollowPlayerState = true;
+        int count = 0;
         for(int i = 0;i<totalAIPlayerNum;i++)
         {
-            if(AIPlayers[i].GetComponent<AIBehaviour>().GetCurrentBehaviourType() != AIBehaviourType.FOLLOWPLAYER)
+            if(GirlFriends[i].activeSelf && GirlFriends[i].GetComponentInChildren<AIBehaviour>().GetCurrentBehaviourType() == AIBehaviourType.FOLLOWPLAYER)
             {
-                isInFollowPlayerState = false;
+                count++;
             }
         }
-        return isInFollowPlayerState;
+        return count>=2;
     }
 }

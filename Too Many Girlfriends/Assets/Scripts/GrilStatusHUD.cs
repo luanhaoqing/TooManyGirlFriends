@@ -10,19 +10,34 @@ public class GrilStatusHUD : MonoBehaviour
     public GameObject FinalGoal;
     public GameObject TaskPic;
     public GameObject ProgressBar;
+    private bool AIPlayerActivated;
     // Start is called before the first frame update
     void Start()
     {
-        
+        AIPlayerActivated = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        UpdateAngryLevel(AIPlayer.GetComponent<AIBehaviour>().GetAngryLevel());
-        UpdateFinalGoalText(AIPlayer.GetComponent<GoalSystem>().GetFinalGoalText());
-        UpdateCurrentTask(AIPlayer.GetComponent<ThoughtBubble>().GetCurrentGoalSprite());
-        UpdateProgressBar(AIPlayer.GetComponent<AIBehaviour>().GetCurrentProgressLevel());
+        if(AIPlayer.transform.parent.gameObject.activeSelf)
+        {
+            if(!AIPlayerActivated)
+            {
+                AIPlayerActivated = true;
+                this.transform.Find("Portrait").gameObject.SetActive(true);
+                this.transform.Find("Info").gameObject.SetActive(true);
+            }
+            UpdateAngryLevel(AIPlayer.GetComponent<AIBehaviour>().GetAngryLevel());
+            UpdateFinalGoalText(AIPlayer.GetComponent<GoalSystem>().GetFinalGoalText());
+            UpdateCurrentTask(AIPlayer.GetComponent<ThoughtBubble>().GetCurrentGoalSprite());
+            UpdateProgressBar(AIPlayer.GetComponent<AIBehaviour>().GetCurrentProgressLevel());
+        }
+        else
+        {
+            this.transform.Find("Portrait").gameObject.SetActive(false);
+            this.transform.Find("Info").gameObject.SetActive(false);
+        }
     }
 
     public void UpdateAngryLevel(float angryLevel)
