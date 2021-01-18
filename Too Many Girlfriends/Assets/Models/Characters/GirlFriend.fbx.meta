@@ -48,7 +48,22 @@ ModelImporter:
   - first:
       74: 4890179355886596624
     second: HairRig|HairFlutter
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material
+    second: {fileID: 2100000, guid: 8d8d96954de760c4c902b476dc62525c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Shirt
+    second: {fileID: 2100000, guid: bcf1080f80f12574b9bb1a38b449a65c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Skin
+    second: {fileID: 2100000, guid: 9bf04e01fe26f1f4da4b02e9ce5643fb, type: 2}
   materials:
     materialImportMode: 1
     materialName: 0

@@ -27,7 +27,27 @@ ModelImporter:
   - first:
       74: 5716217930642085276
     second: Handsome Hair|MballAction.003
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material.002
+    second: {fileID: 2100000, guid: 533ff7f3800df1d42910d95e5e296080, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Pants
+    second: {fileID: 2100000, guid: b140de40addfe7a499848647e49bf5a0, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Shirt
+    second: {fileID: 2100000, guid: 91192fd11c5fcea4a8d588e8ed917985, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Skin
+    second: {fileID: 2100000, guid: 69b0fac081ede684097b0741614a2105, type: 2}
   materials:
     materialImportMode: 1
     materialName: 0
