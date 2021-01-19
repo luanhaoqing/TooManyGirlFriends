@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class GameMaster : MonoBehaviour
@@ -13,11 +14,11 @@ public class GameMaster : MonoBehaviour
     private float refreshTimer;
     private int currentGirlFriendNum;
 
-    public GameObject GameResultOverlay;
     public GameObject InitalPoint;
     public GameObject[] GirlFriends;
     public float RefreshTimeUpperLevel;
     public float RefreshTimeLowerLevel;
+    static public bool IsWin;
     void Start()
     {
         SuccessedAIPlayerCount = 0;
@@ -32,18 +33,17 @@ public class GameMaster : MonoBehaviour
        if(!isFailed && totalAIPlayerNum == SuccessedAIPlayerCount)
         {
             isSuccess = true;
-            GameResultOverlay.GetComponent<Text>().text = "YOU WIN!";
+            IsWin = true;
         }
        else if(isAIPlayerMeetEachother())
         {
             isFailed = true;
-            GameResultOverlay.GetComponent<Text>().text = "YOU LOSE!";
+            IsWin = false;
         }
        if(isFailed||isSuccess)
         {
-            GameResultOverlay.SetActive(true);
+            SceneManager.LoadScene("EndScreen");
         }
-
         //Refresh Girl Friends
         if(currentGirlFriendNum<totalAIPlayerNum)
         {
