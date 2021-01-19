@@ -59,6 +59,22 @@ MonoBehaviour:
       - "\u6E23\u7537\u6A21\u62DF\u5668"
       Flags: 0000
       Languages_Touch: []
+    - Term: Menu/QuitToTitle
+      TermType: 0
+      Description: 
+      Languages:
+      - Quit to Title
+      - "\u9000\u51FA\u5230\u6807\u9898\u754C\u9762"
+      Flags: 0000
+      Languages_Touch: []
+    - Term: Menu/Replay
+      TermType: 0
+      Description: 
+      Languages:
+      - Replay
+      - "\u91CD\u6765\u4E00\u6B21"
+      Flags: 0000
+      Languages_Touch: []
     CaseInsensitiveTerms: 0
     OnMissingTranslation: 1
     mTerm_AppName: 
