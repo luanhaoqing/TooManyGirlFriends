@@ -4163,7 +4163,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b045f2409eb8934c9e4b484d919d066, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GameResultOverlay: {fileID: 542368076}
   InitalPoint: {fileID: 218729326}
   GirlFriends:
   - {fileID: 3201134150560097309}
@@ -5687,6 +5686,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 963194227}
     - target: {fileID: 7025667188508057217, guid: cbba14012f1579848a0fef1350217dd8, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8279689325199746282, guid: cbba14012f1579848a0fef1350217dd8, type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}

@@ -7,6 +7,7 @@ public class ThoughtBubble : MonoBehaviour
 {
     public GameObject Bubble;
     public GameObject ActivedObj;
+    private GameObject Exclamation;
     private GameObject ProgressBar;
     public enum BubbleType
     {
@@ -23,6 +24,7 @@ public class ThoughtBubble : MonoBehaviour
     {
         Bubble.SetActive(false);
         ProgressBar = Bubble.gameObject.transform.Find("Progress").gameObject;
+        Exclamation = Bubble.transform.Find("Exclamation").gameObject;
     }
 
     // Update is called once per frame
@@ -88,5 +90,14 @@ public class ThoughtBubble : MonoBehaviour
     {
         ActivedObj.SetActive(false);
         UpdateProgressBar(0);
+    }
+    public void ShowExclamation()
+    {
+        Exclamation.SetActive(true);
+        Exclamation.GetComponent<Animation>().Play("ExclamationMarkPopup");
+    }
+    public void HideExclamation()
+    {
+        Exclamation.SetActive(false);
     }
 }

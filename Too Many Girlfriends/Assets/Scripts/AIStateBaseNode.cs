@@ -49,6 +49,9 @@ public class AIStateBaseNode:MonoBehaviour
     public virtual void StartWalking() { this.GetComponentInChildren<Animator>().SetBool("IsWalk", true); }
     public virtual void StopWalking() { this.GetComponentInChildren<Animator>().SetBool("IsWalk", false); }
     public virtual void ShowCurious() { this.GetComponentInChildren<Animator>().SetTrigger("Curious"); }
+
+    public void ShowExclamation() { this.GetComponent<ThoughtBubble>().ShowExclamation(); }
+    public void HideExclamation() { this.GetComponent<ThoughtBubble>().HideExclamation(); }
     public void PrintToScreen(string log) { GameObject.FindGameObjectWithTag("LogSystem").GetComponent<LogSystem>().AddLog(log); }
     public void ShowBubble() 
     { 
@@ -58,7 +61,9 @@ public class AIStateBaseNode:MonoBehaviour
     public IEnumerator MoveToTaskPoint(Transform transform, Vector3 position, float time)
     {
         ShowCurious();
+        ShowExclamation();
         yield return new WaitForSeconds(1.5f);
+        HideExclamation();
         this.GetComponent<Rigidbody>().isKinematic = false;
         this.GetComponentInChildren<Animator>().SetFloat("Speed", 0.4f);
         this.StartWalking();
