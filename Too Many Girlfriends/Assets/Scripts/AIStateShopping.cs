@@ -158,7 +158,8 @@ public class AIStateShopping : AIStateBaseNode
         if (sucess)
         {
             this.GetComponent<GoalSystem>().HandleGoalFinished(getGoalTypeFromShopType(shopType), shopObj);
-        //    hasEverFinished[(int)shopType] = true;
+            this.GetComponent<AIStateIdle>().FinishedTask = true;
+            //    hasEverFinished[(int)shopType] = true;
         }
         shopType = ShoppingType.NONE;
 
