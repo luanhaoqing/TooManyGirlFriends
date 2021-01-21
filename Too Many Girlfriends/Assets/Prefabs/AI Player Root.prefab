@@ -523,7 +523,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Bubble: {fileID: 8382735517333439303}
-  ActivedObj: {fileID: 0}
+  ActivedObj: {fileID: 7025667188508057217}
   Sprites:
   - {fileID: 21300000, guid: 5f040cf0b0b06aa468f75be11478d4f7, type: 3}
   - {fileID: 21300000, guid: 58490c28fd0b3e4489649cf88f841371, type: 3}
@@ -1188,5 +1188,10 @@ GameObject:
 --- !u!224 &3251843700400164566 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 93564116249159852, guid: 00ee85ce5910a6641869b6db6a9d1c01, type: 3}
+  m_PrefabInstance: {fileID: 3201134150714173050}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &7025667188508057217 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5615031718413302011, guid: 00ee85ce5910a6641869b6db6a9d1c01, type: 3}
   m_PrefabInstance: {fileID: 3201134150714173050}
   m_PrefabAsset: {fileID: 0}

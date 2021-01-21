@@ -212,6 +212,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4657589231636683416, guid: 920a8885b57fe524daa86bb19438ba9d, type: 3}
   m_PrefabInstance: {fileID: 16516585}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &61820520 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4259985135434966099, guid: 5282d82091a732b44a04aec89f703752, type: 3}
+  m_PrefabInstance: {fileID: 4582501070019180098}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &88368674
 GameObject:
   m_ObjectHideFlags: 0
@@ -5844,7 +5849,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5903850642032361768, guid: 5282d82091a732b44a04aec89f703752, type: 3}
       propertyPath: MinimumShopNumFinalGoal
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5903850642032361768, guid: 5282d82091a732b44a04aec89f703752, type: 3}
       propertyPath: TasksNumberBeforeGoalLowerLevel
@@ -5858,6 +5863,10 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6529848910891527339, guid: 5282d82091a732b44a04aec89f703752, type: 3}
+      propertyPath: ActivedObj
+      value: 
+      objectReference: {fileID: 61820520}
     - target: {fileID: 8786881907124703378, guid: 5282d82091a732b44a04aec89f703752, type: 3}
       propertyPath: MyPlayer
       value: 
