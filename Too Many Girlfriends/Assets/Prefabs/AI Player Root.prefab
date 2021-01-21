@@ -456,7 +456,7 @@ MonoBehaviour:
   isActive: 0
   Speed: 6
   MyPlayer: {fileID: 0}
-  AngryLevelReduceToMinTime: 20
+  AngryLevelReduceToMinTime: 30
   ForceFollowPlayerState: 0
   DistanceToNoticePlayer: 6
   DistanceToSeePlayer: 12
@@ -473,8 +473,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isActive: 0
-  AngryLevelMaxTime: 10
-  MaxRotationTime: 3
+  AngryLevelMaxTime: 20
+  MaxRotationTime: 2
   FinishedTask: 0
   BonusTimerForTaskCompletion: 0
 --- !u!114 &2759315943618801591
@@ -490,8 +490,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isActive: 0
-  CompletionTime: 10
-  PrepareStateTime: 5
+  CompletionTime: 15
+  PrepareStateTime: 3
 --- !u!114 &824191844234918906
 MonoBehaviour:
   m_ObjectHideFlags: 0

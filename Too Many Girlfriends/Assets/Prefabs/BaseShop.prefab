@@ -9,7 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1741806183277743080}
-  - component: {fileID: 1741806182208639266}
   m_Layer: 0
   m_Name: BaseShop
   m_TagString: Wall
@@ -32,19 +31,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &1741806182208639266
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1741806182208639268}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 2.119065, y: 4.449863, z: 3.957487}
-  m_Center: {x: 0.39021266, y: 1.7249315, z: 0.19274521}
 --- !u!1 &5138151271858914180
 GameObject:
   m_ObjectHideFlags: 0
