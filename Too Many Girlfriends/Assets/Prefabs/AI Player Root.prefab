@@ -346,10 +346,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2553515110304967288}
-  - component: {fileID: 2553515110304967239}
-  - component: {fileID: 2553515110304967238}
   - component: {fileID: 2553515110304967237}
-  - component: {fileID: 2553515110304967236}
   - component: {fileID: 2553515110304967235}
   - component: {fileID: 2553515110304967234}
   - component: {fileID: 2553515110304967233}
@@ -359,6 +356,7 @@ GameObject:
   - component: {fileID: 824191844234918906}
   - component: {fileID: 1904301689}
   - component: {fileID: 1411708199}
+  - component: {fileID: 4105571068218404617}
   m_Layer: 0
   m_Name: AI Player
   m_TagString: AIPlayer
@@ -382,55 +380,6 @@ Transform:
   m_Father: {fileID: 2553515110987804156}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &2553515110304967239
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2553515110304967246}
-  m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
---- !u!23 &2553515110304967238
-MeshRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2553515110304967246}
-  m_Enabled: 0
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 2
-  m_RayTraceProcedural: 0
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!54 &2553515110304967237
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -447,19 +396,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 116
   m_CollisionDetection: 0
---- !u!65 &2553515110304967236
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2553515110304967246}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 2.215468, y: 2.2263122, z: 2.2234573}
-  m_Center: {x: 0.009699106, y: -0.006993532, z: 0.12247276}
 --- !u!114 &2553515110304967235
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -474,6 +410,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BehaviourTypeIncluded: 0200000004000000030000000100000000000000
   AngryLevelBar: {fileID: 2553515109873539684}
+  IsTaskSuccess: 0
 --- !u!114 &2553515110304967234
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -488,6 +425,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isActive: 0
   Speed: 9
+  shouldChangeDirection: 0
+  hitTheWall: 0
 --- !u!114 &2553515110304967233
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -501,9 +440,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isActive: 0
-  CompletionTime: 10
   PrepareStateTime: 5
-  ActionBar: {fileID: 2553515110356549425}
 --- !u!114 &2553515110304967232
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -538,6 +475,8 @@ MonoBehaviour:
   isActive: 0
   AngryLevelMaxTime: 10
   MaxRotationTime: 3
+  FinishedTask: 0
+  BonusTimerForTaskCompletion: 0
 --- !u!114 &2759315943618801591
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -553,7 +492,6 @@ MonoBehaviour:
   isActive: 0
   CompletionTime: 10
   PrepareStateTime: 5
-  ActionBar: {fileID: 2553515110356549425}
 --- !u!114 &824191844234918906
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -566,10 +504,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7fb399c4a114d154eb814dfa236a11b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  FinalGoal: 2
-  TasksNumberBeforeGoal: 3
+  FinalGoalType: 0
+  TasksNumberBeforeGoalLowerLevel: 0
+  TasksNumberBeforeGoalUpperLevel: 0
+  MinimumShopNumFinalGoal: 0
   goalList: 
-  taskBar: {fileID: 0}
+  DoesLocateASpecificStore: 0
 --- !u!114 &1904301689
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -583,6 +523,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Bubble: {fileID: 8382735517333439303}
+  ActivedObj: {fileID: 0}
   Sprites:
   - {fileID: 21300000, guid: 5f040cf0b0b06aa468f75be11478d4f7, type: 3}
   - {fileID: 21300000, guid: 58490c28fd0b3e4489649cf88f841371, type: 3}
@@ -608,10 +549,24 @@ NavMeshAgent:
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
-  m_Height: 2
-  m_BaseOffset: 1
+  m_Height: 2.87
+  m_BaseOffset: 1.43
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!136 &4105571068218404617
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2553515110304967246}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 0
+  m_Radius: 0.5
+  m_Height: 2.92
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &2553515110356549425
 GameObject:
   m_ObjectHideFlags: 0
@@ -824,7 +779,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2553515110987804156}
   m_Layer: 0
-  m_Name: AI Player Parent
+  m_Name: AI Player Root
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
