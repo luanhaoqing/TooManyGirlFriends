@@ -504,10 +504,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7fb399c4a114d154eb814dfa236a11b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  FinalGoalType: 0
-  TasksNumberBeforeGoalLowerLevel: 0
-  TasksNumberBeforeGoalUpperLevel: 0
-  MinimumShopNumFinalGoal: 0
+  FinalGoalType: 1
+  TasksNumberBeforeGoalLowerLevel: 1
+  TasksNumberBeforeGoalUpperLevel: 2
+  MinimumShopNumFinalGoal: 2
   goalList: 
   DoesLocateASpecificStore: 0
 --- !u!114 &1904301689
@@ -561,7 +561,7 @@ CapsuleCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2553515110304967246}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 0
   m_Radius: 0.5
   m_Height: 2.92
