@@ -16,6 +16,7 @@ public class GameMaster : MonoBehaviour
 
     public GameObject InitalPoint;
     public GameObject[] GirlFriends;
+    public float WaitTimeBeforeFirstGirlFriendShowUp;
     public float RefreshTimeUpperLevel;
     public float RefreshTimeLowerLevel;
     static public bool IsWin;
@@ -24,7 +25,7 @@ public class GameMaster : MonoBehaviour
         SuccessedAIPlayerCount = 0;
         totalAIPlayerNum = GirlFriends.Length;
         currentGirlFriendNum = 0;
-        refreshTimer = Random.Range(RefreshTimeLowerLevel, RefreshTimeUpperLevel);
+        refreshTimer = WaitTimeBeforeFirstGirlFriendShowUp;
     }
 
     // Update is called once per frame

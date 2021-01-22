@@ -4196,6 +4196,7 @@ MonoBehaviour:
   GirlFriends:
   - {fileID: 3201134150560097309}
   - {fileID: 157515019}
+  WaitTimeBeforeFirstGirlFriendShowUp: 5
   RefreshTimeUpperLevel: 10
   RefreshTimeLowerLevel: 20
 --- !u!1 &1403979837 stripped
