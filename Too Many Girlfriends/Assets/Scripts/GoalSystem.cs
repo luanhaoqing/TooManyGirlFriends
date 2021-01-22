@@ -29,6 +29,7 @@ public class GoalSystem : MonoBehaviour
     public int MinimumShopNumFinalGoal;
     public GoalType[] goalList;
     public bool DoesLocateASpecificStore;
+    public bool IsInit;
     private GameObject[] shopObjList;
     private bool[] shopHasArrived;
     private int currentIndex;
@@ -49,8 +50,10 @@ public class GoalSystem : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        IsInit = false;
         DoesLocateASpecificStore = false;
         generateRandomTaskList();
+        IsInit = true;
     }
     private void generateRandomTaskList()
     {

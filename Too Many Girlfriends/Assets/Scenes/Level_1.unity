@@ -5659,6 +5659,10 @@ PrefabInstance:
       propertyPath: MyPlayer
       value: 
       objectReference: {fileID: 7636920942534180572}
+    - target: {fileID: 2553515110304967232, guid: cbba14012f1579848a0fef1350217dd8, type: 3}
+      propertyPath: DistanceToNoticePlayer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2553515110304967247, guid: cbba14012f1579848a0fef1350217dd8, type: 3}
       propertyPath: BonusTimerInit
       value: 12

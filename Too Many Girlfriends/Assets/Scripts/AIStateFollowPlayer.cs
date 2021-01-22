@@ -89,8 +89,17 @@ public class AIStateFollowPlayer : AIStateBaseNode
         tempVec = Vector3.Normalize(tempVec);
         Vector3 facing = Vector3.Normalize(this.gameObject.transform.forward);
         float cosVlaue = (tempVec.x * facing.x + tempVec.y * facing.y + tempVec.z * facing.z);
-        if((cosVlaue)>=0.86f && GetDistance(MyPlayer, this.gameObject) <= DistanceToSeePlayer)
+        
+        if ((cosVlaue)>=0.86f && GetDistance(MyPlayer, this.gameObject) <= DistanceToSeePlayer)
         {
+            RaycastHit hit;
+            if (Physics.Raycast(this.transform.position, tempVec, out hit))
+            {
+                if (hit.transform.tag == "Wall")
+                {
+                    return false;
+                }
+            }
             return true;
         }
         else

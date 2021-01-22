@@ -20,7 +20,7 @@ public class GrilStatusHUD : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(AIPlayer.transform.parent.gameObject.activeSelf)
+        if(AIPlayer.GetComponent<GoalSystem>().IsInit)
         {
             if(!AIPlayerActivated)
             {
