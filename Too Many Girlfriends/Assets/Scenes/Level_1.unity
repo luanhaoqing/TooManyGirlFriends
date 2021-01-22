@@ -5660,6 +5660,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 7636920942534180572}
     - target: {fileID: 2553515110304967247, guid: cbba14012f1579848a0fef1350217dd8, type: 3}
+      propertyPath: BonusTimerInit
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 2553515110304967247, guid: cbba14012f1579848a0fef1350217dd8, type: 3}
       propertyPath: BonusTimerForTaskCompletion
       value: 7
       objectReference: {fileID: 0}
@@ -5872,6 +5876,14 @@ PrefabInstance:
       propertyPath: MyPlayer
       value: 
       objectReference: {fileID: 7636920942534180572}
+    - target: {fileID: 8786881907124703389, guid: 5282d82091a732b44a04aec89f703752, type: 3}
+      propertyPath: BonusTimerInit
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 8786881907124703389, guid: 5282d82091a732b44a04aec89f703752, type: 3}
+      propertyPath: BonusTimerForTaskCompletion
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 8786881907774019369, guid: 5282d82091a732b44a04aec89f703752, type: 3}
       propertyPath: m_IsActive
       value: 0

@@ -8,6 +8,8 @@ public class AIStateIdle : AIStateBaseNode
     public float MaxRotationTime;
     public bool FinishedTask;
     public float BonusTimerForTaskCompletion;
+    public float BonusTimerInit;
+    private bool isInit;
     private float bonusTimer;
     private float rotationTimer = 0;
     private float currentRotationWaitTimer;
@@ -17,7 +19,8 @@ public class AIStateIdle : AIStateBaseNode
         rotationTimer = 0;
         bonusTimer = 0;
         currentRotationWaitTimer = Random.Range(0, MaxRotationTime);
-        FinishedTask = false;
+        FinishedTask = true;
+        isInit = true;
     }
 
     // Update is called once per frame
@@ -28,7 +31,15 @@ public class AIStateIdle : AIStateBaseNode
             if(FinishedTask)
             {
                 bonusTimer += Time.deltaTime;
-                if(bonusTimer>=BonusTimerForTaskCompletion)
+                if(isInit)
+                {
+                    if (bonusTimer >= BonusTimerInit)
+                    {
+                        FinishedTask = false;
+                        isInit = false;
+                    }
+                }
+                else if(bonusTimer >= BonusTimerForTaskCompletion)
                 {
                     FinishedTask = false;
                 }
@@ -65,6 +76,7 @@ public class AIStateIdle : AIStateBaseNode
         Progress = 0;
         IsEnd = true;
         isActive = false;
+        isInit = false;
         FinishedTask = false;
         this.PrintToScreen("IDLE STATE END");
     }
