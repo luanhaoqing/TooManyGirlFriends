@@ -356,7 +356,8 @@ GameObject:
   - component: {fileID: 824191844234918906}
   - component: {fileID: 1904301689}
   - component: {fileID: 1411708199}
-  - component: {fileID: 4105571068218404617}
+  - component: {fileID: 1573772839}
+  - component: {fileID: 1573772840}
   m_Layer: 0
   m_Name: AI Player
   m_TagString: AIPlayer
@@ -408,7 +409,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26b541d9e63782f47bc7e72d80bfa0ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BehaviourTypeIncluded: 0200000004000000030000000100000000000000
+  BehaviourTypeIncluded: 020000000400000003000000050000000100000000000000
   AngryLevelBar: {fileID: 2553515109873539684}
   IsTaskSuccess: 0
 --- !u!114 &2553515110304967234
@@ -458,8 +459,8 @@ MonoBehaviour:
   MyPlayer: {fileID: 0}
   AngryLevelReduceToMinTime: 30
   ForceFollowPlayerState: 0
-  DistanceToNoticePlayer: 6
-  DistanceToSeePlayer: 12
+  DistanceToNoticePlayer: 2
+  DistanceToSeePlayer: 4
 --- !u!114 &2553515110304967247
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -476,7 +477,8 @@ MonoBehaviour:
   AngryLevelMaxTime: 20
   MaxRotationTime: 2
   FinishedTask: 0
-  BonusTimerForTaskCompletion: 0
+  BonusTimerForTaskCompletion: 7
+  BonusTimerInit: 12
 --- !u!114 &2759315943618801591
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -504,12 +506,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7fb399c4a114d154eb814dfa236a11b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  FinalGoalType: 1
-  TasksNumberBeforeGoalLowerLevel: 1
-  TasksNumberBeforeGoalUpperLevel: 2
-  MinimumShopNumFinalGoal: 2
+  FinalGoalType: 2
+  TasksNumberBeforeGoalLowerLevel: 0
+  TasksNumberBeforeGoalUpperLevel: 1
+  MinimumShopNumFinalGoal: 4
   goalList: 
   DoesLocateASpecificStore: 0
+  IsInit: 0
 --- !u!114 &1904301689
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -553,7 +556,7 @@ NavMeshAgent:
   m_BaseOffset: 1.43
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!136 &4105571068218404617
+--- !u!136 &1573772839
 CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -562,11 +565,27 @@ CapsuleCollider:
   m_GameObject: {fileID: 2553515110304967246}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 0
-  m_Radius: 0.5
-  m_Height: 2.92
+  m_Enabled: 1
+  m_Radius: 1
+  m_Height: 4
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1573772840
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2553515110304967246}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8288e5bed29f16d43a332802e1b4267a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isActive: 0
+  Speed: 3
+  AngryLevelReduceToMinTime: 30
+  DistanceToSeePlayer: 15
 --- !u!1 &2553515110356549425
 GameObject:
   m_ObjectHideFlags: 0

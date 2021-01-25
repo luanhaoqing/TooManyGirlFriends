@@ -10,6 +10,7 @@ public enum AIBehaviourType
     EAT = 2,
     FOLLOWPLAYER = 3,
     SHOPPING = 4,
+    CATCHPLAYER = 5,
 }
 
 public class AIBehaviour : MonoBehaviour
@@ -102,9 +103,13 @@ public class AIBehaviour : MonoBehaviour
         {
             return this.GetComponent<AIStateShopping>();
         }
-       else
+       else if(type == AIBehaviourType.FOLLOWPLAYER)
         {
             return this.GetComponent<AIStateFollowPlayer>();
+        }
+       else
+        {
+            return this.GetComponent<AIStateCatchPlayer>();
         }
     }
     public void UpdateAngryLevel(float delta)

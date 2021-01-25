@@ -3,23 +3,24 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class AIStateFollowPlayer : AIStateBaseNode
+public class AIStateCatchPlayer : AIStateBaseNode
 {
     public float Speed;
-    public GameObject MyPlayer;
+    private GameObject MyPlayer;
     public float AngryLevelReduceToMinTime;
-    public bool ForceFollowPlayerState;
-    public float DistanceToNoticePlayer;
     public float DistanceToSeePlayer;
 
     private Transform currentPosition;
     private GameObject aiPlayer;
     private NavMeshAgent man;
+    private Vector3 lastSeenPlayerPos;
+    private bool isInWalk;
     // Start is called before the first frame update
     void Start()
     {
+        isInWalk = false;
+        MyPlayer = GameObject.FindGameObjectWithTag("Player");
         aiPlayer = this.gameObject;
-        ForceFollowPlayerState = false;
         man = this.GetComponent<NavMeshAgent>();
     }
 
@@ -28,37 +29,35 @@ public class AIStateFollowPlayer : AIStateBaseNode
     {
         if (this.IsActive())
         {
-            float distance = Mathf.Clamp(GetDistance(MyPlayer, aiPlayer), 3, 5);
-            float currentSpeed = Mathf.Lerp(0, Speed, (distance - 3) / 2);
-            //walk state will only exit if other state is available 
-            if(currentSpeed>0.25f)
+            //update last seen player position if could see player.
+            if(couldSeePlayer())
             {
-                // aiPlayer.transform.position = Vector3.MoveTowards(aiPlayer.transform.position, MyPlayer.transform.position, currentSpeed * Time.deltaTime);
-                man.SetDestination(MyPlayer.transform.position);
-                man.speed = currentSpeed;
-                this.GetComponentInChildren<Animator>().SetFloat("Speed", currentSpeed / Speed);
+                man.SetDestination(lastSeenPlayerPos);
+                man.speed = Speed;
                 this.StartWalking();
+                isInWalk = true;
             }
-            else
+
+           if(Vector3.Distance(this.transform.position,lastSeenPlayerPos)<=3.1)
             {
                 aiPlayer.GetComponent<Rigidbody>().velocity = Vector3.zero;
                 this.StopWalking();
+                this.End();
+                isInWalk = false;
             }
             this.GetComponent<AIBehaviour>().UpdateAngryLevel((Time.deltaTime / AngryLevelReduceToMinTime) * -100);
-            this.transform.LookAt(MyPlayer.transform.position);
+            this.transform.LookAt(lastSeenPlayerPos);
         }
     }
     public override bool IsValid()
     {
-        if(this.GetComponent<AIBehaviour>().GetCurrentBehaviourType() == AIBehaviourType.IDLE 
-            || this.GetComponent<AIBehaviour>().GetCurrentBehaviourType() == AIBehaviourType.WALK
-            || this.GetComponent<AIBehaviour>().GetCurrentBehaviourType() == AIBehaviourType.CATCHPLAYER)
+        if (this.GetComponent<AIBehaviour>().GetCurrentBehaviourType() == AIBehaviourType.IDLE || this.GetComponent<AIBehaviour>().GetCurrentBehaviourType() == AIBehaviourType.WALK)
         {
             aiPlayer = this.gameObject;
             //If player is close to AI Player
-            if (GetDistance(MyPlayer, aiPlayer) < DistanceToNoticePlayer || couldSeePlayer() || ForceFollowPlayerState) return true;
+            if (couldSeePlayer()) return true;
         }
-        else if(this.GetComponent<AIBehaviour>().GetCurrentBehaviourType() == AIBehaviourType.FOLLOWPLAYER)
+        else if (isInWalk)
         {
             return true;
         }
@@ -67,19 +66,15 @@ public class AIStateFollowPlayer : AIStateBaseNode
     public override void StartBehaviour()
     {
         isActive = true;
-        //This Follow Player Stats could be End anytime
         IsEnd = false;
-        this.PrintToScreen("FOLLOW PLAYER STATE START");
-        ShowBubble();
+        this.GetComponentInChildren<Animator>().SetFloat("Speed",1);
     }
     public override void End(bool sucess = true)
     {
         isActive = false;
-        ForceFollowPlayerState = false;
         IsEnd = true;
         this.StopWalking();
         this.GetComponentInChildren<Animator>().SetFloat("Speed", 1);
-        this.PrintToScreen("FOLLOW PLAYER STATE END");
     }
     public override bool CouldBeOverride()
     {
@@ -91,18 +86,19 @@ public class AIStateFollowPlayer : AIStateBaseNode
         tempVec = Vector3.Normalize(tempVec);
         Vector3 facing = Vector3.Normalize(this.gameObject.transform.forward);
         float cosVlaue = (tempVec.x * facing.x + tempVec.y * facing.y + tempVec.z * facing.z);
-        
-        if ((cosVlaue)>=0.86f && GetDistance(MyPlayer, this.gameObject) <= DistanceToSeePlayer)
+
+        if ((cosVlaue) >= 0.86f && GetDistance(MyPlayer, this.gameObject) <= DistanceToSeePlayer)
         {
             RaycastHit[] hits;
             hits = Physics.RaycastAll(this.transform.position, tempVec, DistanceToSeePlayer);
-            for (int i = 0; i < hits.Length; i++)
+            for(int i = 0;i<hits.Length;i++)
             {
-                if (hits[i].transform.tag == "Wall")
+                if(hits[i].transform.tag == "Wall")
                 {
                     return false;
                 }
             }
+            lastSeenPlayerPos = MyPlayer.transform.position;
             return true;
         }
         else

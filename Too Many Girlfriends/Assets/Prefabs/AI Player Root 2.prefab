@@ -7,17 +7,25 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1573772840, guid: cbba14012f1579848a0fef1350217dd8, type: 3}
+      propertyPath: Speed
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1573772840, guid: cbba14012f1579848a0fef1350217dd8, type: 3}
+      propertyPath: DistanceToSeePlayer
+      value: 12
+      objectReference: {fileID: 0}
     - target: {fileID: 1904301689, guid: cbba14012f1579848a0fef1350217dd8, type: 3}
       propertyPath: ActivedObj
       value: 
       objectReference: {fileID: 4259985135434966099}
     - target: {fileID: 824191844234918906, guid: cbba14012f1579848a0fef1350217dd8, type: 3}
       propertyPath: FinalGoalType
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 824191844234918906, guid: cbba14012f1579848a0fef1350217dd8, type: 3}
       propertyPath: MinimumShopNumFinalGoal
-      value: 4
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 824191844234918906, guid: cbba14012f1579848a0fef1350217dd8, type: 3}
       propertyPath: TasksNumberBeforeGoalLowerLevel
@@ -29,7 +37,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2553515110987804155, guid: cbba14012f1579848a0fef1350217dd8, type: 3}
       propertyPath: m_Name
-      value: AI Player Root 2 (1)
+      value: AI Player Root 2
       objectReference: {fileID: 0}
     - target: {fileID: 2553515110987804156, guid: cbba14012f1579848a0fef1350217dd8, type: 3}
       propertyPath: m_RootOrder
@@ -45,7 +53,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2553515110987804156, guid: cbba14012f1579848a0fef1350217dd8, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 13.64
       objectReference: {fileID: 0}
     - target: {fileID: 2553515110987804156, guid: cbba14012f1579848a0fef1350217dd8, type: 3}
       propertyPath: m_LocalRotation.w
