@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using I2.Loc;
 
 public class GameMaster : MonoBehaviour
 {
@@ -13,6 +14,7 @@ public class GameMaster : MonoBehaviour
     private int SuccessedAIPlayerCount;
     private float refreshTimer;
     private int currentGirlFriendNum;
+    private string currentSpeakerName;
 
     public GameObject InitalPoint;
     public GameObject[] GirlFriends;
@@ -26,6 +28,7 @@ public class GameMaster : MonoBehaviour
         totalAIPlayerNum = GirlFriends.Length;
         currentGirlFriendNum = 0;
         refreshTimer = WaitTimeBeforeFirstGirlFriendShowUp;
+        I2.Loc.LocalizationManager.CurrentLanguage = "Chinese (Simplified)";
     }
 
     // Update is called once per frame
@@ -77,5 +80,15 @@ public class GameMaster : MonoBehaviour
             }
         }
         return count>=2;
+    }
+
+    public void SetCurrentSpeakerName(string name)
+    {
+        currentSpeakerName = name;
+    }
+
+    public string GetCurrentSpeakerName()
+    {
+        return currentSpeakerName;
     }
 }

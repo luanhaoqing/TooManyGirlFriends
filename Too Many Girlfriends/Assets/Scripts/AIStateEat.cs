@@ -140,7 +140,6 @@ public class AIStateEat : AIStateBaseNode
         this.GetComponent<Rigidbody>().isKinematic = true;
         this.GetComponent<NavMeshAgent>().enabled = false;
         this.GetComponent<Collider>().enabled = false;
-        this.PrintToScreen("EAT STATE START");
     }
     private GoalType getGoalTypeFromEatType(EatType type)
     {
@@ -176,7 +175,6 @@ public class AIStateEat : AIStateBaseNode
         this.GetComponent<Collider>().enabled = true;
         this.GetComponent<NavMeshAgent>().enabled = true;
         this.GetComponent<Rigidbody>().isKinematic = false;
-        this.PrintToScreen("EAT STATE END");
         coolDownTimer = 1;
         this.GetComponent<ThoughtBubble>().HandleTaskEnd();
         HideBubble();

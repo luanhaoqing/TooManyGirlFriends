@@ -87,7 +87,6 @@ public class AIStateWalk : AIStateBaseNode
         this.transform.LookAt(Player.transform.position);
         this.GetComponent<Rigidbody>().velocity = transform.forward * Speed;
         this.StartWalking();
-        this.PrintToScreen("WALK AROUND STATE START");
     }
     public override void End(bool sucess = true)
     {
@@ -96,7 +95,6 @@ public class AIStateWalk : AIStateBaseNode
         IsEnd = true;
         this.GetComponent<Rigidbody>().velocity = Vector3.zero;
         this.StopWalking();
-        this.PrintToScreen("WALK AROUND STATE END");
     }
     public override bool CouldBeOverride()
     {

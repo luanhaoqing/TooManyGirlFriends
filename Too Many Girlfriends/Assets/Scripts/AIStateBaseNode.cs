@@ -42,9 +42,6 @@ public class AIStateBaseNode:MonoBehaviour
     public virtual void UpdateCurrentState(BehaviourState state)
     {
         CurrentState = state;
-        if (CurrentState == BehaviourState.PREPARE_STATE) PrintToScreen("Prepare state");
-        else if (CurrentState == BehaviourState.SELF_ACTION_STATE) PrintToScreen("Self action state");
-        else PrintToScreen("End state");
     }
     public virtual void StartWalking() { this.GetComponentInChildren<Animator>().SetBool("IsWalk", true); }
     public virtual void StopWalking() { this.GetComponentInChildren<Animator>().SetBool("IsWalk", false); }
@@ -52,7 +49,13 @@ public class AIStateBaseNode:MonoBehaviour
 
     public void ShowExclamation() { this.GetComponent<ThoughtBubble>().ShowExclamation(); }
     public void HideExclamation() { this.GetComponent<ThoughtBubble>().HideExclamation(); }
-    public void PrintToScreen(string log) { GameObject.FindGameObjectWithTag("LogSystem").GetComponent<LogSystem>().AddLog(log); }
+    public void PrintToScreen(string term) 
+    {
+        SetCurrentPlayerNameToGM();
+        string log = I2.Loc.LocalizationManager.GetTranslation(term);
+        I2.Loc.LocalizationManager.ApplyLocalizationParams(ref log);
+        GameObject.FindGameObjectWithTag("LogSystem").GetComponent<LogSystem>().AddLog(log); 
+    }
     public void ShowBubble() 
     { 
         this.transform.parent.gameObject.GetComponentInChildren<ThoughtBubble>().ShowBubble();
@@ -90,5 +93,10 @@ public class AIStateBaseNode:MonoBehaviour
     public int GetShopProgressTime(GameObject shop)
     {
         return shop.GetComponent<ShopBase>().GetProgressTime();
+    }
+
+    public void SetCurrentPlayerNameToGM()
+    {
+        GameObject.FindGameObjectWithTag("GameMaster").GetComponent<GameMaster>().SetCurrentSpeakerName(this.GetComponent<AIBehaviour>().GetPlayerName());
     }
 }

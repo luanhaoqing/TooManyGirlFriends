@@ -69,7 +69,6 @@ public class AIStateIdle : AIStateBaseNode
         bonusTimer = 0;
         IsEnd = false;
         isActive = true;
-        this.PrintToScreen("IDLE STATE START");
     }
     public override void End(bool sucess = true)
     {
@@ -78,7 +77,6 @@ public class AIStateIdle : AIStateBaseNode
         isActive = false;
         isInit = false;
         FinishedTask = false;
-        this.PrintToScreen("IDLE STATE END");
     }
     public override bool CouldBeOverride()
     {

@@ -13,10 +13,19 @@ public enum AIBehaviourType
     CATCHPLAYER = 5,
 }
 
+public enum PlayerName
+{
+    CUI_HUA = 0,
+    JING_JING = 1,
+    LI_JIANGANG = 2,
+    SUN_XIAOMEI = 3,
+    LIN_MEIMEI = 4,
+}
 public class AIBehaviour : MonoBehaviour
 {
     public AIBehaviourType[] BehaviourTypeIncluded;
     public Slider AngryLevelBar;
+    public PlayerName PlayerName;
     private float AngryLevel;
     private int numberOfBehaviour;
     private AIStateBaseNode[] Behaviours;
@@ -51,6 +60,7 @@ public class AIBehaviour : MonoBehaviour
                 break;
             }
         }
+        this.GetComponent<AIStateIdle>().PrintToScreen("GameText/GameStartText");
     }
 
     // Update is called once per frame
@@ -140,5 +150,24 @@ public class AIBehaviour : MonoBehaviour
             return Behaviours[currentState].Progress;
         }
         return 0;
+    }
+
+    public string GetPlayerName()
+    {
+        switch(PlayerName)
+        {
+            case PlayerName.CUI_HUA:
+                return I2.Loc.LocalizationManager.GetTranslation("PlayerName/GirlFriendName_Cuihua");
+            case PlayerName.JING_JING:
+                return I2.Loc.LocalizationManager.GetTranslation("PlayerName/GirlFriendName_JingJing");
+            case PlayerName.LIN_MEIMEI:
+                return I2.Loc.LocalizationManager.GetTranslation("PlayerName/GirlFriendName_Linmeimei");
+            case PlayerName.LI_JIANGANG:
+                return I2.Loc.LocalizationManager.GetTranslation("PlayerName/GirlFriendName_Lijiangang");
+            case PlayerName.SUN_XIAOMEI:
+                return I2.Loc.LocalizationManager.GetTranslation("PlayerName/GirlFriendName_Sunxiaomei");
+            default:
+                return null;
+        }
     }
 }
