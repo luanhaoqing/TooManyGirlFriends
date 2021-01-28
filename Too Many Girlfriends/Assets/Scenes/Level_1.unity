@@ -5651,6 +5651,18 @@ PrefabInstance:
       propertyPath: Speed
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 824191844234918906, guid: cbba14012f1579848a0fef1350217dd8, type: 3}
+      propertyPath: subTaskIncluded.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 824191844234918906, guid: cbba14012f1579848a0fef1350217dd8, type: 3}
+      propertyPath: subTaskIncluded.Array.data[0]
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 824191844234918906, guid: cbba14012f1579848a0fef1350217dd8, type: 3}
+      propertyPath: subTaskIncluded.Array.data[1]
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 824191845983306445, guid: cbba14012f1579848a0fef1350217dd8, type: 3}
       propertyPath: m_AnchorMax.y
       value: 1
@@ -5741,6 +5753,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5903850642032361768, guid: 5282d82091a732b44a04aec89f703752, type: 3}
+      propertyPath: subTaskIncluded.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5903850642032361768, guid: 5282d82091a732b44a04aec89f703752, type: 3}
+      propertyPath: subTaskIncluded.Array.data[0]
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 5903850642032361768, guid: 5282d82091a732b44a04aec89f703752, type: 3}
+      propertyPath: subTaskIncluded.Array.data[1]
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 5903850643783923743, guid: 5282d82091a732b44a04aec89f703752, type: 3}
       propertyPath: m_AnchorMax.y
       value: 1

@@ -30,6 +30,7 @@ public class GoalSystem : MonoBehaviour
     public GoalType[] goalList;
     public bool DoesLocateASpecificStore;
     public bool IsInit;
+    public GoalType[] subTaskIncluded;
     private GameObject[] shopObjList;
     private bool[] shopHasArrived;
     private int currentIndex;
@@ -99,7 +100,7 @@ public class GoalSystem : MonoBehaviour
         {
             if(goalList[i] == GoalType.NONE)
             {
-                goalList[i] = getRandomShoppingGoalType();
+                goalList[i] = getRandomSubTaskType();
             }
         }
     }
@@ -142,7 +143,7 @@ public class GoalSystem : MonoBehaviour
         {
             if (goalList[i] == GoalType.NONE)
             {
-                goalList[i] = getRandomEatGoalType();
+                goalList[i] = getRandomSubTaskType();
             }
         }
     }
@@ -191,7 +192,7 @@ public class GoalSystem : MonoBehaviour
         {
             if (goalList[i] == GoalType.NONE)
             {
-                goalList[i] = getRandomEatGoalType();
+                goalList[i] = getRandomSubTaskType();
             }
         }
     }
@@ -216,6 +217,12 @@ public class GoalSystem : MonoBehaviour
         };
         int randomNum = UnityEngine.Random.Range(0, typeIncludedForShoppingtType.Length);
         return typeIncludedForShoppingtType[randomNum];
+    }
+
+    private GoalType getRandomSubTaskType()
+    {
+        int randomNum = UnityEngine.Random.Range(0, subTaskIncluded.Length);
+        return subTaskIncluded[randomNum];
     }
     private bool hasGoalInTheList(GoalType type)
     {
