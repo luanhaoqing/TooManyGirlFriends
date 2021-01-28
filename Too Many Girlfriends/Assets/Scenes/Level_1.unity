@@ -5655,6 +5655,10 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1562081991669052687, guid: cbba14012f1579848a0fef1350217dd8, type: 3}
+      propertyPath: m_TargetTexture
+      value: 
+      objectReference: {fileID: 8400000, guid: 9d6989dc4ae5c1b4c89c49f74ba25346, type: 2}
     - target: {fileID: 2553515110304967232, guid: cbba14012f1579848a0fef1350217dd8, type: 3}
       propertyPath: MyPlayer
       value: 
@@ -6055,6 +6059,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2950755261616461534, guid: 879f8667cccf9f54bbf4618266c47d96, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3774383680710683456, guid: 879f8667cccf9f54bbf4618266c47d96, type: 3}
+      propertyPath: m_CullTransparentMesh
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5677880657215093284, guid: 879f8667cccf9f54bbf4618266c47d96, type: 3}

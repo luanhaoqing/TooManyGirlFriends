@@ -32,6 +32,7 @@ public class GrilStatusHUD : MonoBehaviour
             UpdateFinalGoalText(AIPlayer.GetComponent<GoalSystem>().GetFinalGoalText());
             UpdateCurrentTask(AIPlayer.GetComponent<ThoughtBubble>().GetCurrentGoalSprite());
             UpdateProgressBar(AIPlayer.GetComponent<AIBehaviour>().GetCurrentProgressLevel());
+            this.transform.Find("Portrait").GetComponentInChildren<RawImage>().texture = AIPlayer.GetComponent<AIBehaviour>().Portraint;
         }
         else
         {

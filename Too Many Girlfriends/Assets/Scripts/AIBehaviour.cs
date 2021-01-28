@@ -26,6 +26,7 @@ public class AIBehaviour : MonoBehaviour
     public AIBehaviourType[] BehaviourTypeIncluded;
     public Slider AngryLevelBar;
     public PlayerName PlayerName;
+    public RenderTexture Portraint;
     private float AngryLevel;
     private int numberOfBehaviour;
     private AIStateBaseNode[] Behaviours;
@@ -62,6 +63,12 @@ public class AIBehaviour : MonoBehaviour
             }
         }
         this.GetComponent<AIStateIdle>().PrintToScreen("GameText/GameStartText");
+       
+    }
+    private void Awake()
+    {
+        Portraint = new RenderTexture(160, 200, 10);
+        this.transform.Find("Portrait Camera").GetComponent<Camera>().targetTexture = Portraint;
     }
 
     // Update is called once per frame
