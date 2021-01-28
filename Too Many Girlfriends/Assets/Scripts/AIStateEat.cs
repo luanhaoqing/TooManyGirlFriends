@@ -16,7 +16,6 @@ public class AIStateEat : AIStateBaseNode
     }
 
     private int CompletionTime;
-    public float PrepareStateTime = 5;
     private float timerForPrepareState;
     private bool isValid;
     private EatType eatType;
@@ -29,7 +28,6 @@ public class AIStateEat : AIStateBaseNode
     {
         coolDownTimer = 0;
         isValid = false;
-        timerForPrepareState = PrepareStateTime;
         int length = Enum.GetValues(typeof(EatType)).Length;
         hasEverFinished = new bool[length];
         for(int i = 0; i < length; i++)
@@ -113,6 +111,7 @@ public class AIStateEat : AIStateBaseNode
                     destPos = other.gameObject.transform.Find("TaskPoint").position;
                     destPos.y = this.transform.position.y;
                     CompletionTime = GetShopProgressTime(other.gameObject.transform.parent.gameObject);
+                    timerForPrepareState = GetShopPrepareTime(other.gameObject.transform.parent.gameObject);
                     break;
                 }
             }
@@ -160,7 +159,6 @@ public class AIStateEat : AIStateBaseNode
     {
         //reset all kinda timer/progression
         Progress = 0;
-        timerForPrepareState = PrepareStateTime;
         IsEnd = true;
         isActive = false;
         isValid = false;
@@ -184,9 +182,8 @@ public class AIStateEat : AIStateBaseNode
     {
         if(state == BehaviourState.PREPARE_STATE)
         {
-            timerForPrepareState = PrepareStateTime;
             Progress = 0;
-            walkToTaskPoint = MoveToTaskPoint(this.transform, destPos, PrepareStateTime);
+            walkToTaskPoint = MoveToTaskPoint(this.transform, destPos, timerForPrepareState);
             StartCoroutine(walkToTaskPoint);
         }
         else

@@ -94,7 +94,10 @@ public class AIStateBaseNode:MonoBehaviour
     {
         return shop.GetComponent<ShopBase>().GetProgressTime();
     }
-
+    public int GetShopPrepareTime(GameObject shop)
+    {
+        return shop.GetComponent<ShopBase>().GetPrepareTime();
+    }
     public void SetCurrentPlayerNameToGM()
     {
         GameObject.FindGameObjectWithTag("GameMaster").GetComponent<GameMaster>().SetCurrentSpeakerName(this.GetComponent<AIBehaviour>().GetPlayerName());

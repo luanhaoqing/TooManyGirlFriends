@@ -5,6 +5,7 @@ using UnityEngine;
 public class ShopBase : MonoBehaviour
 {
     public int ProgressTime;
+    public int PrepareTime;
     // Start is called before the first frame update
     void Start()
     {
@@ -19,5 +20,9 @@ public class ShopBase : MonoBehaviour
     public int GetProgressTime()
     {
         return ProgressTime;
+    }
+    public int GetPrepareTime()
+    {
+        return PrepareTime;
     }
 }

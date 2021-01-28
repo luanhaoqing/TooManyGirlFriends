@@ -13,9 +13,7 @@ public class AIStateShopping : AIStateBaseNode
         FLOWER,
         CLOTHING,
     }
-
-    public int CompletionTime = 10;
-    public float PrepareStateTime = 5;
+    private int CompletionTime;
     private float timerForPrepareState;
     private bool isValid;
     private ShoppingType shopType;
@@ -29,7 +27,6 @@ public class AIStateShopping : AIStateBaseNode
     {
         coolDownTimer = 0;
         isValid = false;
-        timerForPrepareState = PrepareStateTime;
         int length = Enum.GetValues(typeof(ShoppingType)).Length;
         hasEverFinished = new bool[length];
         for (int i = 0; i < length; i++)
@@ -105,6 +102,7 @@ public class AIStateShopping : AIStateBaseNode
                     destPos = other.gameObject.transform.Find("TaskPoint").position;
                     destPos.y = this.transform.position.y;
                     CompletionTime = GetShopProgressTime(other.gameObject.transform.parent.gameObject);
+                    timerForPrepareState = GetShopPrepareTime(other.gameObject.transform.parent.gameObject);
                     shopObj = other.gameObject;
                     break;
                 }
@@ -150,7 +148,6 @@ public class AIStateShopping : AIStateBaseNode
     {
         //reset all kinda timer/progression
         Progress = 0;
-        timerForPrepareState = PrepareStateTime;
         IsEnd = true;
         isActive = false;
         isValid = false;
@@ -176,7 +173,7 @@ public class AIStateShopping : AIStateBaseNode
         if (state == BehaviourState.PREPARE_STATE)
         {
             Progress = 0;
-            walkToTaskPoint = MoveToTaskPoint(this.transform, destPos, PrepareStateTime);
+            walkToTaskPoint = MoveToTaskPoint(this.transform, destPos, timerForPrepareState);
             StartCoroutine(walkToTaskPoint);
         }
         else

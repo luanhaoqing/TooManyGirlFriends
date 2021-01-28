@@ -73,6 +73,7 @@ public class AIStateCatchPlayer : AIStateBaseNode
     {
         isActive = false;
         IsEnd = true;
+        isInWalk = false;
         this.StopWalking();
         this.GetComponentInChildren<Animator>().SetFloat("Speed", 1);
     }
