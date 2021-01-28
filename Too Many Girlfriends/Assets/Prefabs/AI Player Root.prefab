@@ -413,6 +413,7 @@ MonoBehaviour:
   BehaviourTypeIncluded: 020000000400000003000000050000000100000000000000
   AngryLevelBar: {fileID: 2553515109873539684}
   PlayerName: 0
+  Portraint: {fileID: 0}
   IsTaskSuccess: 0
 --- !u!114 &2553515110304967234
 MonoBehaviour:
@@ -443,7 +444,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isActive: 0
-  PrepareStateTime: 5
 --- !u!114 &2553515110304967232
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -494,8 +494,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isActive: 0
-  CompletionTime: 15
-  PrepareStateTime: 3
 --- !u!114 &824191844234918906
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -515,6 +513,7 @@ MonoBehaviour:
   goalList: 
   DoesLocateASpecificStore: 0
   IsInit: 0
+  subTaskIncluded: 
 --- !u!114 &1904301689
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1045,13 +1044,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8912946586178502263}
-  m_LocalRotation: {x: 0.026362248, y: 0.9688093, z: -0.11810198, w: 0.21625331}
-  m_LocalPosition: {x: -0.68000007, y: 1.23, z: 1.3999996}
+  m_LocalRotation: {x: 0.03112985, y: 0.965966, z: -0.13946073, w: 0.21561863}
+  m_LocalPosition: {x: -0.87, y: 1.195, z: 1.805}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2553515110304967288}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 13.901, y: 154.834, z: 0}
+  m_LocalEulerAnglesHint: {x: 16.431, y: 154.834, z: 0}
 --- !u!20 &1562081991669052687
 Camera:
   m_ObjectHideFlags: 0
