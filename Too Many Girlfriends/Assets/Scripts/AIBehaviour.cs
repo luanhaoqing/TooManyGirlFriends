@@ -43,6 +43,7 @@ public class AIBehaviour : MonoBehaviour
     {
         IsTaskSuccess = false;
         AngryLevel = 0;
+        UpdateAngryLevel(0);
         yValue = this.transform.position.y;
         numberOfBehaviour = BehaviourTypeIncluded.Length;
         Behaviours = new AIStateBaseNode[numberOfBehaviour];
