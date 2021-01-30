@@ -5675,6 +5675,14 @@ PrefabInstance:
       propertyPath: MyPlayer
       value: 
       objectReference: {fileID: 7636920942534180572}
+    - target: {fileID: 2553515110304967232, guid: cbba14012f1579848a0fef1350217dd8, type: 3}
+      propertyPath: DistanceToSeePlayer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 2553515110304967232, guid: cbba14012f1579848a0fef1350217dd8, type: 3}
+      propertyPath: DistanceToNoticePlayer
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 2553515110304967235, guid: cbba14012f1579848a0fef1350217dd8, type: 3}
       propertyPath: PlayerName
       value: 2
@@ -5777,6 +5785,14 @@ PrefabInstance:
       propertyPath: MyPlayer
       value: 
       objectReference: {fileID: 7636920942534180572}
+    - target: {fileID: 8786881907124703378, guid: 5282d82091a732b44a04aec89f703752, type: 3}
+      propertyPath: DistanceToSeePlayer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8786881907124703378, guid: 5282d82091a732b44a04aec89f703752, type: 3}
+      propertyPath: DistanceToNoticePlayer
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 8786881907774019369, guid: 5282d82091a732b44a04aec89f703752, type: 3}
       propertyPath: m_Name
       value: AI Player Root 2
