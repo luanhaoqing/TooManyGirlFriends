@@ -8,6 +8,9 @@ public class PlayerMovement : MonoBehaviour
 {
     public float Speed;
     public GameObject Cursor;
+    public GameObject CurrentFollowingGirlFriend;
+    public bool HasMoveOutOfShop;
+    private GameObject currentShop;
     private float yValue;
     private Vector3 destinationPosition;
     private float destinationDistance;
@@ -97,11 +100,22 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    void OnCollisionEnter(Collision collision)
+    void OnTriggerEnter(Collider other)
     {
-        //if (collision.collider.tag == "Wall")
-        //{
-        //    this.GetComponent<Rigidbody>().velocity = Vector3.zero;
-        //}
+        if(CurrentFollowingGirlFriend!=null)
+        {
+            if(CurrentFollowingGirlFriend.GetComponent<AIBehaviour>().HandlePlayerTriggerEnter(other))
+            {
+                HasMoveOutOfShop = false;
+                currentShop = other.gameObject;
+            }
+        }
+    }
+    void OnTriggerExit(Collider other)
+    {
+        if(other.gameObject == currentShop)
+        {
+            HasMoveOutOfShop = true;
+        }
     }
 }

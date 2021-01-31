@@ -70,6 +70,7 @@ public class AIStateFollowPlayer : AIStateBaseNode
         //This Follow Player Stats could be End anytime
         IsEnd = false;
         ShowBubble();
+        MyPlayer.GetComponent<PlayerMovement>().CurrentFollowingGirlFriend = this.gameObject;
     }
     public override void End(bool sucess = true)
     {
@@ -78,6 +79,7 @@ public class AIStateFollowPlayer : AIStateBaseNode
         IsEnd = true;
         this.StopWalking();
         this.GetComponentInChildren<Animator>().SetFloat("Speed", 1);
+        MyPlayer.GetComponent<PlayerMovement>().CurrentFollowingGirlFriend = null;
     }
     public override bool CouldBeOverride()
     {

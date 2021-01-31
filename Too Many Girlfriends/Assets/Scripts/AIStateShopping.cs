@@ -54,7 +54,7 @@ public class AIStateShopping : AIStateBaseNode
             else if (CurrentState == BehaviourState.PREPARE_STATE)
             {
                 GameObject mp = GameObject.FindGameObjectWithTag("Player");
-                if (GetDistance(mp, this.gameObject) >= 10)
+                if (mp.GetComponent<PlayerMovement>().HasMoveOutOfShop)
                 {
                     this.GetComponent<AIStateFollowPlayer>().ForceFollowPlayerState = true;
                     StopCoroutine(walkToTaskPoint);
@@ -72,10 +72,9 @@ public class AIStateShopping : AIStateBaseNode
             coolDownTimer -= Time.deltaTime;
         }
     }
-
-    void OnTriggerEnter(Collider other)
+    public override bool OnPlayerTriggerEnter(Collider other)
     {
-        if(!isValid)
+        if (!isValid)
         {
             if (other.tag == "Clothing")
             {
@@ -104,10 +103,11 @@ public class AIStateShopping : AIStateBaseNode
                     CompletionTime = GetShopProgressTime(other.gameObject.transform.parent.gameObject);
                     timerForPrepareState = GetShopPrepareTime(other.gameObject.transform.parent.gameObject);
                     shopObj = other.gameObject;
-                    break;
+                    return true;
                 }
             }
         }
+        return false;
     }
 
     private void OnTriggerExit(Collider other)
