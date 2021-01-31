@@ -160,6 +160,19 @@ public class AIBehaviour : MonoBehaviour
         return 0;
     }
 
+    public bool HandlePlayerTriggerEnter(Collider other)
+    {
+        for (int i = 0; i < numberOfBehaviour; i++)
+        {
+            if(Behaviours[i].OnPlayerTriggerEnter(other))
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
+
     public string GetPlayerName()
     {
         switch(PlayerName)
@@ -178,4 +191,6 @@ public class AIBehaviour : MonoBehaviour
                 return null;
         }
     }
+
+   
 }

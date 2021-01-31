@@ -102,4 +102,5 @@ public class AIStateBaseNode:MonoBehaviour
     {
         GameObject.FindGameObjectWithTag("GameMaster").GetComponent<GameMaster>().SetCurrentSpeakerName(this.GetComponent<AIBehaviour>().GetPlayerName());
     }
+    public virtual bool OnPlayerTriggerEnter(Collider other){ return false; }
 }
