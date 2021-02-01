@@ -123,6 +123,46 @@ MonoBehaviour:
       - "\u6797\u59B9\u59B9"
       Flags: 0000
       Languages_Touch: []
+    - Term: GameText/WantIcecream
+      TermType: 0
+      Description: 
+      Languages:
+      - '{[PLAYER_NAME]}Want to eat Iceacream'
+      - "{[PLAYER_NAME]}\u60F3\u5403\u51B0\u6DC7\u6DCB"
+      Flags: 0000
+      Languages_Touch: []
+    - Term: GameText/WantKebab
+      TermType: 0
+      Description: 
+      Languages:
+      - '{[PLAYER_NAME]}Want to eat Kebab'
+      - "{[PLAYER_NAME]}\u60F3\u5403\u70E4\u4E32"
+      Flags: 0000
+      Languages_Touch: []
+    - Term: GameText/WantGrill
+      TermType: 0
+      Description: 
+      Languages:
+      - '{[PLAYER_NAME]}Want to eat Grill'
+      - "{[PLAYER_NAME]}\u60F3\u5403\u94C1\u677F\u70E7"
+      Flags: 0000
+      Languages_Touch: []
+    - Term: GameText/WantShopping
+      TermType: 0
+      Description: 
+      Languages:
+      - '{[PLAYER_NAME]}Want to go shopping'
+      - "{[PLAYER_NAME]}\u60F3\u8981\u53BB\u670D\u88C5\u5E97\u901B\u901B"
+      Flags: 0000
+      Languages_Touch: []
+    - Term: IdleText
+      TermType: 0
+      Description: 
+      Languages:
+      - 
+      - 
+      Flags: 0000
+      Languages_Touch: []
     CaseInsensitiveTerms: 0
     OnMissingTranslation: 1
     mTerm_AppName: 

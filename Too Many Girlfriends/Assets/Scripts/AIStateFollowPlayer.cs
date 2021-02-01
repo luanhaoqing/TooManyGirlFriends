@@ -71,6 +71,7 @@ public class AIStateFollowPlayer : AIStateBaseNode
         IsEnd = false;
         ShowBubble();
         MyPlayer.GetComponent<PlayerMovement>().CurrentFollowingGirlFriend = this.gameObject;
+        this.GetComponent<GoalSystem>().FireCurrentGoalMessage();
     }
     public override void End(bool sucess = true)
     {

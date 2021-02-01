@@ -69,6 +69,10 @@ public class AIStateIdle : AIStateBaseNode
         bonusTimer = 0;
         IsEnd = false;
         isActive = true;
+        if(FinishedTask)
+        {
+            this.PrintToScreen("GameText/IdleText");
+        }
     }
     public override void End(bool sucess = true)
     {

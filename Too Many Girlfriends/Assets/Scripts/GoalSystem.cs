@@ -321,6 +321,29 @@ public class GoalSystem : MonoBehaviour
     {
         return GetGoalTypeString((int)(FinalGoalType));
     }
+    private void fireGoalMessage(GoalType type)
+    {
+        switch(type)
+        {
+            case GoalType.GRILL:
+                this.GetComponent<AIStateIdle>().PrintToScreen("GameText/WantGrill");
+                break;
+            case GoalType.ICECREAM:
+                this.GetComponent<AIStateIdle>().PrintToScreen("GameText/WantIcecream");
+                break;
+            case GoalType.KABAB:
+                this.GetComponent<AIStateIdle>().PrintToScreen("GameText/WantKebab");
+                break;
+            case GoalType.SHOPPING:
+                this.GetComponent<AIStateIdle>().PrintToScreen("GameText/WantShopping");
+                break;
+        }
+    }
+
+    public void FireCurrentGoalMessage()
+    {
+        fireGoalMessage(GetCurrentGoal());
+    }
 
     // Update is called once per frame
     void Update()
