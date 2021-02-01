@@ -461,8 +461,8 @@ MonoBehaviour:
   MyPlayer: {fileID: 0}
   AngryLevelReduceToMinTime: 30
   ForceFollowPlayerState: 0
-  DistanceToNoticePlayer: 2
-  DistanceToSeePlayer: 4
+  DistanceToNoticePlayer: 4
+  DistanceToSeePlayer: 16
 --- !u!114 &2553515110304967247
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -477,7 +477,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isActive: 0
   AngryLevelMaxTime: 20
-  MaxRotationTime: 2
+  MinRotationTime: 5
+  MaxRotationTime: 5
   FinishedTask: 0
   BonusTimerForTaskCompletion: 7
   BonusTimerInit: 12
@@ -586,7 +587,7 @@ MonoBehaviour:
   isActive: 0
   Speed: 3
   AngryLevelReduceToMinTime: 30
-  DistanceToSeePlayer: 15
+  DistanceToSeePlayer: 18
 --- !u!1 &2553515110356549425
 GameObject:
   m_ObjectHideFlags: 0

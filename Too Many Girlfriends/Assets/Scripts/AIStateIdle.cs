@@ -5,6 +5,7 @@ using UnityEngine;
 public class AIStateIdle : AIStateBaseNode
 {
     public float AngryLevelMaxTime;
+    public float MinRotationTime;
     public float MaxRotationTime;
     public bool FinishedTask;
     public float BonusTimerForTaskCompletion;
@@ -18,7 +19,7 @@ public class AIStateIdle : AIStateBaseNode
     {
         rotationTimer = 0;
         bonusTimer = 0;
-        currentRotationWaitTimer = Random.Range(0, MaxRotationTime);
+        currentRotationWaitTimer = Random.Range(MinRotationTime, MaxRotationTime);
         FinishedTask = true;
         isInit = true;
     }

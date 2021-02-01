@@ -159,6 +159,14 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Clothing
       objectReference: {fileID: 0}
+    - target: {fileID: 7662347610237384534, guid: 2ac2956dbf237eb4caf9acf7de421391, type: 3}
+      propertyPath: PrepareTime
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7662347610237384534, guid: 2ac2956dbf237eb4caf9acf7de421391, type: 3}
+      propertyPath: ProgressTime
+      value: 20
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 1741806182208639266, guid: 2ac2956dbf237eb4caf9acf7de421391, type: 3}
     - {fileID: 5138151271858914178, guid: 2ac2956dbf237eb4caf9acf7de421391, type: 3}
