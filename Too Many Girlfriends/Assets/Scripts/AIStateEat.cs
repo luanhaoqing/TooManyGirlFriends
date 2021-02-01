@@ -135,10 +135,13 @@ public class AIStateEat : AIStateBaseNode
         IsEnd = false;
         isActive = true;
         UpdateCurrentState(BehaviourState.PREPARE_STATE);
+
         this.GetComponent<ThoughtBubble>().HandleTaskStart();
         this.GetComponent<Rigidbody>().isKinematic = true;
         this.GetComponent<NavMeshAgent>().enabled = false;
         this.GetComponent<Collider>().enabled = false;
+
+        this.GetComponent<ThoughtBubble>().Bubble.GetComponent<Animator>().SetBool("ShowPulse",true);
     }
     private GoalType getGoalTypeFromEatType(EatType type)
     {
@@ -175,6 +178,7 @@ public class AIStateEat : AIStateBaseNode
         this.GetComponent<Rigidbody>().isKinematic = false;
         coolDownTimer = 1;
         this.GetComponent<ThoughtBubble>().HandleTaskEnd();
+        this.GetComponent<ThoughtBubble>().Bubble.GetComponent<Animator>().SetBool("ShowPulse", false);
         HideBubble();
     }
 

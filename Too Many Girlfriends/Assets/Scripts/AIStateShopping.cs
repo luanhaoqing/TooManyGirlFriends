@@ -132,6 +132,8 @@ public class AIStateShopping : AIStateBaseNode
         this.GetComponent<UnityEngine.AI.NavMeshAgent>().enabled = false;
         this.GetComponent<Collider>().enabled = false;
         this.GetComponent<Rigidbody>().isKinematic = true;
+
+        this.GetComponent<ThoughtBubble>().Bubble.GetComponent<Animator>().SetBool("ShowPulse", true);
     }
     private GoalType getGoalTypeFromShopType(ShoppingType type)
     {
@@ -165,6 +167,7 @@ public class AIStateShopping : AIStateBaseNode
         this.GetComponent<Rigidbody>().isKinematic = false;
         coolDownTimer = 1;
         this.GetComponent<ThoughtBubble>().HandleTaskEnd();
+        this.GetComponent<ThoughtBubble>().Bubble.GetComponent<Animator>().SetBool("ShowPulse", false);
         HideBubble();
     }
 

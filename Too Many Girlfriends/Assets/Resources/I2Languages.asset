@@ -155,12 +155,12 @@ MonoBehaviour:
       - "{[PLAYER_NAME]}\u60F3\u8981\u53BB\u670D\u88C5\u5E97\u901B\u901B"
       Flags: 0000
       Languages_Touch: []
-    - Term: IdleText
+    - Term: GameText/IdleText
       TermType: 0
       Description: 
       Languages:
-      - 
-      - 
+      - '{[PLAYER_NAME]}Can not find you... waiting'
+      - "{[PLAYER_NAME]}\u53D1\u73B0\u4F60\u4E0D\u89C1\u4E86\uFF0C\u5728\u539F\u5730\u7B49\u4F60...."
       Flags: 0000
       Languages_Touch: []
     CaseInsensitiveTerms: 0
