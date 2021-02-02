@@ -18,6 +18,7 @@ TagManager:
   - Kabab
   - Grill
   - GameMaster
+  - Restroom
   layers:
   - Default
   - TransparentFX

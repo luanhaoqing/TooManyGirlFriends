@@ -166,7 +166,6 @@ public class AIStateEat : AIStateBaseNode
         {
             this.GetComponent<GoalSystem>().HandleGoalFinished(getGoalTypeFromEatType(eatType));
             this.GetComponent<AIStateIdle>().FinishedTask = true;
-          //  hasEverFinished[(int)eatType] = true;
         }
         eatType = EatType.NONE;
         UpdateCurrentState(BehaviourState.END_STATE);

@@ -10,6 +10,7 @@ public class PlayerMovement : MonoBehaviour
     public GameObject Cursor;
     public GameObject CurrentFollowingGirlFriend;
     public bool HasMoveOutOfShop;
+    public bool IsInRestroom;
     private GameObject currentShop;
     private float yValue;
     private Vector3 destinationPosition;
@@ -25,6 +26,7 @@ public class PlayerMovement : MonoBehaviour
         isKeyBoardControl = false;
         Cursor.SetActive(false);
         isStop = true;
+        IsInRestroom = false;
         man = this.GetComponent<NavMeshAgent>();
     }
 
@@ -110,12 +112,20 @@ public class PlayerMovement : MonoBehaviour
                 currentShop = other.gameObject;
             }
         }
+        if(other.tag == "Restroom")
+        {
+            IsInRestroom = true;
+        }
     }
     void OnTriggerExit(Collider other)
     {
         if(other.gameObject == currentShop)
         {
             HasMoveOutOfShop = true;
+        }
+        if (other.tag == "Restroom")
+        {
+            IsInRestroom = false;
         }
     }
 }

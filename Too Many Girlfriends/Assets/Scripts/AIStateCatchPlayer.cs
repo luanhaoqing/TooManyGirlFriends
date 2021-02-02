@@ -51,6 +51,10 @@ public class AIStateCatchPlayer : AIStateBaseNode
     }
     public override bool IsValid()
     {
+        if (MyPlayer.GetComponent<PlayerMovement>().IsInRestroom)
+        {
+            return false;
+        }
         if (this.GetComponent<AIBehaviour>().GetCurrentBehaviourType() == AIBehaviourType.IDLE || this.GetComponent<AIBehaviour>().GetCurrentBehaviourType() == AIBehaviourType.WALK)
         {
             aiPlayer = this.gameObject;

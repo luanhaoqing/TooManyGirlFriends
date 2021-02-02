@@ -50,6 +50,10 @@ public class AIStateFollowPlayer : AIStateBaseNode
     }
     public override bool IsValid()
     {
+        if(MyPlayer.GetComponent<PlayerMovement>().IsInRestroom)
+        {
+            return false;
+        }
         if(this.GetComponent<AIBehaviour>().GetCurrentBehaviourType() == AIBehaviourType.IDLE 
             || this.GetComponent<AIBehaviour>().GetCurrentBehaviourType() == AIBehaviourType.WALK
             || this.GetComponent<AIBehaviour>().GetCurrentBehaviourType() == AIBehaviourType.CATCHPLAYER)
@@ -109,6 +113,14 @@ public class AIStateFollowPlayer : AIStateBaseNode
         else
         {
             return false;
+        }
+    }
+    public void OnTriggerEnter(Collider other)
+    {
+        if(other.tag == "Restroom")
+        {
+            this.GetComponent<AIStateIdle>().FinishedTask = true;
+            this.End();
         }
     }
 }
