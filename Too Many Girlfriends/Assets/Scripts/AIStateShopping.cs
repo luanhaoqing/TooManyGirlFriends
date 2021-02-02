@@ -127,13 +127,10 @@ public class AIStateShopping : AIStateBaseNode
         IsEnd = false;
         isActive = true;
         UpdateCurrentState(BehaviourState.PREPARE_STATE);
-        this.GetComponent<ThoughtBubble>().HandleTaskStart();
         
         this.GetComponent<UnityEngine.AI.NavMeshAgent>().enabled = false;
         this.GetComponent<Collider>().enabled = false;
         this.GetComponent<Rigidbody>().isKinematic = true;
-
-        this.GetComponent<ThoughtBubble>().Bubble.GetComponent<Animator>().SetBool("ShowPulse", true);
     }
     private GoalType getGoalTypeFromShopType(ShoppingType type)
     {
@@ -182,6 +179,8 @@ public class AIStateShopping : AIStateBaseNode
         else
         {
             this.transform.LookAt(shopPos);
+            this.GetComponent<ThoughtBubble>().HandleTaskStart();
+            this.GetComponent<ThoughtBubble>().Bubble.GetComponent<Animator>().SetBool("ShowPulse", true);
         }
         base.UpdateCurrentState(state);
     }
