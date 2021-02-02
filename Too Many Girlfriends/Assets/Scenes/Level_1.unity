@@ -2931,7 +2931,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh19748
+  m_Name: pb_Mesh59882
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -5476,10 +5476,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1573772840, guid: cbba14012f1579848a0fef1350217dd8, type: 3}
-      propertyPath: Speed
-      value: 6
-      objectReference: {fileID: 0}
     - target: {fileID: 824191844234918906, guid: cbba14012f1579848a0fef1350217dd8, type: 3}
       propertyPath: subTaskIncluded.Array.size
       value: 2
@@ -5504,14 +5500,6 @@ PrefabInstance:
       propertyPath: MyPlayer
       value: 
       objectReference: {fileID: 7636920942534180572}
-    - target: {fileID: 2553515110304967232, guid: cbba14012f1579848a0fef1350217dd8, type: 3}
-      propertyPath: DistanceToSeePlayer
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 2553515110304967232, guid: cbba14012f1579848a0fef1350217dd8, type: 3}
-      propertyPath: DistanceToNoticePlayer
-      value: 5
-      objectReference: {fileID: 0}
     - target: {fileID: 2553515110304967235, guid: cbba14012f1579848a0fef1350217dd8, type: 3}
       propertyPath: PlayerName
       value: 2
@@ -5614,14 +5602,6 @@ PrefabInstance:
       propertyPath: MyPlayer
       value: 
       objectReference: {fileID: 7636920942534180572}
-    - target: {fileID: 8786881907124703378, guid: 5282d82091a732b44a04aec89f703752, type: 3}
-      propertyPath: DistanceToSeePlayer
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 8786881907124703378, guid: 5282d82091a732b44a04aec89f703752, type: 3}
-      propertyPath: DistanceToNoticePlayer
-      value: 5
-      objectReference: {fileID: 0}
     - target: {fileID: 8786881907774019369, guid: 5282d82091a732b44a04aec89f703752, type: 3}
       propertyPath: m_Name
       value: AI Player Root 2

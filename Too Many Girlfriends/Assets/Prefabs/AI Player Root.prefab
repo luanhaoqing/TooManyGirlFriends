@@ -585,7 +585,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isActive: 0
-  Speed: 3
+  Speed: 6
   AngryLevelReduceToMinTime: 30
   DistanceToSeePlayer: 18
 --- !u!1 &2553515110356549425
