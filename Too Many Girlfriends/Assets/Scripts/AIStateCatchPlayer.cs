@@ -51,7 +51,11 @@ public class AIStateCatchPlayer : AIStateBaseNode
     }
     public override bool IsValid()
     {
-        if (MyPlayer.GetComponent<PlayerMovement>().IsInRestroom)
+        if(MyPlayer == null)
+        {
+            MyPlayer = GameObject.FindGameObjectWithTag("Player");
+        }
+        else if (MyPlayer.GetComponent<PlayerMovement>().IsInRestroom)
         {
             return false;
         }
