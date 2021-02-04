@@ -122,7 +122,7 @@ NavMeshSettings:
     preserveTilesOutsideBounds: 0
     debug:
       m_Flags: 0
-  m_NavMeshData: {fileID: 23800000, guid: 1ddccade7370b41459dbf046dee29bbd, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: 4ccb226c35a6ab84d9e1ed22828fd100, type: 2}
 --- !u!1 &4181333 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8786881907124703388, guid: 5282d82091a732b44a04aec89f703752, type: 3}
@@ -3171,7 +3171,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh51878
+  m_Name: pb_Mesh18144
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -4257,8 +4257,8 @@ GameObject:
   m_Name: Building (7)
   m_TagString: Wall
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &1111258370
 Transform:
