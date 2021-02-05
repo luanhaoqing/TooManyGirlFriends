@@ -17,6 +17,7 @@ public class ThoughtBubble : MonoBehaviour
         ICECREAM = 3,
         KEBAB = 4,
         WASHROOM = 5,
+        FLOWER = 6,
     }
     public Sprite[] Sprites;
     // Start is called before the first frame update
@@ -49,7 +50,7 @@ public class ThoughtBubble : MonoBehaviour
         switch (type)
         {
             case GoalType.FLOWER:
-                bubbleType = BubbleType.CLOTHING;
+                bubbleType = BubbleType.FLOWER;
                 break;
             case GoalType.GRILL:
                 bubbleType = BubbleType.GRILL;
