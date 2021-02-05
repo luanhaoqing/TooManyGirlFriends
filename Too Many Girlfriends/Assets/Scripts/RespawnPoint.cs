@@ -7,8 +7,7 @@ public class RespawnPoint : MonoBehaviour
 
     public void GenerateNPC(GameObject prefab)
     {
-        GameObject obj = Instantiate(prefab, this.transform.position, Quaternion.identity);
-        obj.transform.forward = this.transform.forward;
+        GameObject obj = Instantiate(prefab, this.transform.position, this.transform.rotation);
         obj.GetComponent<AIStateWalkNPC>().Speed += Random.Range(-2, 2);
     }
     // Start is called before the first frame update

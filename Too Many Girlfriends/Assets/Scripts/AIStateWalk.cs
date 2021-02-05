@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 //This is random walk
 public class AIStateWalk : AIStateBaseNode
@@ -12,7 +13,7 @@ public class AIStateWalk : AIStateBaseNode
     public bool shouldChangeDirection;
     private float timer;
     public bool hitTheWall;
-    RaycastHit hitPoint;
+    NavMeshHit hitPoint;
     // Start is called before the first frame update
     void Start()
     {
@@ -26,16 +27,25 @@ public class AIStateWalk : AIStateBaseNode
         if(this.IsActive())
         {
             //raycast
-            RaycastHit hit;
-            if (Physics.Raycast(this.transform.position, this.transform.forward, out hit))
+            // RaycastHit hit;
+            // if (Physics.Raycast(this.transform.position, this.transform.forward, out hit))
+            // {
+            //     if ((hit.transform.tag == "Wall" || hit.transform.tag == "AIPlayer") && hit.distance <= 3)
+            //     {
+            //         shouldChangeDirection = true;
+            //         hitTheWall = true;
+            //         hitPoint = hit;
+            //     }
+            // }
+            NavMeshHit hit;
+            Vector3 targetPos = this.transform.forward + this.transform.position;
+            if(NavMesh.Raycast(transform.position, targetPos, out hit, NavMesh.AllAreas))
             {
-                if ((hit.transform.tag == "Wall" || hit.transform.tag == "AIPlayer") && hit.distance <= 3)
-                {
-                    shouldChangeDirection = true;
-                    hitTheWall = true;
-                    hitPoint = hit;
-                }
+                shouldChangeDirection = true;
+                hitTheWall = true;
+                hitPoint = hit;
             }
+
             timer -= Time.deltaTime;
             if(timer <= 0)
             {

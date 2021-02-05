@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class AIStateWalkNPC : AIStateBaseNode
 {
@@ -11,7 +12,7 @@ public class AIStateWalkNPC : AIStateBaseNode
     private float timer;
     private bool hitTheWall;
     private bool closeToAIPlayer;
-    RaycastHit hitPoint;
+    NavMeshHit hitPoint;
     // Start is called before the first frame update
     void Start()
     {
@@ -26,19 +27,27 @@ public class AIStateWalkNPC : AIStateBaseNode
         if (this.IsActive())
         {
             //raycast
-            RaycastHit hit;
-            if(Physics.Raycast(this.transform.position,this.transform.forward,out hit))
+            // RaycastHit hit;
+            // if(Physics.Raycast(this.transform.position,this.transform.forward,out hit))
+            // {
+            //     if(hit.transform.tag == "Wall" && hit.distance <= 2)
+            //     {
+            //         shouldChangeDirection = true;
+            //         hitTheWall = true;
+            //         hitPoint = hit;
+            //
+            //         //debug line draw
+            //        // Debug.DrawLine(this.transform.position, hit.point, Color.red);
+            //        // Debug.DrawRay(hit.point, Vector3.Reflect(this.transform.forward, hitPoint.normal), Color.green);
+            //     }
+            // }
+            NavMeshHit hit;
+            Vector3 targetPos = this.transform.forward + this.transform.position;
+            if (NavMesh.Raycast(transform.position, targetPos, out hit, NavMesh.AllAreas))
             {
-                if(hit.transform.tag == "Wall" && hit.distance <= 2)
-                {
-                    shouldChangeDirection = true;
-                    hitTheWall = true;
-                    hitPoint = hit;
-
-                    //debug line draw
-                   // Debug.DrawLine(this.transform.position, hit.point, Color.red);
-                   // Debug.DrawRay(hit.point, Vector3.Reflect(this.transform.forward, hitPoint.normal), Color.green);
-                }
+                shouldChangeDirection = true;
+                hitTheWall = true;
+                hitPoint = hit;
             }
             timer -= Time.deltaTime;
             if (timer <= 0)
