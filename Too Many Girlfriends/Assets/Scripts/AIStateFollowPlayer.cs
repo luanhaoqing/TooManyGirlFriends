@@ -103,7 +103,7 @@ public class AIStateFollowPlayer : AIStateBaseNode
             hits = Physics.RaycastAll(this.transform.position, tempVec, DistanceToSeePlayer);
             for (int i = 0; i < hits.Length; i++)
             {
-                if (hits[i].transform.tag == "Wall")
+                if (hits[i].transform.tag == "Wall"|| hits[i].transform.tag == "Restroom")
                 {
                     return false;
                 }

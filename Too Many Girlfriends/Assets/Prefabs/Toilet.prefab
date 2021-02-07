@@ -1,5 +1,18 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!65 &982424656
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5156856990955563777}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 10, y: 10, z: 23}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &62688963591809157
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -17,7 +30,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1741806183277743080, guid: 2ac2956dbf237eb4caf9acf7de421391, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -12.139999
       objectReference: {fileID: 0}
     - target: {fileID: 1741806183277743080, guid: 2ac2956dbf237eb4caf9acf7de421391, type: 3}
       propertyPath: m_LocalPosition.y
@@ -25,7 +38,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1741806183277743080, guid: 2ac2956dbf237eb4caf9acf7de421391, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 19.09
       objectReference: {fileID: 0}
     - target: {fileID: 1741806183277743080, guid: 2ac2956dbf237eb4caf9acf7de421391, type: 3}
       propertyPath: m_LocalRotation.w
@@ -55,11 +68,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 5138151271858914180, guid: 2ac2956dbf237eb4caf9acf7de421391, type: 3}
+      propertyPath: m_TagString
+      value: Restroom
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 5138151271858914178, guid: 2ac2956dbf237eb4caf9acf7de421391, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 2ac2956dbf237eb4caf9acf7de421391, type: 3}
 --- !u!4 &1797662175886795629 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1741806183277743080, guid: 2ac2956dbf237eb4caf9acf7de421391, type: 3}
+  m_PrefabInstance: {fileID: 62688963591809157}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &5156856990955563777 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5138151271858914180, guid: 2ac2956dbf237eb4caf9acf7de421391, type: 3}
   m_PrefabInstance: {fileID: 62688963591809157}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &3446736446413698433
