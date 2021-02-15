@@ -66,8 +66,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11b1ca1c0c6515e458f6b48bbf740c86, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Speed: 5
+  Speed: 7
   Cursor: {fileID: 0}
+  CurrentFollowingGirlFriend: {fileID: 0}
+  HasMoveOutOfShop: 0
+  IsInRestroom: 0
 --- !u!54 &7636920942758119907
 Rigidbody:
   m_ObjectHideFlags: 0
