@@ -22,6 +22,6 @@ public class StartGame : MonoBehaviour
 
     private void startGame()
     {
-        SceneManager.LoadScene("Level_1");
+        SceneManager.LoadScene("Level_1_V2");
     }
 }

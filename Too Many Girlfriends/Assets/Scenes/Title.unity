@@ -356,12 +356,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Too Many
-
-    Girlfriends'
+  m_text: "\u6E23\u7537\u6A21\u62DF\u5668"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 463ab5b1da72958428d4aa547bc3f3fd, type: 2}
-  m_sharedMaterial: {fileID: 2708703198030776118, guid: 463ab5b1da72958428d4aa547bc3f3fd, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 947a5d7641b3edd438c339a505988931, type: 2}
+  m_sharedMaterial: {fileID: -2957532187266298185, guid: 947a5d7641b3edd438c339a505988931, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -658,7 +656,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: aeb7af72227c90540bd1add945fd9377, type: 3}
+    m_Font: {fileID: 12800000, guid: 981ad2c25781ba141a7799f5fab6bdfa, type: 3}
     m_FontSize: 50
     m_FontStyle: 0
     m_BestFit: 0
@@ -670,7 +668,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Quit
+  m_Text: "\u9000\u51FA"
 --- !u!222 &1050080444
 CanvasRenderer:
   m_ObjectHideFlags: 0
