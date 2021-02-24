@@ -2,31 +2,34 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class LogSystem : MonoBehaviour
 {
-    public GameObject[] LogLines;
+    public TextMeshProUGUI LogLineDisplay;
+    private TextMeshProUGUI[] LogLines;
     public int MaxLines;
     private string[] logs;
     private int logNumber;
-    // Start is called before the first frame update
 
     private void Awake()
     {
         logs = new string[MaxLines];
         logNumber = 0;
+        LogLines = new TextMeshProUGUI[MaxLines];
+        LogLines[0] = LogLineDisplay;
+        for (int i = 1; i < MaxLines; ++i)
+        {
+            LogLines[i] = Instantiate(LogLineDisplay, transform);
+        }
     }
+
     void Start()
     {
         updateLogLines();
     }
 
     // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public void AddLog(string log)
     {
         //if log is full
@@ -50,7 +53,7 @@ public class LogSystem : MonoBehaviour
     {
         for(int i = 0; i < LogLines.Length; i++)
         {
-            LogLines[i].GetComponent<Text>().text = logs[i];
+            LogLines[i].text = logs[i];
         }
     }
 
